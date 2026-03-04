@@ -6,4 +6,8 @@
     <string name="botao2">Cadastre-se</string>
     <string name="acessar">Acesse sua \nconta</string>
     <string name="email">Email</string>
+    <string name="ins_email">Insira o email cadastrado</string>
+    <string name="ins_senha">Insira a sua senha</string>
+    <string name="senha">Senha</string>
+    <string name="voltar">Voltar</string>
 </resources>

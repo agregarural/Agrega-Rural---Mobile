@@ -15,7 +15,7 @@
             android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".TelaLogin"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
