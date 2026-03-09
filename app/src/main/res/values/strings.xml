@@ -10,6 +10,23 @@
     <string name="ins_senha">Insira a sua senha</string>
     <string name="senha">Senha</string>
     <string name="voltar">Voltar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recuperar">Esqueceu a sua senha? Clique aqui!</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="nome_pes">Nome</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="continuar">Continue</string>
+    <string name="numeros">Apenas números</string>
+    <string name="CPF">CPF</string>
+    <string name="CEP">CEP</string>
+    <string name="repetir">Repita a senha</string>
+    <string name="termos">Termos de Compromisso</string>
+    <string name="acordo">Estou de acordo com os termos de compromisso.</string>
+    <string name="coop">Cooperativa</string>
+    <string name="coopnome">Nome da sua cooperativa</string>
+    <string name="matricula">Matrícula</string>
+    <string name="cooperados">Apenas para cooperados</string>
+    <string name="associado">É associado da cooperativa?</string>
+    <string name="positivo">Se sim, clique no botão e informe sua matrícula.</string>
+    <string name="finalizar">Finalizar cadastro</string>
+
 </resources>

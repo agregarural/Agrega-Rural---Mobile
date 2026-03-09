@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".tela_cadastro4"
+            android:exported="false" />
+        <activity
+            android:name=".tela_cadastro3"
+            android:exported="false" />
+        <activity
+            android:name=".tela_cadastro2"
+            android:exported="false" />
+        <activity
+            android:name=".tela_cadastro1"
+            android:exported="false" />
+        <activity
             android:name=".Home"
             android:exported="false" />
         <activity

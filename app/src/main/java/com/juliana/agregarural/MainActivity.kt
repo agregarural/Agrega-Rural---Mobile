@@ -1,13 +1,10 @@
-package com.juliana.login
+package com.juliana.agregarural
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.juliana.login.databinding.ActivityMainBinding
+import com.juliana.agregarural.databinding.ActivityMainBinding
 import android.content.Intent
 
 

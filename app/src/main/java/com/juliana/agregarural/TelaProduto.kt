@@ -1,11 +1,11 @@
-package com.juliana.login
+package com.juliana.agregarural
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.juliana.login.databinding.FragmentTelaProdutoBinding
+import com.juliana.agregarural.databinding.FragmentTelaProdutoBinding
 
 
 class TelaProduto : Fragment() {

@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaLogin"
-    >
+    tools:context=".tela_cadastro2">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/acessar"
+        android:text="@string/cadastro"
         android:textSize="35sp"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
@@ -93,7 +92,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/email"
+                android:text="@string/CPF"
                 android:textSize="18sp"
                 android:textColor="@color/botoes"
                 android:layout_marginTop="10dp"
@@ -105,15 +104,15 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="18dp"
-                android:hint="@string/ins_email"
+                android:hint="@string/numeros"
                 android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_email"
+                android:id="@+id/cx_CPF"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/senha"
+                android:text="@string/CEP"
                 android:textSize="18sp"
                 android:textColor="@color/botoes"
                 android:layout_marginTop="20dp"
@@ -125,34 +124,25 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="18dp"
-                android:hint="@string/ins_senha"
+                android:hint="@string/numeros"
                 android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_senha"
+                android:id="@+id/cx_CEP"
                 />
 
             <Button
-                android:id="@+id/bt_acessarconta"
+                android:id="@+id/bt_continuar2"
                 android:layout_width="380dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="16dp"
                 android:backgroundTint="@color/botoes"
                 android:fontFamily="sans-serif"
-                android:text="@string/botao1"
+                android:text="@string/continuar"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="86dp"
-                android:text="@string/recuperar"
-                android:id="@+id/recuperar_txt"
-                android:textColor="@color/botoes"
-                android:textSize="14sp"
-                />
+
         </LinearLayout>
     </FrameLayout>
 

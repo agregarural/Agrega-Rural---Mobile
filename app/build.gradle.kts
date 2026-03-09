@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.juliana.login"
+    namespace = "com.juliana.agregarural"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

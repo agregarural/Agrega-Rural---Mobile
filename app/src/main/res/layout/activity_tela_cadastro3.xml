@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaLogin"
-    >
+    tools:context=".tela_cadastro3">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/acessar"
+        android:text="@string/cadastro"
         android:textSize="35sp"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
@@ -93,7 +92,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/email"
+                android:text="@string/coop"
                 android:textSize="18sp"
                 android:textColor="@color/botoes"
                 android:layout_marginTop="10dp"
@@ -105,19 +104,39 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="18dp"
-                android:hint="@string/ins_email"
+                android:hint="@string/coopnome"
                 android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_email"
+                android:id="@+id/cx_coop"
                 />
+
+
+            <CheckBox
+                android:id="@+id/termos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/botoes"
+                android:hint="@string/associado"
+                android:textSize="15sp"
+                android:layout_marginLeft="-350dp"
+                android:layout_marginTop="5dp"
+                android:textColorHint="@color/black"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/senha"
+                android:text="@string/positivo"
+                android:layout_marginLeft="47dp"
+                android:layout_marginTop="-18dp"
+                android:textColor="@color/checkbox"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/matricula"
                 android:textSize="18sp"
                 android:textColor="@color/botoes"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 />
 
             <EditText
@@ -125,34 +144,28 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="18dp"
-                android:hint="@string/ins_senha"
+                android:hint="@string/cooperados"
                 android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_senha"
+                android:id="@+id/cx_cooperados"
                 />
 
+
+
+
             <Button
-                android:id="@+id/bt_acessarconta"
+                android:id="@+id/bt_continuar"
                 android:layout_width="380dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="16dp"
                 android:backgroundTint="@color/botoes"
                 android:fontFamily="sans-serif"
-                android:text="@string/botao1"
+                android:text="@string/continuar"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="5dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="86dp"
-                android:text="@string/recuperar"
-                android:id="@+id/recuperar_txt"
-                android:textColor="@color/botoes"
-                android:textSize="14sp"
-                />
+
         </LinearLayout>
     </FrameLayout>
 
