@@ -91,7 +91,6 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vp_categorias"
                 app:layout_constraintBottom_toBottomOf="@id/constraint_interno"
                 android:columnCount="2"
                 android:layout_marginStart="16dp">

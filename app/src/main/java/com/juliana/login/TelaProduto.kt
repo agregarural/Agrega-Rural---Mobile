@@ -10,7 +10,8 @@ import com.juliana.login.databinding.FragmentTelaProdutoBinding
 
 class TelaProduto : Fragment() {
 
-    private lateinit var FragmentTelaProdutoBinding
+    private  var _binding: FragmentTelaProdutoBinding?= null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +21,12 @@ class TelaProduto : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tela_produto, container, false)
+        _binding = FragmentTelaProdutoBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
     }
 }

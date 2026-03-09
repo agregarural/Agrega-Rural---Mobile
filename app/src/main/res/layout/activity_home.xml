@@ -127,6 +127,20 @@
                     android:layout_margin="20dp"
                     />
 
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="20dp"
+                    />
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="20dp"
+                    />
+
 
 
 
