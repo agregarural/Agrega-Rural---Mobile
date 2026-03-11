@@ -28,5 +28,7 @@
     <string name="associado">É associado da cooperativa?</string>
     <string name="positivo">Se sim, clique no botão e informe sua matrícula.</string>
     <string name="finalizar">Finalizar cadastro</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

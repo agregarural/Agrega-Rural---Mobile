@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Conteudo Principal -->
+
+    <ScrollView
+        android:id="@+id/main1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_interno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!-- Cabeçalho das paginas -->
+            <View
+                android:id="@+id/view_desing1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/green"
+                app:layout_constraintEnd_toEndOf="@id/constraint_interno"
+                app:layout_constraintStart_toStartOf="@id/constraint_interno"
+                app:layout_constraintTop_toTopOf="@id/constraint_interno" />
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-80dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/view_desing1">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background=""
+                    app:icon="@drawable/back_button"
+                    app:iconSize="40dp"
+                    app:iconPadding="0dp"
+                    app:iconGravity="textEnd"
+                    android:contentDescription="Voltar"/>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FORMAS DE PAGAMENTO"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <!-- Corpo das paginas -->
+
+            <TextView
+                android:id="@+id/txtNameProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="RAÇÃO EQUINA - Rações Zardo"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_desing1" />
+
+            <!-- Grid com Imagem + Compra do produto -->
+
+            <GridLayout
+                android:id="@+id/mainGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:columnCount="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtNameProduto">
+
+                <ImageView
+
+                    android:layout_width="200dp"
+                    android:layout_height="250dp"
+                    android:src="@drawable/prod_racoeszardo" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/orgCompra"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1">
+
+                    <TextView
+                        android:id="@+id/precoProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="500,00"
+                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
+                        app:layout_constraintStart_toStartOf="@id/orgCompra"
+                        app:layout_constraintTop_toTopOf="@id/orgCompra" />
+
+                    <TextView
+                        android:id="@+id/estoqueProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Em estoque"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
+                        app:layout_constraintStart_toStartOf="@id/orgCompra"
+                        app:layout_constraintTop_toBottomOf="@id/precoProduto" />
+
+                    <TextView
+                        android:id="@+id/quantidadeProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnMenos"
+                        app:layout_constraintStart_toEndOf="@+id/btnMais"
+                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <Button
+                        android:id="@+id/btnMais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:contentDescription="Botão Somar"
+                        android:text="+"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
+                        app:layout_constraintVertical_bias="0.5"
+                        android:backgroundTint="@color/green"
+                        />
+
+                    <Button
+                        android:id="@+id/btnMenos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="-"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
+                        app:layout_constraintVertical_bias="0.5"
+                        android:backgroundTint="@color/green"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </GridLayout>
+
+
+            <!-- Descrição do produto -->
+
+
+            <LinearLayout
+                android:id="@+id/mainLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/mainGrid">
+
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:id="@+id/txtTituloDescicao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descrição"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <TextView
+                    android:id="@+id/txtDescicao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="A Ração Equina Zardo Nutrição de Elite é a escolha ideal para maximizar o desempenho de cavalos atletas. Desenvolvida com ingredientes selecionados, esta fórmula suprema de 25kg oferece o equilíbrio perfeito de energia e nutrientes essenciais para garantir força, resistência e saúde integral, proporcionando ao seu animal uma alimentação de alta qualidade que reflete diretamente na sua vitalidade e condição física." />
+
+                <TextView
+                    android:id="@+id/txtTituloIngredientes"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredientes"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/txtIngredientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Milho, aveia, farelo de soja, melaço de cana, óleo vegetal, cloreto de sódio (sal), e núcleo de vitaminas e minerais." />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Adicionar ao carrinho"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/green"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="comprar"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/green"/>
+
+
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Outros produtos"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+
+            <GridLayout
+                android:id="@+id/gridOutrosProdutos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:columnCount="2"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_interno"
+                app:layout_constraintTop_toBottomOf="@id/mainLinearLayout">
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="20dp" />
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="20dp" />
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+    <!--    Menu Inferior-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/navigatebar_shape"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="4"
+            android:rowCount="1">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="Home"
+                app:icon="@drawable/nvbar_home"
+                app:iconSize="20dp" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="Carrinho"
+                app:icon="@drawable/nvbar_carrinho"
+                app:iconSize="20dp" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="Entrega"
+                app:icon="@drawable/nvbar_truck"
+                app:iconSize="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="Menu"
+                app:icon="@drawable/nvbar_menu"
+                app:iconSize="20dp" />
+
+
+        </GridLayout>
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
