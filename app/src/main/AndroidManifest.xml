@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".tela_cadastro4"
+            android:name=".TelaCadastro4"
             android:exported="false" />
         <activity
-            android:name=".tela_cadastro3"
+            android:name=".TelaCadastro3"
             android:exported="false" />
         <activity
-            android:name=".tela_cadastro2"
+            android:name=".TelaCadastro2"
             android:exported="false" />
         <activity
-            android:name=".tela_cadastro1"
+            android:name=".TelaCadastro1"
             android:exported="false" />
         <activity
             android:name=".Home"
