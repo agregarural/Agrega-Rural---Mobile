@@ -149,7 +149,7 @@
 
 
             <Button
-                android:id="@+id/bt_continuar"
+                android:id="@+id/bt_cadastrar"
                 android:layout_width="380dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="16dp"

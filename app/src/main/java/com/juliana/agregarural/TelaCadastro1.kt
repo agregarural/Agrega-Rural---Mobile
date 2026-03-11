@@ -4,16 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.juliana.agregarural.databinding.TelaLoginBinding
+import com.juliana.agregarural.databinding.ActivityTelaCadastro1Binding
 
-class TelaLogin : AppCompatActivity() {
-    private lateinit var binding: TelaLoginBinding
+class TelaCadastro1 : AppCompatActivity() {
+
+    private lateinit var binding: ActivityTelaCadastro1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = TelaLoginBinding.inflate(layoutInflater)
+        binding = ActivityTelaCadastro1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btVoltar.setOnClickListener {
@@ -22,8 +23,8 @@ class TelaLogin : AppCompatActivity() {
             finish()
         }
 
-        binding.btEntrar.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+        binding.btContinuar.setOnClickListener {
+            val intent = Intent(this, TelaCadastro2::class.java)
             startActivity(intent)
             finish()
         }

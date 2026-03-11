@@ -22,6 +22,13 @@ class MainActivity : AppCompatActivity() {
         binding.btEntrar.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, TelaLogin::class.java)
             startActivity(intent)
+            finish()
         })
+        binding.btCadastro.setOnClickListener {
+            val intent = Intent(this, TelaCadastro1::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 }

@@ -131,7 +131,7 @@
                 />
 
             <Button
-                android:id="@+id/bt_acessarconta"
+                android:id="@+id/bt_entrar"
                 android:layout_width="380dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="16dp"
