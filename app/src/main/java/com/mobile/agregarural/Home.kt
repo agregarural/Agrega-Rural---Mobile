@@ -1,4 +1,4 @@
-package com.juliana.agregarural
+package com.mobile.agregarural
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

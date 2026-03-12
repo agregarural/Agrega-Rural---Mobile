@@ -1,30 +1,30 @@
-package com.juliana.agregarural
+package com.mobile.agregarural
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.juliana.agregarural.databinding.ActivityTelaCadastro4Binding
+import com.mobile.agregarural.databinding.ActivityTelaCadastro1Binding
 
-class TelaCadastro4 : AppCompatActivity() {
+class TelaCadastro1 : AppCompatActivity() {
 
-    private lateinit var binding: ActivityTelaCadastro4Binding
+    private lateinit var binding: ActivityTelaCadastro1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityTelaCadastro4Binding.inflate(layoutInflater)
+        binding = ActivityTelaCadastro1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btVoltar.setOnClickListener {
-            val intent = Intent(this, TelaCadastro3::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        binding.btCadastrar.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+        binding.btContinuar.setOnClickListener {
+            val intent = Intent(this, TelaCadastro2::class.java)
             startActivity(intent)
             finish()
         }

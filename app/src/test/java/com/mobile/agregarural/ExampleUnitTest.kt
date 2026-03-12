@@ -1,4 +1,4 @@
-package com.juliana.agregarural
+package com.mobile.agregarural
 
 import org.junit.Test
 

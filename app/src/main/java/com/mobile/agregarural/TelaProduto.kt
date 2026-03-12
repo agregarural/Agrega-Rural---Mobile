@@ -1,17 +1,16 @@
-package com.juliana.agregarural
+package com.mobile.agregarural
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.juliana.agregarural.databinding.FragmentTelaPagamentoBinding
-import com.juliana.agregarural.databinding.FragmentTelaProdutoBinding
+import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
 
 
-class TelaPagamento: Fragment() {
+class TelaProduto : Fragment() {
 
-    private  var _binding: FragmentTelaPagamentoBinding?= null
+    private  var _binding: FragmentTelaProdutoBinding?= null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,7 @@ class TelaPagamento: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTelaPagamentoBinding.inflate(layoutInflater)
+        _binding = FragmentTelaProdutoBinding.inflate(layoutInflater)
         return binding.root
     }
 

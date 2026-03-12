@@ -1,10 +1,10 @@
-package com.juliana.agregarural
+package com.mobile.agregarural
 
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.juliana.agregarural.databinding.ActivityMainBinding
+import com.mobile.agregarural.databinding.ActivityMainBinding
 import android.content.Intent
 
 

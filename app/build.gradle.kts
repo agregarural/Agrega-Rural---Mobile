@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.juliana.agregarural"
+    namespace = "com.mobile.agregarural"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
