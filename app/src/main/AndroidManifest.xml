@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Menu"
+            android:exported="false" />
+        <activity
             android:name=".TelaCadastro4"
             android:exported="false" />
         <activity
