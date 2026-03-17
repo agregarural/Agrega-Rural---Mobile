@@ -152,6 +152,8 @@
                 android:id="@+id/recuperar_txt"
                 android:textColor="@color/botoes"
                 android:textSize="14sp"
+                android:clickable="true"
+                android:focusable="true"
                 />
         </LinearLayout>
     </FrameLayout>
