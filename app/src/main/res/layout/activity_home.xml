@@ -188,6 +188,7 @@
                 android:layout_columnWeight="1"
                 android:contentDescription="Home"
                 app:icon="@drawable/nvbar_home"
+                android:background="@color/transparent"
                 app:iconSize="20dp" />
 
 
@@ -200,6 +201,7 @@
                 android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp"
+                android:background="@color/transparent"
                 />
 
 
@@ -211,6 +213,7 @@
                 android:layout_columnWeight="1"
                 android:contentDescription="Entrega"
                 app:icon="@drawable/nvbar_truck"
+                android:background="@color/transparent"
                 app:iconSize="20dp" />
 
             <com.google.android.material.button.MaterialButton
@@ -220,6 +223,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
                 android:contentDescription="Menu"
+                android:background="@color/transparent"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp" />
 
