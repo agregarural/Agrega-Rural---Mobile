@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <!-- Conteudo Principal -->
 
@@ -120,7 +121,7 @@
                         android:textSize="25dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:text="500,00"
+                        android:text="500,00 KG"
                         app:layout_constraintEnd_toEndOf="@id/orgCompra"
                         app:layout_constraintStart_toStartOf="@id/orgCompra"
                         app:layout_constraintTop_toTopOf="@id/orgCompra" />
@@ -141,6 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
+                        android:textSize="25dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/btnMenos"
                         app:layout_constraintStart_toEndOf="@+id/btnMais"
@@ -149,8 +151,8 @@
 
                     <Button
                         android:id="@+id/btnMais"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:contentDescription="Botão Somar"
                         android:text="+"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -158,18 +160,20 @@
                         app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
                         app:layout_constraintVertical_bias="0.5"
                         android:backgroundTint="@color/green"
+                        android:layout_marginStart="20dp"
                         />
 
                     <Button
                         android:id="@+id/btnMenos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:text="-"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
                         app:layout_constraintVertical_bias="0.5"
-                        android:backgroundTint="@color/green"/>
+                        android:backgroundTint="@color/green"
+                        android:layout_marginEnd="20dp"/>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

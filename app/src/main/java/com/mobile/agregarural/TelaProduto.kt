@@ -22,6 +22,23 @@ class TelaProduto : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTelaProdutoBinding.inflate(layoutInflater)
+
+
+
+        var qntProduto = 1
+        binding.quantidadeProduto.text = qntProduto.toString()
+
+
+        binding.btnMais.setOnClickListener {
+            qntProduto--
+            binding.quantidadeProduto.text = qntProduto.toString()
+        }
+
+        binding.btnMenos.setOnClickListener {
+            qntProduto++
+            binding.quantidadeProduto.text = qntProduto.toString()
+        }
+
         return binding.root
     }
 
