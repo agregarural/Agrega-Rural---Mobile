@@ -118,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="25dp">
+                    android:padding="15dp">
 
 
                     <LinearLayout
@@ -142,7 +142,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG"/>
+                            android:text="Saco 25KG"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/estoqueProduto"
@@ -167,22 +169,24 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:background="@drawable/navigatebar_shape">
 
 
-                    <com.google.android.material.button.MaterialButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnMais"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:contentDescription="Botão Somar"
-                        android:text="+"
+                        android:background="@drawable/icon_btn_menos"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        app:layout_constraintVertical_bias="0.5"
                         android:layout_marginStart="20dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
                         />
 
                         <TextView
@@ -190,37 +194,39 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1"
+                            android:textColor="@color/white"
                             android:textSize="33dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/btnMenos"
                             app:layout_constraintStart_toEndOf="@+id/btnMais"
                             app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
                             app:layout_constraintVertical_bias="0.5"
-                            android:layout_margin="10dp"/>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="7dp"/>
 
-                    <com.google.android.material.button.MaterialButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnMenos"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:text="-"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/icon_btn_mais"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        app:layout_constraintVertical_bias="0.5"
+                        android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_margin="10dp"/>
+                        android:layout_marginBottom="8dp" />
 
                     </LinearLayout>
 
 
 
+
+
+
+
                     <!-- Descrição do produto -->
 
-
-
-
                 </LinearLayout>
-
 
                 <TextView
                     android:layout_marginTop="30dp"
