@@ -16,10 +16,11 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/constraint_interno"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
             <!-- Cabeçalho das paginas -->
@@ -46,12 +47,12 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/back_button"
-                    android:contentDescription="Voltar"/>
+                    android:contentDescription="Voltar" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
 
             </LinearLayout>
@@ -67,13 +68,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_desing1" />
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/subtituloPagina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -81,27 +79,124 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/formasDePagamento" />
+                android:textStyle="bold" />
 
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                >
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Cadastrar Novo Endereço"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
 
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:columnCount="2"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:text="CEP" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:text="Numero" />
+
+                    <EditText
+                        android:layout_columnWeight="1"
+                        android:hint="Apenas números" />
+
+                    <EditText
+                        android:layout_columnWeight="1"
+                        android:hint="Ex: 99" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="10dp"
+                        android:text="LOGRADOURO" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:text="COMPLEMENTO" />
+
+                    <EditText
+                        android:layout_columnWeight="1"
+                        android:hint="Rua, Avenida" />
+
+                    <EditText
+                        android:layout_columnWeight="1"
+                        android:hint="Opicional" />
+
+                </GridLayout>
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="COMPLEMENTO" />
 
-            </GridLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:hint="Opicional" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green"
+                    android:text="CONFIRMAR"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="Endereços salvos"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RadioButton" />
+
+
+        </LinearLayout> <!-- Linear layout geral -->
 
     </ScrollView>
 
@@ -136,6 +231,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp" />
@@ -147,6 +243,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp" />
@@ -158,6 +255,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Entrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
@@ -168,6 +266,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Menu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp" />
