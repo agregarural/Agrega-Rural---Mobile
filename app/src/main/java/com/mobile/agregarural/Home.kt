@@ -18,7 +18,7 @@ class Home : AppCompatActivity() {
         binding.cardProduto.setOnClickListener {
 
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, TelaProduto())
+                .replace(R.id.fragmentContainer, TelaFinalizaoPedido())
                 .addToBackStack(null)
                 .commit()
         }
