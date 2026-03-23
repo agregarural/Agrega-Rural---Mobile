@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btEntrar.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, TelaLogin::class.java)
+            val intent = Intent(this, MeusPedidosActivity::class.java)
             startActivity(intent)
             finish()
         })
