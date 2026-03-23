@@ -19,7 +19,11 @@ data class ProdutoItem(
 )
 
 
-class ProdutoItemAdapter(private val list: List<ProdutoItem>) : RecyclerView.Adapter<ProdutoItemAdapter.ViewHolder>()
+class ProdutoItemAdapter(
+    private val list: List<ProdutoItem>,
+    private val onItemClick: (ProdutoItem) -> Unit
+
+) : RecyclerView.Adapter<ProdutoItemAdapter.ViewHolder>()
 
 {
 
@@ -44,13 +48,13 @@ class ProdutoItemAdapter(private val list: List<ProdutoItem>) : RecyclerView.Ada
         val item = list[position]
         holder.nome.text = item.nome
         holder.preco.text = item.preco.toString()
+
+        holder.itemView.setOnClickListener {
+            onItemClick(item)
+        }
+
     }
 
     override fun getItemCount() = list.size
-
-
-
-
-
 
 }

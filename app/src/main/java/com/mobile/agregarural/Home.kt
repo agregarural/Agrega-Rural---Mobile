@@ -24,14 +24,6 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.cardProduto.setOnClickListener {
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, TelaProduto())
-                .addToBackStack(null)
-                .commit()
-        }
-
         //Configurando categorias
 
         val listaCategoria = listOf(
@@ -59,7 +51,14 @@ class Home : AppCompatActivity() {
         )
 
         recyclerView = findViewById(R.id.rv_produtos)
-        adapterProdutos = ProdutoItemAdapter(listaProdutos)
+        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
+
+            val fragment = TelaProduto()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapterProdutos
 
