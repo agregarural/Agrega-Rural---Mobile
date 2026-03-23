@@ -9,6 +9,7 @@ import com.mobile.agregarural.databinding.TelaLoginBinding
 class TelaLogin : AppCompatActivity() {
     private lateinit var binding: TelaLoginBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
