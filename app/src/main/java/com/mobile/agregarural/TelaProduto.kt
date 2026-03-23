@@ -22,6 +22,44 @@ class TelaProduto : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTelaProdutoBinding.inflate(layoutInflater)
+
+
+
+        //Configuração dos botões
+
+        var qntProduto = 1
+        binding.quantidadeProduto.text = qntProduto.toString()
+
+
+        binding.btnMais.setOnClickListener {
+            qntProduto--
+            binding.quantidadeProduto.text = qntProduto.toString()
+        }
+
+        binding.btnMenos.setOnClickListener {
+            qntProduto++
+            binding.quantidadeProduto.text = qntProduto.toString()
+        }
+
+
+
+        //
+
+        val FragmentTelaCompra = TelaFinalizaoPedido()
+
+        binding.btnComprar.setOnClickListener {
+
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentTelaCompra)
+                .addToBackStack(null)
+                .commit()
+
+
+        }
+
+
+
+
+
         return binding.root
     }
 

@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
+import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
 
 
-class TelaPagamento: Fragment() {
+class TelaPagamentoEndereco: Fragment() {
 
-    private  var _binding: FragmentTelaPagamentoBinding?= null
+    private  var _binding: FragmentTelaPagamentoEnderecoBinding?= null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,14 +22,20 @@ class TelaPagamento: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTelaPagamentoBinding.inflate(layoutInflater)
+        _binding = FragmentTelaPagamentoEnderecoBinding.inflate(layoutInflater)
 
 
-        binding.btnFinalizar.setOnClickListener {
+        binding.btnConfirmar.setOnClickListener {
+            val fragmentPagamento = TelaPagamento()
 
-            parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentPagamento)
+                .addToBackStack(null)
+                .commit()
 
         }
+
+
+
 
 
         return binding.root
