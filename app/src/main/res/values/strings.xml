@@ -28,8 +28,14 @@
     <string name="associado">É associado da cooperativa?</string>
     <string name="positivo">Se sim, clique no botão e informe sua matrícula.</string>
     <string name="finalizar">Finalizar cadastro</string>
+<<<<<<< HEAD
     <string name="fechar">Fechar</string>
     <string name="recuperacao2">Recuperação da senha</string>
     <string name="popup1">As informações sobre a recuperação de senha já foram\n enviadas para o email cadastrado!</string>
+=======
+    <string name="recuperacao">Recuperação\n da senha</string>
+    <string name="informar">Informe o email cadastrado</string>
+    <string name="enviar">Enviar</string>
+>>>>>>> bccc17885ca60f39b4946c84302d33c0a6f68999
 
 </resources>

@@ -4,17 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.mobile.agregarural.databinding.TelaLoginBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.mobile.agregarural.databinding.ActivityRecuperarsenhaBinding
+import com.mobile.agregarural.databinding.ActivityTelaCadastro1Binding
 
-class TelaLogin : AppCompatActivity() {
-    private lateinit var binding: TelaLoginBinding
-
+class RecuperarSenha : AppCompatActivity() {
+    private lateinit var binding: ActivityRecuperarsenhaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = TelaLoginBinding.inflate(layoutInflater)
+        binding = ActivityRecuperarsenhaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btVoltar.setOnClickListener {
@@ -23,15 +25,10 @@ class TelaLogin : AppCompatActivity() {
             finish()
         }
 
-        binding.btEntrar.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+        binding.btEnviar.setOnClickListener {
+            val intent = Intent(this, TelaCadastro2::class.java)
             startActivity(intent)
             finish()
-        }
-
-        binding.recuperarTxt.setOnClickListener {
-            val intent = Intent(this, RecuperarSenha::class.java)
-            startActivity(intent)
         }
     }
 }

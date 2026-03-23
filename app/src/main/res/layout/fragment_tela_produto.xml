@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
     <!-- Conteudo Principal -->
 
@@ -58,13 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="FORMAS DE PAGAMENTO"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"
-                    android:textStyle="bold"/>
+
 
             </LinearLayout>
 
@@ -77,8 +73,8 @@
                 android:layout_marginTop="15dp"
                 android:text="RAÇÃO EQUINA - Rações Zardo"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="30sp"
+                android:padding="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,99 +82,29 @@
 
             <!-- Grid com Imagem + Compra do produto -->
 
-            <GridLayout
-                android:id="@+id/mainGrid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:columnCount="2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtNameProduto">
 
-                <ImageView
 
-                    android:layout_width="200dp"
+                <LinearLayout
+
+                    android:id="@+id/fotoProduto"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:src="@drawable/prod_racoeszardo" />
+                    android:src="@drawable/prod_racoeszardo"
+                    app:layout_constraintTop_toBottomOf="@id/txtNameProduto"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/orgCompra"
-                    android:layout_width="0dp"
-                    android:layout_height="250dp"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:layout_columnWeight="1">
-
-                    <TextView
-                        android:id="@+id/precoProduto"
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:textSize="25dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:text="500,00"
-                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
-                        app:layout_constraintStart_toStartOf="@id/orgCompra"
-                        app:layout_constraintTop_toTopOf="@id/orgCompra" />
-
-                    <TextView
-                        android:id="@+id/estoqueProduto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Em estoque"
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
-                        app:layout_constraintStart_toStartOf="@id/orgCompra"
-                        app:layout_constraintTop_toBottomOf="@id/precoProduto" />
-
-                    <TextView
-                        android:id="@+id/quantidadeProduto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnMenos"
-                        app:layout_constraintStart_toEndOf="@+id/btnMais"
-                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        app:layout_constraintVertical_bias="0.5" />
-
-                    <Button
-                        android:id="@+id/btnMais"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:contentDescription="Botão Somar"
-                        android:text="+"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        app:layout_constraintVertical_bias="0.5"
-                        android:backgroundTint="@color/green"
+                        android:src="@drawable/prod_racoeszardo"
                         />
 
-                    <Button
-                        android:id="@+id/btnMenos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:text="-"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        app:layout_constraintVertical_bias="0.5"
-                        android:backgroundTint="@color/green"/>
+                </LinearLayout>
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </GridLayout>
-
-
-            <!-- Descrição do produto -->
+            <!-- Compra + preço -->
 
 
             <LinearLayout
@@ -186,8 +112,124 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/mainGrid">
+                app:layout_constraintTop_toBottomOf="@id/fotoProduto">
 
+                <LinearLayout
+                    android:id="@+id/orgCompra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/precoProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="R$ 500,00"
+                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
+                        app:layout_constraintStart_toStartOf="@id/orgCompra"
+                        app:layout_constraintTop_toTopOf="@id/orgCompra" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Saco 25KG"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/estoqueProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Em estoque"
+                        android:textColor="@color/green"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
+                        app:layout_constraintHorizontal_bias="0.33"
+                        app:layout_constraintStart_toStartOf="@id/orgCompra"
+                        app:layout_constraintTop_toBottomOf="@id/precoProduto" />
+
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="30dp"
+                        android:elevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="2dp"
+                        android:background="@color/green">
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnMais"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:contentDescription="Botão Somar"
+                        android:background="@drawable/icon_btn_menos"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
+                        />
+
+                        <TextView
+                            android:id="@+id/quantidadeProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="#1B1B1B"
+                            android:textSize="33dp"
+                            app:layout_constraintVertical_bias="0.5"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="7dp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnMenos"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/icon_btn_mais"
+                        android:contentDescription="btnMais"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp" />
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+                    <!-- Descrição do produto -->
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_marginTop="30dp"
@@ -240,6 +282,7 @@
                     />
 
                 <Button
+                    android:id="@+id/btnComprar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="comprar"
@@ -274,16 +317,206 @@
                 app:layout_constraintTop_toBottomOf="@id/mainLinearLayout">
 
                 <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="180dp"
+                    android:layout_height="250dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp">
 
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_margin="20dp" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:src="@drawable/prod_racoeszardo"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rações Zardo"
+                        android:textStyle="bold"
+                        android:textSize="20dp"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saco 25KG"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R$500,00"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="COMPRAR"
+                        android:background="@drawable/shape_edit_text"/>
+
+                </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="180dp"
+                    android:layout_height="250dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp">
 
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_margin="20dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:src="@drawable/prod_racoeszardo"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rações Zardo"
+                            android:textStyle="bold"
+                            android:textSize="20dp"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Saco 25KG"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$500,00"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="COMPRAR"
+                            android:background="@drawable/shape_edit_text"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="180dp"
+                    android:layout_height="250dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp">
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:src="@drawable/prod_racoeszardo"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rações Zardo"
+                            android:textStyle="bold"
+                            android:textSize="20dp"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Saco 25KG"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$500,00"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="COMPRAR"
+                            android:background="@drawable/shape_edit_text"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="180dp"
+                    android:layout_height="250dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp">
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:src="@drawable/prod_racoeszardo"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rações Zardo"
+                            android:textStyle="bold"
+                            android:textSize="20dp"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Saco 25KG"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$500,00"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="COMPRAR"
+                            android:background="@drawable/shape_edit_text"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
 
             </GridLayout>
 
