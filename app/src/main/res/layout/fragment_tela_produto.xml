@@ -209,6 +209,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/icon_btn_mais"
+                        android:contentDescription="btnMais"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
