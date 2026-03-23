@@ -10,18 +10,9 @@ class MeusPedidosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meus_pedidos)
 
-        // Simulação de dados
-        val produtosFake = listOf(
-            Produto(1, "Semente de Milho", 150.0, ""),
-            Produto(2, "Fertilizante NPK", 89.90, ""),
-            Produto(3, "Ração Aves", 45.0, "")
-        )
-
-        val pedidosFake = listOf(
-            Pedido("#091254", PedidoStatus.ENTREGUE, "Detalhes...", "06/12/2012", ""),
-            Pedido("#083341", PedidoStatus.EM_ANDAMENTO, "A caminho...", null, ""),
-            Pedido("#091255", PedidoStatus.CANCELADO, "Pagamento recusado", null, "")
-        )
+        // Usando MockDatabase centralizado
+        val produtosFake = MockDatabase.produtos
+        val pedidosFake = MockDatabase.pedidos
 
         // Configurar RecyclerViews
         val rvUltimos = findViewById<RecyclerView>(R.id.rvUltimosPedidos)
