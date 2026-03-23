@@ -65,10 +65,15 @@ class TelaFinalizaoPedido: Fragment() {
         binding.pedidos.text = resumo.toString()
         binding.totalPedidos.text = ("TOTAL R$${precoFinal}")
 
-
-
-
         //Mudando de pagina
+
+        binding.btnConfirmar.setOnClickListener {
+            val fragmentEndereçoEntrega = TelaPagamentoEndereco()
+
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragmentEndereçoEntrega)
+                .addToBackStack(null).commit()
+            
+        }
 
         return binding.root
     }

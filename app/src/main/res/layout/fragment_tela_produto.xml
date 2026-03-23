@@ -4,7 +4,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
 
     <!-- Conteudo Principal -->
 
@@ -72,8 +73,8 @@
                 android:layout_marginTop="15dp"
                 android:text="RAÇÃO EQUINA - Rações Zardo"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="30sp"
+                android:padding="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,11 +131,10 @@
                         android:id="@+id/precoProduto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:textSize="25dp"
+                        android:textSize="30dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:text="500,00 KG"
+                        android:text="R$ 500,00"
                         app:layout_constraintEnd_toEndOf="@id/orgCompra"
                         app:layout_constraintStart_toStartOf="@id/orgCompra"
                         app:layout_constraintTop_toTopOf="@id/orgCompra" />
@@ -143,7 +143,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Saco 25KG"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textColor="@color/black"/>
 
                     <TextView
@@ -152,6 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="Em estoque"
+                        android:textColor="@color/green"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="@id/orgCompra"
                         app:layout_constraintHorizontal_bias="0.33"
@@ -167,12 +168,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="30dp"
+                        android:elevation="4dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="5dp"
-                        android:background="@drawable/navigatebar_shape">
+                        android:padding="2dp"
+                        android:background="@color/green">
 
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -181,9 +188,6 @@
                         android:layout_height="50dp"
                         android:contentDescription="Botão Somar"
                         android:background="@drawable/icon_btn_menos"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="8dp"
@@ -194,12 +198,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1"
-                            android:textColor="@color/white"
+                            android:textColor="#1B1B1B"
                             android:textSize="33dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/btnMenos"
-                            app:layout_constraintStart_toEndOf="@+id/btnMais"
-                            app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
                             app:layout_constraintVertical_bias="0.5"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="7dp"/>
@@ -217,6 +217,8 @@
                         android:layout_marginBottom="8dp" />
 
                     </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
 
 
@@ -279,6 +281,7 @@
                     />
 
                 <Button
+                    android:id="@+id/btnComprar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="comprar"

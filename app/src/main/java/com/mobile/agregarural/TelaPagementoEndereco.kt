@@ -23,6 +23,21 @@ class TelaPagamentoEndereco: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTelaPagamentoEnderecoBinding.inflate(layoutInflater)
+
+
+        binding.btnConfirmar.setOnClickListener {
+            val fragmentPagamento = TelaPagamento()
+
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentPagamento)
+                .addToBackStack(null)
+                .commit()
+
+        }
+
+
+
+
+
         return binding.root
     }
 
