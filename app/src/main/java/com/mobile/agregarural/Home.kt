@@ -3,7 +3,6 @@ package com.mobile.agregarural
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,54 +27,28 @@ class Home : AppCompatActivity() {
         binding.btnEntrega.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MeusPedidosActivity::class.java)
             startActivity(intent)
-            finish()
         })
 
-        //Configurando categorias
-
-        val listaCategoria = listOf(
-            Categoria("Pedro", R.drawable.logo),
-            Categoria("Francisco", R.drawable.logo),
-            Categoria("Juliana", R.drawable.logo),
-            Categoria("Murilo", R.drawable.logo),
-            Categoria("Eduardo", R.drawable.logo),
-        )
-
-        recyclerView = findViewById(R.id.rv_categorias)
-        adapterCategoria = CategoriaAdapter(listaCategoria)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = adapterCategoria
+        //Configurando categorias usando MockDatabase
+        val rvCategorias = findViewById<RecyclerView>(R.id.rv_categorias)
+        adapterCategoria = CategoriaAdapter(MockDatabase.categorias)
+        rvCategorias.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvCategorias.adapter = adapterCategoria
 
 
 
-        //Configurando Vitrine Produtos
+        //Configurando Vitrine Produtos usando MockDatabase
+        val rvProdutos = findViewById<RecyclerView>(R.id.rv_produtos)
 
-        val listaProdutos = listOf(
-
-            ProdutoItem("Rações Zardo", 500.0, "Saco 25KG", R.drawable.prod_racoeszardo),
-            ProdutoItem("Rações Zardo", 500.0, "Saco 25KG", R.drawable.prod_racoeszardo),
-            ProdutoItem("Rações Zardo", 500.0, "Saco 25KG", R.drawable.prod_racoeszardo)
-        )
-
-        recyclerView = findViewById(R.id.rv_produtos)
-        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
-
+        // Agora usamos diretamente a lista de Produto do MockDatabase
+        adapterProdutos = ProdutoItemAdapter(MockDatabase.produtos) { produtoClicado ->
             val fragment = TelaProduto()
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
                 .addToBackStack(null)
                 .commit()
         }
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-        recyclerView.adapter = adapterProdutos
-
-
-
-
-
-
-
-
-
+        rvProdutos.layoutManager = GridLayoutManager(this, 2)
+        rvProdutos.adapter = adapterProdutos
     }
 }
