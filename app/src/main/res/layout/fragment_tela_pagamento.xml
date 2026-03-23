@@ -153,7 +153,16 @@
                     android:layout_marginTop="20dp"
                     android:layout_width="280dp"
                     android:layout_height="280dp"
-                    app:cardCornerRadius="40dp"/>
+                    app:cardCornerRadius="40dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/qrcode"
+                        android:padding="15dp"/>
+
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/textView2"

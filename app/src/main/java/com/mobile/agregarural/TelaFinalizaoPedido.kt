@@ -41,7 +41,7 @@ class TelaFinalizaoPedido: Fragment() {
             [
                 {"nome": "Saca de Milho", "precoUnitario": 85.50, "quantidade": 10},
                 {"nome": "Fertilizante Orgânico", "precoUnitario": 120.00, "quantidade": 2},
-                {"nome": "Pedro", "precoUnitario": 10.00, "quantidade": 10}
+                {"nome": "Ração Zardo", "precoUnitario": 150.00, "quantidade": 10}
             ]
         """.trimIndent()
 
@@ -59,7 +59,8 @@ class TelaFinalizaoPedido: Fragment() {
             resumo.append("Produto: ${produto.nome}\n")
             resumo.append("Preço: R$${produto.precoUnitario}\n")
             resumo.append("Quantidade: ${produto.quantidade}\n")
-            resumo.append("Subtotal: R$${precoItemTotal}\n\n")
+            resumo.append("Subtotal: R$${precoItemTotal}\n")
+            resumo.append("______________________________________\n\n")
         }
 
         binding.pedidos.text = resumo.toString()
