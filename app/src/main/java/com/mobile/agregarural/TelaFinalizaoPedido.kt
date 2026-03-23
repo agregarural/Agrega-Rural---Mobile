@@ -72,6 +72,8 @@ class TelaFinalizaoPedido: Fragment() {
 
             parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragmentEndereçoEntrega)
                 .addToBackStack(null).commit()
+
+
             
         }
 

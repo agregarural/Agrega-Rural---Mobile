@@ -52,7 +52,11 @@ class TelaProduto : Fragment() {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentTelaCompra)
                 .addToBackStack(null)
                 .commit()
+
+
         }
+
+
 
 
 
