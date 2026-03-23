@@ -33,6 +33,7 @@ class RecuperarSenha : AppCompatActivity() {
                 .setView(view)
                 .create()
 
+
             popup.show()
             popup.window?.setDimAmount(0.7f)
 
