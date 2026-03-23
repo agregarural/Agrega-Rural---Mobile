@@ -24,10 +24,16 @@
             android:name=".Perfil"
             android:exported="false" />
         <activity
+            android:name=".RecuperarSenha"
+            android:exported="false" />
+        <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
             android:name=".TelaCadastro4"
+            android:exported="false" />
+        <activity
+            android:name=".MeusPedidosActivity"
             android:exported="false" />
         <activity
             android:name=".TelaCadastro3"
