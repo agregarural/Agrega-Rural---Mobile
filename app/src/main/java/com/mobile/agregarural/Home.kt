@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.agregarural.databinding.ActivityHomeBinding
 import androidx.recyclerview.widget.RecyclerView
 
+
 class Home : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CategoriaAdapter
+    private lateinit var adapterCategoria: CategoriaAdapter
+    private lateinit var adapterProdutos: ProdutoItemAdapter
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -33,7 +35,6 @@ class Home : AppCompatActivity() {
         //Configurando categorias
 
         val listaCategoria = listOf(
-
             Categoria("Pedro", R.drawable.logo),
             Categoria("Francisco", R.drawable.logo),
             Categoria("Juliana", R.drawable.logo),
@@ -42,9 +43,32 @@ class Home : AppCompatActivity() {
         )
 
         recyclerView = findViewById(R.id.rv_categorias)
-        adapter = CategoriaAdapter(listaCategoria)
+        adapterCategoria = CategoriaAdapter(listaCategoria)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = adapterCategoria
+
+
+
+        //Configurando Vitrine Produtos
+
+        val listaProdutos = listOf(
+
+            ProdutoItem("Rações Zardo", 500.0, "Saco 25KG", R.drawable.prod_racoeszardo),
+            ProdutoItem("Rações Zardo", 500.0, "Saco 25KG", R.drawable.prod_racoeszardo),
+            ProdutoItem("Rações Zardo", 500.0, "Saco 25KG", R.drawable.prod_racoeszardo)
+        )
+
+        recyclerView = findViewById(R.id.rv_produtos)
+        adapterProdutos = ProdutoItemAdapter(listaProdutos)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        recyclerView.adapter = adapterProdutos
+
+
+
+
+
+
+
 
 
     }

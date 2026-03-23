@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.widget.ImageView
 import android.widget.TextView
 
+
 import android.media.Image
 
 data class Categoria(
