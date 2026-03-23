@@ -21,7 +21,7 @@ class RecuperarSenha : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btVoltar.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, TelaLogin::class.java)
             startActivity(intent)
             finish()
         }
