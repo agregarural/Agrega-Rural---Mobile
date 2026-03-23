@@ -21,6 +21,9 @@
             android:name=".TelaCadastro4"
             android:exported="false" />
         <activity
+            android:name=".MeusPedidosActivity"
+            android:exported="false" />
+        <activity
             android:name=".TelaCadastro3"
             android:exported="false" />
         <activity
