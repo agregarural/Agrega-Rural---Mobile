@@ -12,7 +12,7 @@ import com.mobile.agregarural.databinding.FragmentTelaFinalizacaoPedidoBinding
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
 
 
-data class Produto(
+data class ProdutoPedido(
     val nome: String,
     val precoUnitario: Double,
     val quantidade: Int
@@ -46,8 +46,8 @@ class TelaFinalizaoPedido: Fragment() {
         """.trimIndent()
 
         val gson = Gson()
-        val tipoItem = object: TypeToken<List<Produto>>() {}.type
-        val listaItens: List<Produto> = gson.fromJson(jsonCarrinho, tipoItem)
+        val tipoItem = object: TypeToken<List<ProdutoPedido>>() {}.type
+        val listaItens: List<ProdutoPedido> = gson.fromJson(jsonCarrinho, tipoItem)
 
         val resumo = StringBuilder()
         var precoFinal = 0.0
@@ -86,5 +86,3 @@ class TelaFinalizaoPedido: Fragment() {
         _binding = null
     }
 }
-
-

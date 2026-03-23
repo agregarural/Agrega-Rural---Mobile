@@ -161,8 +161,6 @@
                 app:iconSize="20dp"
                 android:background="@color/transparent"
                 />
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -185,11 +183,10 @@
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
                 android:contentDescription="Entrega"
+                android:id="@+id/btnEntrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp"
                 android:background="@color/transparent"/>
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="50dp"
@@ -198,7 +195,6 @@
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
                 android:contentDescription="Menu"
-                android:background="@color/transparent"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp"
                 android:background="@color/transparent"/>

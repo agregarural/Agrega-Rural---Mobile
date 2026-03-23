@@ -1,6 +1,8 @@
 package com.mobile.agregarural
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,6 +25,11 @@ class Home : AppCompatActivity() {
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnEntrega.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, MeusPedidosActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
 
         //Configurando categorias
 
