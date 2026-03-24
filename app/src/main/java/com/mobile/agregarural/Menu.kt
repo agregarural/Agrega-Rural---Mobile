@@ -79,19 +79,20 @@ class Menu : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         binding.navInicio.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, Home::class.java))
         }
 
         binding.navCarrinho.setOnClickListener {
-            Toast.makeText(this, "Carrinho", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, Home::class.java))
         }
 
         binding.navEntrega.setOnClickListener {
-            Toast.makeText(this, "Entrega", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MeusPedidosActivity::class.java))
         }
 
         binding.navMenu.setOnClickListener {
-            Toast.makeText(this, "Menu", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, Menu::class.java))
+
         }
     }
 

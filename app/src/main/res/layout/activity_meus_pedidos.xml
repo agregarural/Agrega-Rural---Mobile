@@ -39,6 +39,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:id="@+id/btnperfil"
                     android:src="@drawable/perfil"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -124,10 +125,84 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/navigatebar_shape"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <!-- Reutilize o GridLayout que você já tem no activity_home.xml aqui -->
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/navigatebar_shape">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:rowCount="1"
+            android:layout_gravity="center">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_columnWeight="1"
+                android:id="@+id/btnHome"
+                android:contentDescription="Home"
+                app:icon="@drawable/nvbar_home"
+                app:iconSize="20dp"
+                android:background="@color/transparent"
+                />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_columnWeight="1"
+                android:contentDescription="Carrinho"
+                app:icon="@drawable/nvbar_carrinho"
+                app:iconSize="20dp"
+                android:background="@color/transparent"
+                />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_columnWeight="1"
+                android:contentDescription="Entrega"
+                android:id="@+id/btnEntrega"
+                app:icon="@drawable/nvbar_truck"
+                app:iconSize="20dp"
+                android:background="@color/transparent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_columnWeight="1"
+                android:contentDescription="Menu"
+                android:id="@+id/btnmenu"
+                app:icon="@drawable/nvbar_menu"
+                app:iconSize="20dp"
+                android:background="@color/transparent"/>
+
+
+
+
+
+
+
+        </GridLayout>
+
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

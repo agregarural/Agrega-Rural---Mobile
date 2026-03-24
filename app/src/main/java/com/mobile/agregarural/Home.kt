@@ -28,6 +28,19 @@ class Home : AppCompatActivity() {
             val intent = Intent(this, MeusPedidosActivity::class.java)
             startActivity(intent)
         })
+        binding.btnHome.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        })
+
+        binding.btnmenu.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        })
+        binding.btnperfil.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
+        })
 
         //Configurando categorias usando MockDatabase
         val rvCategorias = findViewById<RecyclerView>(R.id.rv_categorias)

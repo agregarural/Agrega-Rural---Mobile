@@ -137,7 +137,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="BOVINOS"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -146,7 +146,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_bovinos"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Bovinos"/>
 
@@ -176,7 +175,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SUÍNOS"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -185,7 +184,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_suinos"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Suínos"/>
 
@@ -213,7 +211,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="AVES"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -222,7 +220,7 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_aves"
+
                             android:layout_marginTop="8dp"
                             android:contentDescription="Aves"/>
 
@@ -250,7 +248,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="EQUINOS"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -259,7 +257,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_equinos"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Equinos"/>
 
@@ -289,7 +286,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CAPRINOS"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -298,7 +295,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_caprinos"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Caprinos"/>
 
@@ -326,7 +322,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SEMENTES"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -335,7 +331,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_sementes"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Sementes"/>
 
@@ -363,7 +358,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="DEFENSIVOS"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -372,7 +367,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_defensivos"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Defensivos"/>
 
@@ -402,7 +396,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="FERTILIZANTES"
+                            android:text="CATEGORIA"
                             android:textSize="10sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -411,7 +405,7 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_fertilizantes"
+
                             android:layout_marginTop="8dp"
                             android:contentDescription="Fertilizantes"/>
 
@@ -439,7 +433,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SACARIAS"
+                            android:text="CATEGORIA"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -448,7 +442,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_sacarias"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Sacarias"/>
 
@@ -476,7 +469,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CAFEICULTURA"
+                            android:text="CATEGORIA"
                             android:textSize="10sp"
                             android:textStyle="bold"
                             android:textColor="#1B5E20"
@@ -485,7 +478,6 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_cafeicultura"
                             android:layout_marginTop="8dp"
                             android:contentDescription="Cafeicultura"/>
 

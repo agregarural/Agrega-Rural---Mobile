@@ -41,6 +41,8 @@ class MeusEnderecos : AppCompatActivity() {
     private fun setupClickListeners() {
         // Voltar para MeuPerfilActivity
         binding.btnVoltar.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -75,17 +77,19 @@ class MeusEnderecos : AppCompatActivity() {
     private fun setupBottomNavigation() {
         binding.navInicio.setOnClickListener {
             // TODO: startActivity(Intent(this, InicioActivity::class.java))
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
             finish()
-            Toast.makeText(this, "Início", Toast.LENGTH_SHORT).show()
         }
         binding.navCarrinho.setOnClickListener {
-            // TODO: startActivity(Intent(this, CarrinhoActivity::class.java))
-            Toast.makeText(this, "Carrinho", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
         }
         binding.navEntrega.setOnClickListener {
-            // TODO: startActivity(Intent(this, EntregaActivity::class.java))
-            Toast.makeText(this, "Entrega", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MeusPedidosActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         binding.navMenu.setOnClickListener {
             startActivity(Intent(this, Menu::class.java))

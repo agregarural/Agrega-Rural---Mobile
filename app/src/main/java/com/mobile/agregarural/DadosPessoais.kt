@@ -53,6 +53,7 @@ class DadosPessoais : AppCompatActivity() {
     private fun setupClickListeners() {
         // Voltar para MeuPerfilActivity
         binding.btnVoltar.setOnClickListener {
+            startActivity(Intent(this, Perfil::class.java))
             finish()
         }
 
@@ -112,16 +113,16 @@ class DadosPessoais : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         binding.navInicio.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, Home::class.java))
             finish()
         }
         binding.navCarrinho.setOnClickListener {
-            // TODO: startActivity(Intent(this, CarrinhoActivity::class.java))
-            Toast.makeText(this, "Carrinho", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, Home::class.java))
+            finish()
         }
         binding.navEntrega.setOnClickListener {
-            // TODO: startActivity(Intent(this, EntregaActivity::class.java))
-            Toast.makeText(this, "Entrega", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MeusPedidosActivity::class.java))
+            finish()
         }
         binding.navMenu.setOnClickListener {
             startActivity(Intent(this, Menu::class.java))

@@ -1,14 +1,40 @@
 package com.mobile.agregarural
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mobile.agregarural.databinding.ActivityHomeBinding
+import com.mobile.agregarural.databinding.ActivityMeusPedidosBinding
 
 class MeusPedidosActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMeusPedidosBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meus_pedidos)
+        binding = ActivityMeusPedidosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        binding.btnEntrega.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, MeusPedidosActivity::class.java)
+            startActivity(intent)
+        })
+        binding.btnHome.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        })
+
+        binding.btnmenu.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        })
+        binding.btnperfil.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
+        })
 
         // Usando MockDatabase centralizado
         val produtosFake = MockDatabase.produtos
