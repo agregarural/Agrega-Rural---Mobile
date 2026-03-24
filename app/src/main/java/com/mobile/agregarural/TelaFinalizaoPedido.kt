@@ -39,9 +39,7 @@ class TelaFinalizaoPedido: Fragment() {
 
         val jsonCarrinho =  """
             [
-                {"nome": "Saca de Milho", "precoUnitario": 85.50, "quantidade": 10},
-                {"nome": "Fertilizante Orgânico", "precoUnitario": 120.00, "quantidade": 2},
-                {"nome": "Ração Zardo", "precoUnitario": 150.00, "quantidade": 10}
+                {"nome": "Ração Zardo", "precoUnitario": 500.00, "quantidade": 3}
             ]
         """.trimIndent()
 
