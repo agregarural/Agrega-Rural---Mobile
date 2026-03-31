@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
             finish()
         })
         binding.btCadastro.setOnClickListener {
-            val intent = Intent(this, TelaCadastro1::class.java)
+            val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
     }
