@@ -1,43 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/telaLoginFragment">
 
-<fragment
-    android:id="@+id/telaCadastro1Fragment"
-    android:name="com.mobile.agregarural.TelaCadastro1Fragment">
-
-    <action
-        android:id="@+id/action_telaCadastro1_to_telaCadastro2"
-        app:destination="@id/telaCadastro2Fragment" />
-</fragment>
-
-<fragment
-    android:id="@+id/telaCadastro2Fragment"
-    android:name="com.mobile.agregarural.TelaCadastro2Fragment">
-
-    <action
-        android:id="@+id/action_telaCadastro2_to_telaCadastro3"
-        app:destination="@id/telaCadastro3Fragment" />
-</fragment>
-
-<fragment
-    android:id="@+id/telaCadastro3Fragment"
-    android:name="com.mobile.agregarural.TelaCadastro3Fragment" />
-
-        <action
-            android:id="@+id/action_telaCadastro3_to_telaCadastro4"
-            app:destination="@id/telaCadastro4Fragment" />
-
-    <fragment
-        android:id="@+id/telaCadastro4Fragment"
-        android:name="com.mobile.agregarural.TelaCadastro4Fragment" />
-
-    <fragment
-        android:id="@+id/recuperarSenhaFragment"
-        android:name="com.mobile.agregarural.RecuperarSenhaFragment" />
-
-
+    <!-- LOGIN -->
     <fragment
         android:id="@+id/telaLoginFragment"
         android:name="com.mobile.agregarural.TelaLoginFragment">
@@ -46,5 +13,45 @@ android:id="@+id/nav_graph">
             android:id="@+id/action_login_to_recuperar"
             app:destination="@id/recuperarSenhaFragment" />
     </fragment>
+
+    <!-- RECUPERAR SENHA -->
+    <fragment
+        android:id="@+id/recuperarSenhaFragment"
+        android:name="com.mobile.agregarural.RecuperarSenhaFragment" />
+
+    <!-- CADASTRO 1 -->
+    <fragment
+        android:id="@+id/telaCadastro1Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro1Fragment">
+
+        <action
+            android:id="@+id/action_telaCadastro1_to_telaCadastro2"
+            app:destination="@id/telaCadastro2Fragment" />
+    </fragment>
+
+    <!-- CADASTRO 2 -->
+    <fragment
+        android:id="@+id/telaCadastro2Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro2Fragment">
+
+        <action
+            android:id="@+id/action_telaCadastro2_to_telaCadastro3"
+            app:destination="@id/telaCadastro3Fragment" />
+    </fragment>
+
+    <!-- CADASTRO 3 -->
+    <fragment
+        android:id="@+id/telaCadastro3Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro3Fragment">
+
+        <action
+            android:id="@+id/action_telaCadastro3_to_telaCadastro4"
+            app:destination="@id/telaCadastro4Fragment" />
+    </fragment>
+
+    <!-- CADASTRO 4 -->
+    <fragment
+        android:id="@+id/telaCadastro4Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro4Fragment" />
 
 </navigation>
