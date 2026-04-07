@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaCadastro4">
+    tools:context=".fragment_recuperarsenha">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +34,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cadastro"
+        android:text="@string/recuperacao"
         android:textSize="35sp"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
@@ -89,77 +90,38 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/senha"
-                android:textSize="18sp"
-                android:textColor="@color/botoes"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                />
-
-            <EditText
-                android:layout_width="380dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="18dp"
-                android:hint="@string/senha"
-                android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_novasenha"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/senha"
-                android:textSize="18sp"
-                android:textColor="@color/botoes"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                />
-
-            <EditText
-                android:layout_width="380dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="18dp"
-                android:hint="@string/repetir"
-                android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_repetir"
-                />
-
-            <CheckBox
-                android:id="@+id/termos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:shadowColor="@color/botoes"
-                android:hint="@string/acordo"
-                android:textSize="15sp"
-                android:layout_marginLeft="-340dp"
+                android:text="@string/informar"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-1dp"
+                />
+
+            <EditText
+                android:layout_width="380dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="5dp"
-                android:textColorHint="@color/black"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/termos"
-                android:layout_marginLeft="52dp"
-                android:layout_marginTop="-18dp"
-                android:textColor="@color/checkbox"/>
-
+                android:layout_marginLeft="18dp"
+                android:hint="@string/ins_email"
+                android:background="@drawable/bg_caixastxt"
+                android:id="@+id/cx_recuperar"
+                />
 
             <Button
-                android:id="@+id/bt_cadastrar"
+                android:id="@+id/bt_enviar"
                 android:layout_width="380dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="16dp"
                 android:backgroundTint="@color/botoes"
                 android:fontFamily="sans-serif"
-                android:text="@string/finalizar"
+                android:text="@string/enviar"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="20dp"/>
 
 
         </LinearLayout>

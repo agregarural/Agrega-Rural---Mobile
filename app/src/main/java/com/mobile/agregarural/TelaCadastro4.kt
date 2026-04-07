@@ -2,31 +2,42 @@ package com.mobile.agregarural
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import com.mobile.agregarural.databinding.ActivityTelaCadastro4Binding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.mobile.agregarural.databinding.FragmentTelaCadastro4Binding
+import androidx.navigation.fragment.findNavController
 
-class TelaCadastro4 : AppCompatActivity() {
+class TelaCadastro4Fragment : Fragment() {
 
-    private lateinit var binding: ActivityTelaCadastro4Binding
+    private var _binding: FragmentTelaCadastro4Binding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTelaCadastro4Binding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding = ActivityTelaCadastro4Binding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.btVoltar.setOnClickListener {
-            val intent = Intent(this, TelaCadastro3::class.java)
-            startActivity(intent)
-            finish()
+            findNavController().navigateUp()
         }
 
         binding.btCadastrar.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(requireContext(), Home::class.java)
             startActivity(intent)
-            finish()
+            requireActivity().finish()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
