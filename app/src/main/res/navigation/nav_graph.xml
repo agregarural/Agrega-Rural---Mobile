@@ -2,17 +2,26 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/telaLoginFragment">
+    app:startDestination="@id/telaInicialFragment">
+
+    <!-- TELA INICIAL -->
+    <fragment
+        android:id="@+id/telaInicialFragment"
+        android:name="com.mobile.agregarural.TelaInicial">
+
+        <action
+            android:id="@+id/action_inicio_to_login"
+            app:destination="@id/telaLoginFragment" />
+
+        <action
+            android:id="@+id/action_inicio_to_cadastro"
+            app:destination="@id/telaCadastro1Fragment" />
+    </fragment>
 
     <!-- LOGIN -->
     <fragment
         android:id="@+id/telaLoginFragment"
-        android:name="com.mobile.agregarural.TelaLoginFragment">
-
-        <action
-            android:id="@+id/action_login_to_recuperar"
-            app:destination="@id/recuperarSenhaFragment" />
-    </fragment>
+        android:name="com.mobile.agregarural.TelaLoginFragment" />
 
     <!-- RECUPERAR SENHA -->
     <fragment

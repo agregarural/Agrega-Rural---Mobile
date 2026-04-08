@@ -26,7 +26,7 @@ class TelaLoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.btVoltar.setOnClickListener {
-            requireActivity().finish()
+            findNavController().navigateUp()
         }
 
         binding.btEntrar.setOnClickListener {
