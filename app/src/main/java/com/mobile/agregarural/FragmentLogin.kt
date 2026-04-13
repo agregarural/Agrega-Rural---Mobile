@@ -30,9 +30,7 @@ class TelaLoginFragment : Fragment() {
         }
 
         binding.btEntrar.setOnClickListener {
-            val intent = Intent(requireContext(), Home::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)    // "action_..." é o ID da seta que liga os dois fragments no seu nav_graph.xml
         }
 
         binding.recuperarTxt.setOnClickListener {

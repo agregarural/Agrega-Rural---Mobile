@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.mobile.agregarural.databinding.FragmentPerfilBinding // Ajuste para seu pacote
+import com.mobile.agregarural.databinding.FragmentPerfilBinding
 
 class PerfilFragment : Fragment() {
 
@@ -26,11 +26,8 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Mova a lógica que estava no onCreate da Activity para cá
-        // Exemplo de como acessar os componentes via ViewBinding:
-
         binding.btnVoltar.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().navigateUp()
         }
 
         binding.cardDadosPessoais.setOnClickListener {
@@ -44,21 +41,14 @@ class PerfilFragment : Fragment() {
         }
 
         binding.cardCartoes.setOnClickListener {
-            val fragment = MeusCartoesFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_perfil_to_meusCartoes)
         }
 
         binding.cardMeusPedidos.setOnClickListener {
             val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
             startActivity(intent)
         }
-
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

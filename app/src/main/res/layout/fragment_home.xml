@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- Conteudo Principal -->
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
 
     <ScrollView
         android:id="@+id/main1"
@@ -17,23 +16,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_interno"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/constraint_interno">
+            android:layout_height="wrap_content">
 
-
-
-            <!-- Cabeçalho das paginas -->
             <View
                 android:id="@+id/view_desing1"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                app:layout_constraintTop_toTopOf="@id/constraint_interno"
-                app:layout_constraintStart_toStartOf="@id/constraint_interno"
-                app:layout_constraintEnd_toEndOf="@id/constraint_interno"
                 android:background="@drawable/shape_view_design1"
-
-                />
+                app:layout_constraintEnd_toEndOf="@id/constraint_interno"
+                app:layout_constraintStart_toStartOf="@id/constraint_interno"
+                app:layout_constraintTop_toTopOf="@id/constraint_interno" />
 
             <LinearLayout
                 android:id="@+id/header"
@@ -48,181 +42,138 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:text="OLÁ Murilo"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:layout_marginStart="20dp"/>
+                    android:textSize="20sp" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnperfil"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:backgroundTint="@color/transparent"
-                    android:text="@null"
                     android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/transparent"
+                    android:contentDescription="perfil"
+                    android:text="@null"
                     app:icon="@drawable/perfil"
-                    android:id="@+id/btnperfil"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
-                    app:iconSize="50dp"
-                    android:contentDescription="perfil"/>
+                    app:iconSize="50dp" />
 
             </LinearLayout>
 
-            <!-- Barra de pesquisa -->
             <SearchView
                 android:id="@+id/searchBar"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_search_bar"
-                app:layout_constraintTop_toBottomOf="@id/header"
+                app:layout_constraintEnd_toEndOf="@id/constraint_interno"
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
-                app:layout_constraintEnd_toEndOf="@id/constraint_interno"/>
+                app:layout_constraintTop_toBottomOf="@id/header" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/anuncio1"
                 android:id="@+id/anuncio1"
-                tools:layout_editor_absoluteX="41dp"
-                tools:layout_editor_absoluteY="153dp"
-                app:layout_constraintTop_toBottomOf="@id/searchBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/anuncio1"
+                app:layout_constraintEnd_toEndOf="@id/constraint_interno"
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
-                app:layout_constraintEnd_toEndOf="@id/constraint_interno"/>
-
+                app:layout_constraintTop_toBottomOf="@id/searchBar"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="153dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_categorias"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:layout_constraintTop_toBottomOf="@id/anuncio1"
-                android:orientation="horizontal">
-
-
-
-
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/anuncio1" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_produtos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/rv_categorias"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/constraint_interno"
-                android:orientation="horizontal">
-
-
-
-            </androidx.recyclerview.widget.RecyclerView>
-
+                app:layout_constraintTop_toBottomOf="@id/rv_categorias" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
-
-    <!--    Menu Inferior-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/navigatebar_shape"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/navigatebar_shape">
+        app:layout_constraintStart_toStartOf="parent">
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:columnCount="4"
-            android:rowCount="1"
-            android:layout_gravity="center">
-
+            android:rowCount="1">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHome"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_columnWeight="1"
-                android:id="@+id/btnHome"
+                android:background="@color/transparent"
                 android:contentDescription="Home"
                 app:icon="@drawable/nvbar_home"
-                app:iconSize="20dp"
-                android:background="@color/transparent"
-                />
-
+                app:iconSize="20dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_columnWeight="1"
+                android:background="@color/transparent"
                 android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"
-                app:iconSize="20dp"
-                android:background="@color/transparent"
-                />
-
+                app:iconSize="20dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_columnWeight="1"
-                android:contentDescription="Entrega"
                 android:id="@+id/btnEntrega"
-                app:icon="@drawable/nvbar_truck"
-                app:iconSize="20dp"
-                android:background="@color/transparent"/>
-
-            <com.google.android.material.button.MaterialButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_columnWeight="1"
-                android:contentDescription="Menu"
+                android:background="@color/transparent"
+                android:contentDescription="Entrega"
+                app:icon="@drawable/nvbar_truck"
+                app:iconSize="20dp" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnmenu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:contentDescription="Menu"
                 app:icon="@drawable/nvbar_menu"
-                app:iconSize="20dp"
-                android:background="@color/transparent"/>
-
-
-
-
-
-
-
+                app:iconSize="20dp" />
         </GridLayout>
-
-
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainer"
-        android:layout_width="match_parent"
-        android:contentDescription="fragment de mobilização"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="@id/bottomNavigationView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

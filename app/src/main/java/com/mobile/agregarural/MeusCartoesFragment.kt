@@ -32,7 +32,6 @@ class MeusCartoesFragment : Fragment() {
     }
 
     private fun setupCartoes() {
-        // Exemplo de preenchimento de dados
         binding.tvCartao1Info.text =
             "Número: **** 4012, Nome:\nMURILO GOMES, Validade: 01/27,\nCVV: ***"
 
@@ -41,9 +40,8 @@ class MeusCartoesFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        // Volta para a tela anterior na pilha
         binding.btnVoltar.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().navigateUp()
         }
 
         binding.btnEditarCartao1.setOnClickListener {
@@ -66,11 +64,8 @@ class MeusCartoesFragment : Fragment() {
             showToast("Adicionar cartão")
         }
 
-        // Navegação da barra inferior (Bottom Nav customizada)
         binding.navInicio.setOnClickListener {
-            val intent = Intent(requireContext(), Home::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            findNavController().navigate(R.id.homeFragment)
         }
 
         binding.navCarrinho.setOnClickListener {
@@ -78,16 +73,15 @@ class MeusCartoesFragment : Fragment() {
         }
 
         binding.navEntrega.setOnClickListener {
-            showToast("Funcionalidade Entregas em breve")
+            val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
+            startActivity(intent)
         }
 
         binding.navMenu.setOnClickListener {
-            // Volta para o fragmento de Perfil que está na pilha
-            parentFragmentManager.popBackStack()
+            findNavController().navigateUp()
         }
     }
 
-    // Helper para facilitar o uso de Toasts
     private fun showToast(mensagem: String) {
         Toast.makeText(requireContext(), mensagem, Toast.LENGTH_SHORT).show()
     }

@@ -30,7 +30,7 @@ class TelaCadastro4Fragment : Fragment() {
         }
 
         binding.btCadastrar.setOnClickListener {
-            val intent = Intent(requireContext(), Home::class.java)
+            val intent = Intent(requireContext(), HomeFragment::class.java)
             startActivity(intent)
             requireActivity().finish()
         }

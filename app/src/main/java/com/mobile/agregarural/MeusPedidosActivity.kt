@@ -6,7 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mobile.agregarural.databinding.ActivityHomeBinding
 import com.mobile.agregarural.databinding.ActivityMeusPedidosBinding
 
 class MeusPedidosActivity : AppCompatActivity() {
@@ -23,7 +22,7 @@ class MeusPedidosActivity : AppCompatActivity() {
             startActivity(intent)
         })
         binding.btnHome.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, HomeFragment::class.java)
             startActivity(intent)
         })
 
@@ -32,7 +31,7 @@ class MeusPedidosActivity : AppCompatActivity() {
             startActivity(intent)
         })
         binding.btnperfil.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, HomeFragment::class.java)
             intent.putExtra("OPEN_PERFIL", true)
             startActivity(intent)
             finish()

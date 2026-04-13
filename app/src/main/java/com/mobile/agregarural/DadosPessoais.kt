@@ -1,10 +1,7 @@
 package com.mobile.agregarural
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.EditText
 import android.widget.Toast
@@ -112,11 +109,11 @@ class DadosPessoais : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         binding.navInicio.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+            startActivity(Intent(this, HomeFragment::class.java))
             finish()
         }
         binding.navCarrinho.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+            startActivity(Intent(this, HomeFragment::class.java))
             finish()
         }
         binding.navEntrega.setOnClickListener {

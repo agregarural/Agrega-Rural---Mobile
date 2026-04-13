@@ -3,8 +3,6 @@ package com.mobile.agregarural
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.Toast
 import com.mobile.agregarural.databinding.ActivityMeusEnderecosBinding
@@ -75,12 +73,12 @@ class MeusEnderecos : AppCompatActivity() {
     private fun setupBottomNavigation() {
         binding.navInicio.setOnClickListener {
             // TODO: startActivity(Intent(this, InicioActivity::class.java))
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, HomeFragment::class.java)
             startActivity(intent)
             finish()
         }
         binding.navCarrinho.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, HomeFragment::class.java)
             startActivity(intent)
             finish()
         }

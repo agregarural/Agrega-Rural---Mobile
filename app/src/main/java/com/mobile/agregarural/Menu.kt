@@ -79,11 +79,11 @@ class Menu : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         binding.navInicio.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+            startActivity(Intent(this, HomeFragment::class.java))
         }
 
         binding.navCarrinho.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+            startActivity(Intent(this, HomeFragment::class.java))
         }
 
         binding.navEntrega.setOnClickListener {

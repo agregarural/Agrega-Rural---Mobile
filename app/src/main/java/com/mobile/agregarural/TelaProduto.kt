@@ -1,64 +1,46 @@
 package com.mobile.agregarural
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
-
 
 class TelaProduto : Fragment() {
 
-    private  var _binding: FragmentTelaProdutoBinding?= null
+    private var _binding: FragmentTelaProdutoBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentTelaProdutoBinding.inflate(layoutInflater)
+    ): View {
+        _binding = FragmentTelaProdutoBinding.inflate(inflater, container, false)
 
-
-
-        //Configuração dos botões
-
+        // Configuração dos botões
         var qntProduto = 1
         binding.quantidadeProduto.text = qntProduto.toString()
 
-
         binding.btnMais.setOnClickListener {
-            qntProduto--
-            binding.quantidadeProduto.text = qntProduto.toString()
-        }
-
-        binding.btnMenos.setOnClickListener {
             qntProduto++
             binding.quantidadeProduto.text = qntProduto.toString()
         }
 
-
-
-        //
-
-        val FragmentTelaCompra = TelaFinalizaoPedido()
-
-        binding.btnComprar.setOnClickListener {
-
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentTelaCompra)
-                .addToBackStack(null)
-                .commit()
-
-
+        binding.btnMenos.setOnClickListener {
+            if (qntProduto > 1) {
+                qntProduto--
+                binding.quantidadeProduto.text = qntProduto.toString()
+            }
         }
 
-
-
-
+        binding.btnComprar.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
+            )
+        }
 
         return binding.root
     }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
 
@@ -26,12 +27,9 @@ class TelaPagamentoEndereco: Fragment() {
 
 
         binding.btnConfirmar.setOnClickListener {
-            val fragmentPagamento = TelaPagamento()
-
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentPagamento)
-                .addToBackStack(null)
-                .commit()
-
+            findNavController().navigate(
+                R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
+            )
         }
 
 
