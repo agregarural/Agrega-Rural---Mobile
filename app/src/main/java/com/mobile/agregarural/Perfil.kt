@@ -31,13 +31,11 @@ class PerfilFragment : Fragment() {
         }
 
         binding.cardDadosPessoais.setOnClickListener {
-            val intent = Intent(requireContext(), DadosPessoais::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_perfilFragment_to_dadosPessoaisFragment)
         }
 
         binding.cardEnderecos.setOnClickListener {
-            val intent = Intent(requireContext(), MeusEnderecos::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_perfilFragment_to_meusEnderecosFragment)
         }
 
         binding.cardCartoes.setOnClickListener {

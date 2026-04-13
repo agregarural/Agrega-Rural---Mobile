@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".DadosPessoais">
+    tools:context=".MeusEnderecosFragment">
 
-    <!-- Header verde -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -32,14 +31,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meu perfil"
+            android:text="Meus endereços"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
-    <!-- Conteúdo -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,22 +50,20 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Título -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dados pessoais"
+                android:text="Endereços"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#111111"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Foto -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardAlterarFoto"
+                android:id="@+id/cardEndereco1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardElevation="0dp"
@@ -77,82 +73,36 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="12dp">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/imgPerfil"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_avatar_placeholder"
-                        android:scaleType="centerCrop"
-                        app:shapeAppearanceOverlay="@style/CircleImageStyle"
-                        app:strokeWidth="2dp"
-                        app:strokeColor="#E0E0E0"
-                        android:layout_centerVertical="true" />
+                    android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tvEndereco1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alterar foto de perfil"
+                        android:text="Rua das Hortências, 228 – Centro\nMuniz Freire – ES, 29380-000"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/imgPerfil"
-                        android:layout_marginStart="12dp" />
+                        android:layout_toStartOf="@+id/btnEditarEndereco1"
+                        android:layout_marginEnd="8dp" />
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chevron_right"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        app:tint="#888888"
-                        android:contentDescription="Navegar" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Nome -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardElevation="0dp"
-                app:strokeColor="#DDDDDD"
-                app:strokeWidth="1dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="14dp">
-
-                    <TextView
-                        android:id="@+id/tvNome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nome: Murilo Gomes Carvalho Góes"
-                        android:textSize="14sp"
-                        android:textColor="#333333"
-                        android:layout_centerVertical="true" />
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:id="@+id/btnEditarEndereco1"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/ic_editar_foto"
+                        android:padding="6dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+                        android:contentDescription="Editar endereço" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CPF -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardCpf"
+                android:id="@+id/cardEndereco2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardElevation="0dp"
@@ -162,104 +112,46 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="14dp">
+                    android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/tvCpf"
+                        android:id="@+id/tvEndereco2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CPF: 000.000.000-00"
+                        android:text="Avenida Rio Verde, 951 – Nova\nBrasilia Xique-Xique – BA,\n47400-000"
                         android:textSize="14sp"
                         android:textColor="#333333"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/btnEditarEndereco2"
+                        android:layout_marginEnd="8dp" />
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:id="@+id/btnEditarEndereco2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/ic_editar_foto"
+                        android:padding="6dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-
-                        android:contentDescription="Editar" />
+                        android:contentDescription="Editar endereço" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Cooperativa -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCooperativa"
-                android:layout_width="match_parent"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/adicionar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardElevation="0dp"
-                app:strokeColor="#DDDDDD"
-                app:strokeWidth="1dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="14dp">
-
-                    <TextView
-                        android:id="@+id/tvCooperativa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cooperativa: PEDROCOOP"
-                        android:textSize="14sp"
-                        android:textColor="#333333"
-                        android:layout_centerVertical="true" />
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Código de Membro -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCodigoMembro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardElevation="0dp"
-                app:strokeColor="#DDDDDD"
-                app:strokeWidth="1dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="14dp">
-
-                    <TextView
-                        android:id="@+id/tvCodigoMembro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Codigo de Membro: 00.000-0"
-                        android:textSize="14sp"
-                        android:textColor="#333333"
-                        android:layout_centerVertical="true" />
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_add"
+                app:shapeAppearanceOverlay="@style/CircleImageStyle"
+                app:strokeColor="#E0E0E0"
+                app:strokeWidth="3dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
@@ -269,7 +161,6 @@
         android:orientation="horizontal"
         android:weightSum="4">
 
-        <!-- Início -->
         <LinearLayout
             android:id="@+id/navInicio"
             android:layout_width="0dp"
@@ -292,10 +183,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="11sp"
                 android:layout_marginTop="2dp"/>
-
         </LinearLayout>
 
-        <!-- Carrinho -->
         <LinearLayout
             android:id="@+id/navCarrinho"
             android:layout_width="0dp"
@@ -318,10 +207,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="11sp"
                 android:layout_marginTop="2dp"/>
-
         </LinearLayout>
 
-        <!-- Entrega -->
         <LinearLayout
             android:id="@+id/navEntrega"
             android:layout_width="0dp"
@@ -344,10 +231,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="11sp"
                 android:layout_marginTop="2dp"/>
-
         </LinearLayout>
 
-        <!-- Menu -->
         <LinearLayout
             android:id="@+id/navMenu"
             android:layout_width="0dp"
@@ -370,7 +255,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="11sp"
                 android:layout_marginTop="2dp"/>
-
         </LinearLayout>
 
     </LinearLayout>
