@@ -10,6 +10,11 @@ import com.mobile.agregarural.databinding.ActivityHomeBinding
 import androidx.recyclerview.widget.RecyclerView
 
 
+/**
+ * Activity principal do aplicativo (Home).
+ * Responsável por exibir a lista de categorias e a vitrine de produtos,
+ * além de gerenciar a navegação básica através da barra inferior.
+ */
 class Home : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -19,6 +24,12 @@ class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
 
+    /**
+     * Inicializa a activity, configura o View Binding, os listeners dos botões de navegação
+     * e os RecyclerViews de categorias e produtos utilizando dados do [MockDatabase].
+     *
+     * @param savedInstanceState Estado salvo da instância anterior, se houver.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,9 +49,12 @@ class Home : AppCompatActivity() {
             startActivity(intent)
         })
         binding.btnperfil.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, Perfil::class.java)
-            startActivity(intent)
+            openPerfilFragment()
         })
+
+        if (intent.getBooleanExtra("OPEN_PERFIL", false)) {
+            openPerfilFragment()
+        }
 
         //Configurando categorias usando MockDatabase
         val rvCategorias = findViewById<RecyclerView>(R.id.rv_categorias)
@@ -63,5 +77,17 @@ class Home : AppCompatActivity() {
         }
         rvProdutos.layoutManager = GridLayoutManager(this, 2)
         rvProdutos.adapter = adapterProdutos
+    }
+
+    /**
+     * Substitui o conteúdo do fragmentContainer pelo [PerfilFragment].
+     * Permite que o usuário visualize e edite suas informações de perfil.
+     */
+    private fun openPerfilFragment() {
+        val fragment = PerfilFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Perfil">
+    >
 
     <!-- Header verde -->
     <LinearLayout
@@ -337,120 +337,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Navigation Bar -->
-    <LinearLayout
-        android:id="@+id/bottomNavBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:background="#1B5E20"
-        android:orientation="horizontal"
-        android:weightSum="4">
 
-        <!-- Início -->
-        <LinearLayout
-            android:id="@+id/navInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/nvbar_home"
-                android:contentDescription="Início"
-                app:tint="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Início"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:layout_marginTop="2dp"/>
-
-        </LinearLayout>
-
-        <!-- Carrinho -->
-        <LinearLayout
-            android:id="@+id/navCarrinho"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/nvbar_carrinho"
-                android:contentDescription="Carrinho"
-                app:tint="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Carrinho"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:layout_marginTop="2dp"/>
-
-        </LinearLayout>
-
-        <!-- Entrega -->
-        <LinearLayout
-            android:id="@+id/navEntrega"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/nvbar_truck"
-                android:contentDescription="Entrega"
-                app:tint="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entrega"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:layout_marginTop="2dp"/>
-
-        </LinearLayout>
-
-        <!-- Menu -->
-        <LinearLayout
-            android:id="@+id/navMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/nvbar_menu"
-                android:contentDescription="Menu"
-                app:tint="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menu"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:layout_marginTop="2dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

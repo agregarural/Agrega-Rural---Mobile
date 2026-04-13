@@ -39,10 +39,8 @@ class MeusEnderecos : AppCompatActivity() {
     // -------------------------------------------------------------------------
 
     private fun setupClickListeners() {
-        // Voltar para MeuPerfilActivity
+        // Voltar para MeuPerfilFragment
         binding.btnVoltar.setOnClickListener {
-            val intent = Intent(this, Perfil::class.java)
-            startActivity(intent)
             finish()
         }
 

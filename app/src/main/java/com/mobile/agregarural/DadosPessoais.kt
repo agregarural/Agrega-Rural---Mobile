@@ -51,9 +51,8 @@ class DadosPessoais : AppCompatActivity() {
     // -------------------------------------------------------------------------
 
     private fun setupClickListeners() {
-        // Voltar para MeuPerfilActivity
+        // Voltar para MeuPerfilFragment
         binding.btnVoltar.setOnClickListener {
-            startActivity(Intent(this, Perfil::class.java))
             finish()
         }
 

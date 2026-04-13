@@ -32,8 +32,10 @@ class MeusPedidosActivity : AppCompatActivity() {
             startActivity(intent)
         })
         binding.btnperfil.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, Perfil::class.java)
+            val intent = Intent(this, Home::class.java)
+            intent.putExtra("OPEN_PERFIL", true)
             startActivity(intent)
+            finish()
         })
 
         // Usando MockDatabase centralizado

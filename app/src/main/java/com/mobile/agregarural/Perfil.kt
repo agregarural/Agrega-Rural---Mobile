@@ -2,85 +2,66 @@ package com.mobile.agregarural
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import com.mobile.agregarural.databinding.ActivityPerfilBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.mobile.agregarural.databinding.FragmentPerfilBinding // Ajuste para seu pacote
 
-class Perfil : AppCompatActivity() {
+class PerfilFragment : Fragment() {
 
-    // ViewBinding configurado corretamente na classe principal
-    private lateinit var binding: ActivityPerfilBinding
+    private var _binding: FragmentPerfilBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        // Inflar o layout
-        binding = ActivityPerfilBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setupUserData()
-        setupClickListeners()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPerfilBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    private fun setupUserData() {
-        binding.tvNomeUsuario.text = "Murilo Gomes Carvalho Góes"
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    private fun setupClickListeners() {
-        // Botão Voltar
+        // Mova a lógica que estava no onCreate da Activity para cá
+        // Exemplo de como acessar os componentes via ViewBinding:
+
         binding.btnVoltar.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
-            finish()
+            parentFragmentManager.popBackStack()
         }
 
-        // Editar Foto
-        binding.btnEditarFoto.setOnClickListener {
-            Toast.makeText(this, "Alterar foto de perfil", Toast.LENGTH_SHORT).show()
-        }
-
-        // Cards de ação
-        binding.cardMeusPedidos.setOnClickListener {
-            val intent = Intent(this, MeusPedidosActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.cardMinhaCooperativa.setOnClickListener {
-            Toast.makeText(this, "Minha Cooperativa", Toast.LENGTH_SHORT).show()
-        }
-
-        // --- ITENS DE MENU (Onde estava o erro) ---
         binding.cardDadosPessoais.setOnClickListener {
-            startActivity(Intent(this, DadosPessoais::class.java))
+            val intent = Intent(requireContext(), DadosPessoais::class.java)
+            startActivity(intent)
         }
 
         binding.cardEnderecos.setOnClickListener {
-            val intent = Intent(this, MeusEnderecos::class.java)
+            val intent = Intent(requireContext(), MeusEnderecos::class.java)
             startActivity(intent)
-            // Removi o finish() para que o usuário possa voltar ao perfil depois
         }
 
         binding.cardCartoes.setOnClickListener {
-            startActivity(Intent(this, MeusCartoes::class.java))
+            val fragment = MeusCartoesFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit()
         }
 
-        // Bottom Navigation
-        binding.navInicio.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+        binding.cardMeusPedidos.setOnClickListener {
+            val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
             startActivity(intent)
-            finish()
-        }
-        binding.navEntrega.setOnClickListener {
-            val intent = Intent(this, MeusPedidosActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
-        binding.navMenu.setOnClickListener {
-            startActivity(Intent(this, Menu::class.java))
-        }
+
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
