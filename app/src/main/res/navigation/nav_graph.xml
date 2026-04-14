@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_telaProdutoFragment"
             app:destination="@id/telaProdutoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_meusPedidosFragment"
+            app:destination="@id/meusPedidosFragment" />
     </fragment>
 
     <fragment
@@ -44,7 +47,16 @@
         <action
             android:id="@+id/action_perfilFragment_to_dadosPessoaisFragment"
             app:destination="@id/dadosPessoaisFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_meusPedidosFragment"
+            app:destination="@id/meusPedidosFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/meusPedidosFragment"
+        android:name="com.mobile.agregarural.MeusPedidosFragment"
+        android:label="Meus Pedidos"
+        tools:layout="@layout/fragment_meus_pedidos" />
 
     <fragment
         android:id="@+id/dadosPessoaisFragment"

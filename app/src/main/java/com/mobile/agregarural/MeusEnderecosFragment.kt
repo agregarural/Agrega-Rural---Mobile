@@ -74,8 +74,7 @@ class MeusEnderecosFragment : Fragment() {
         }
 
         binding.navEntrega.setOnClickListener {
-            val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.meusPedidosFragment)
         }
 
         binding.navMenu.setOnClickListener {

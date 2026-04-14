@@ -87,7 +87,7 @@ class Menu : AppCompatActivity() {
         }
 
         binding.navEntrega.setOnClickListener {
-            startActivity(Intent(this, MeusPedidosActivity::class.java))
+            startActivity(Intent(this, MeusPedidosFragment::class.java))
         }
 
         binding.navMenu.setOnClickListener {

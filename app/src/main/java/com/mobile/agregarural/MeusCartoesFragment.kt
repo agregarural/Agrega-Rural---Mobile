@@ -73,7 +73,7 @@ class MeusCartoesFragment : Fragment() {
         }
 
         binding.navEntrega.setOnClickListener {
-            val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
+            val intent = Intent(requireContext(), MeusPedidosFragment::class.java)
             startActivity(intent)
         }
 

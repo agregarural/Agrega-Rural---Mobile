@@ -22,7 +22,7 @@
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".MeusPedidosActivity"
+            android:name=".MeusPedidosFragment"
             android:exported="false" />
 
 

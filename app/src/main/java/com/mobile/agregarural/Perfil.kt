@@ -43,8 +43,7 @@ class PerfilFragment : Fragment() {
         }
 
         binding.cardMeusPedidos.setOnClickListener {
-            val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_perfilFragment_to_meusPedidosFragment)
         }
     }
 

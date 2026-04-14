@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mobile.agregarural.databinding.FragmentHomeBinding
 
 /**
@@ -42,8 +41,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnEntrega.setOnClickListener {
-            val intent = Intent(requireContext(), MeusPedidosActivity::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_homeFragment_to_meusPedidosFragment)
         }
 
         binding.btnHome.setOnClickListener {
