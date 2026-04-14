@@ -9,6 +9,7 @@
         android:id="@+id/bg"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/imagem_de_fundo"
         android:src="@drawable/fundo_cooperativa"
         android:scaleType="fitCenter"
         android:alpha="0.7"
@@ -22,9 +23,8 @@
         android:id="@+id/topBar"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:background="@color/green"
+        android:background="@drawable/bg_header_gradient"
         android:gravity="center_vertical"
-        android:paddingStart="16dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +33,11 @@
         <ImageButton
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:contentDescription="@string/voltar_seta"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white"
-            android:background="null"/>
+            android:background="null"
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:text="@string/cooperativa"
@@ -66,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="175dp"
             android:gravity="center">
 
             <!-- LINHA 1 -->
@@ -74,17 +76,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center"
                 >
 
                 <!-- CARD 1 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/card_bg"
-                    android:elevation="8dp"
-                    android:layout_margin="8dp"
                     android:gravity="center"
                     android:orientation="vertical"
+                    android:layout_marginEnd="50dp"
                     >
 
                     <TextView
@@ -106,11 +108,9 @@
 
                 <!-- CARD 2 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/card_bg"
-                    android:elevation="8dp"
-                    android:layout_margin="8dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     >
@@ -137,17 +137,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
 
                 <!-- CARD 3 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/card_bg"
-                    android:elevation="8dp"
-                    android:layout_margin="8dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginEnd="50dp"
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -168,11 +170,9 @@
 
                 <!-- CARD 4 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/card_bg"
-                    android:elevation="8dp"
-                    android:layout_margin="8dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -199,21 +199,22 @@
         <!-- BOTÃO -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="44dp"
             android:background="@drawable/card_bg"
-            android:elevation="6dp"
             android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="12dp"
             >
 
             <TextView
-                android:text="@string/contatos"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/contatos"
+                android:textSize="15sp"/>
 
             <ImageView
+                android:contentDescription="@string/avancar_seta"
                 android:src="@drawable/ic_arrow_back"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -251,7 +252,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
                 android:id="@+id/btnHome"
-                android:contentDescription="Home"
+                android:contentDescription="@string/home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp"
                 android:background="@color/transparent"
@@ -264,7 +265,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:contentDescription="Carrinho"
+                android:contentDescription="@string/carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp"
                 android:background="@color/transparent"
@@ -277,7 +278,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:contentDescription="Entrega"
+                android:contentDescription="@string/entrega"
                 android:id="@+id/btnEntrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp"
@@ -289,7 +290,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:contentDescription="Menu"
+                android:contentDescription="@string/menu"
                 android:id="@+id/btnmenu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp"
