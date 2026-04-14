@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.mobile.agregarural.databinding.FragmentRecuperarsenhaBinding
 import androidx.navigation.fragment.findNavController
+import com.mobile.agregarural.databinding.FragmentRecuperarsenhaBinding
 
 class RecuperarSenhaFragment : Fragment() {
 
@@ -25,28 +25,26 @@ class RecuperarSenhaFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.btEnviar.setOnClickListener {
-
-            val view = layoutInflater.inflate(R.layout.popup_recuperar_senha, null)
+            val popupView = layoutInflater.inflate(R.layout.popup_recuperar_senha, null)
 
             val popup = AlertDialog.Builder(requireContext())
-                .setView(view)
+                .setView(popupView)
                 .create()
 
             popup.show()
             popup.window?.setDimAmount(0.7f)
 
-            val btFechar = view.findViewById<Button>(R.id.btFechar)
+            val btFechar = popupView.findViewById<Button>(R.id.btFechar)
 
             btFechar.setOnClickListener {
                 popup.dismiss()
-
                 findNavController().navigate(R.id.telaLoginFragment)
             }
         }

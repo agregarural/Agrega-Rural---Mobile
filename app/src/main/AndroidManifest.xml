@@ -12,47 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".CadastroActivity"
+            android:name=".DadosPessoaisFragment"
             android:exported="false" />
         <activity
-            android:name=".DadosPessoais"
+            android:name=".MeusEnderecosFragment"
             android:exported="false" />
-        <activity
-            android:name=".MeusEnderecos"
-            android:exported="false" />
-        <activity
-            android:name=".MeusCartoes"
-            android:exported="false" />
-        <activity
-            android:name=".Perfil"
-            android:exported="false" />
-        <activity
-            android:name=".RecuperarSenha"
-            android:exported="false" />
+
         <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".TelaCadastro4"
+            android:name=".MeusPedidosFragment"
             android:exported="false" />
-        <activity
-            android:name=".MeusPedidosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro3"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro2"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro1"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
-            android:exported="false" />
-        <activity
-            android:name=".TelaLogin"
-            android:exported="false" />
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

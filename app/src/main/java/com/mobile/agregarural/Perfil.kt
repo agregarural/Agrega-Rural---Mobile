@@ -2,85 +2,53 @@ package com.mobile.agregarural
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import com.mobile.agregarural.databinding.ActivityPerfilBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.mobile.agregarural.databinding.FragmentPerfilBinding
 
-class Perfil : AppCompatActivity() {
+class PerfilFragment : Fragment() {
 
-    // ViewBinding configurado corretamente na classe principal
-    private lateinit var binding: ActivityPerfilBinding
+    private var _binding: FragmentPerfilBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        // Inflar o layout
-        binding = ActivityPerfilBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setupUserData()
-        setupClickListeners()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPerfilBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    private fun setupUserData() {
-        binding.tvNomeUsuario.text = "Murilo Gomes Carvalho Góes"
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    private fun setupClickListeners() {
-        // Botão Voltar
         binding.btnVoltar.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
-            finish()
+            findNavController().navigateUp()
         }
 
-        // Editar Foto
-        binding.btnEditarFoto.setOnClickListener {
-            Toast.makeText(this, "Alterar foto de perfil", Toast.LENGTH_SHORT).show()
-        }
-
-        // Cards de ação
-        binding.cardMeusPedidos.setOnClickListener {
-            val intent = Intent(this, MeusPedidosActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.cardMinhaCooperativa.setOnClickListener {
-            Toast.makeText(this, "Minha Cooperativa", Toast.LENGTH_SHORT).show()
-        }
-
-        // --- ITENS DE MENU (Onde estava o erro) ---
         binding.cardDadosPessoais.setOnClickListener {
-            startActivity(Intent(this, DadosPessoais::class.java))
+            findNavController().navigate(R.id.action_perfilFragment_to_dadosPessoaisFragment)
         }
 
         binding.cardEnderecos.setOnClickListener {
-            val intent = Intent(this, MeusEnderecos::class.java)
-            startActivity(intent)
-            // Removi o finish() para que o usuário possa voltar ao perfil depois
+            findNavController().navigate(R.id.action_perfilFragment_to_meusEnderecosFragment)
         }
 
         binding.cardCartoes.setOnClickListener {
-            startActivity(Intent(this, MeusCartoes::class.java))
+            findNavController().navigate(R.id.action_perfil_to_meusCartoes)
         }
 
-        // Bottom Navigation
-        binding.navInicio.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
-            finish()
+        binding.cardMeusPedidos.setOnClickListener {
+            findNavController().navigate(R.id.action_perfilFragment_to_meusPedidosFragment)
         }
-        binding.navEntrega.setOnClickListener {
-            val intent = Intent(this, MeusPedidosActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+    }
 
-        binding.navMenu.setOnClickListener {
-            startActivity(Intent(this, Menu::class.java))
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mobile.agregarural.databinding.FragmentTelaFinalizacaoPedidoBinding
@@ -67,13 +68,9 @@ class TelaFinalizaoPedido: Fragment() {
         //Mudando de pagina
 
         binding.btnConfirmar.setOnClickListener {
-            val fragmentEndereçoEntrega = TelaPagamentoEndereco()
-
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragmentEndereçoEntrega)
-                .addToBackStack(null).commit()
-
-
-            
+            findNavController().navigate(
+                R.id.action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment
+            )
         }
 
         return binding.root
