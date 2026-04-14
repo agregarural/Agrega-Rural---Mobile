@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
 
+
 class TelaProduto : Fragment() {
 
     private var _binding: FragmentTelaProdutoBinding? = null

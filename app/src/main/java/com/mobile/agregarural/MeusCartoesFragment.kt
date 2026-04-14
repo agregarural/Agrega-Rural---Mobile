@@ -78,7 +78,7 @@ class MeusCartoesFragment : Fragment() {
         }
 
         binding.navMenu.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.menuFragment)
         }
     }
 

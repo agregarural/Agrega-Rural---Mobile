@@ -49,8 +49,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnmenu.setOnClickListener {
-            val intent = Intent(requireContext(), Menu::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.menuFragment)
         }
 
         binding.btnperfil.setOnClickListener {

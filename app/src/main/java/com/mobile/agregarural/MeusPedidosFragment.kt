@@ -41,7 +41,7 @@ class MeusPedidosFragment : Fragment() {
         }
 
         binding.btnmenu.setOnClickListener {
-            startActivity(Intent(requireContext(), Menu::class.java))
+            findNavController().navigate(R.id.menuFragment)
         }
 
         binding.btnperfil.setOnClickListener {

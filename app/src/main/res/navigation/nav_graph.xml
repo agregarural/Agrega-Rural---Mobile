@@ -23,6 +23,9 @@
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_homeFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_perfilFragment"
             app:destination="@id/perfilFragment" />
         <action
@@ -67,7 +70,14 @@
     <fragment
         android:id="@+id/meusCartoesFragment"
         android:name="com.mobile.agregarural.MeusCartoesFragment"
-        android:label="Meus cartões" />
+        android:label="Meus cartões"
+        tools:layout="@layout/fragment_meus_cartoes" />
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.mobile.agregarural.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" />
 
     <fragment
         android:id="@+id/meusEnderecosFragment"

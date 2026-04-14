@@ -104,7 +104,7 @@ class DadosPessoaisFragment : Fragment() {
         }
 
         binding.navMenu.setOnClickListener {
-            startActivity(Intent(requireContext(), Menu::class.java))
+            findNavController().navigate(R.id.menuFragment)
         }
     }
 
