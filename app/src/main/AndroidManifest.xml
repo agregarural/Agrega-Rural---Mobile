@@ -11,19 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
-        <activity
-            android:name=".DadosPessoaisFragment"
-            android:exported="false" />
-        <activity
-            android:name=".MeusEnderecosFragment"
-            android:exported="false" />
-
-        <activity
-            android:name=".Menu"
-            android:exported="false" />
-        <activity
-            android:name=".MeusPedidosFragment"
-            android:exported="false" />
 
 
         <activity

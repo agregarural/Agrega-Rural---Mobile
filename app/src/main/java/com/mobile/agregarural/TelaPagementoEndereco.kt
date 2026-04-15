@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
 
 
@@ -30,6 +29,17 @@ class TelaPagamentoEndereco: Fragment() {
             findNavController().navigate(
                 R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
             )
+        }
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
         }
 
 

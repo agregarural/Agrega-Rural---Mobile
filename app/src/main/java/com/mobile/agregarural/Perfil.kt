@@ -26,9 +26,23 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
+        }
+
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
+
+
 
         binding.cardDadosPessoais.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_dadosPessoaisFragment)

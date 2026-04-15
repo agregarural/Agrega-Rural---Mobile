@@ -41,20 +41,20 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_meusPedidosFragment)
+            findNavController().navigate(R.id.meusPedidosFragment)
         }
 
         binding.btnHome.setOnClickListener {
-            // Já está na Home
+            findNavController().navigate(R.id.homeFragment)
         }
 
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
-
         binding.btnperfil.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_perfilFragment)
+            findNavController().navigate(R.id.perfilFragment)
         }
+
 
         // Configurando categorias usando MockDatabase
         val rvCategorias = binding.rvCategorias
