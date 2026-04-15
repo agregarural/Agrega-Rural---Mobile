@@ -36,5 +36,10 @@
     <string name="enviar">Enviar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="atendimento_ao_cliente_sac">Atendimento ao Cliente (SAC)</string>
+    <string name="oi_gostaria_de_uma_informa_o">Oi, gostaria de uma informação.</string>
+    <string name="promo_o">Promoção</string>
+    <string name="bovinos">Bovinos</string>
+    <string name="categoria">CATEGORIA</string>
 
 </resources>

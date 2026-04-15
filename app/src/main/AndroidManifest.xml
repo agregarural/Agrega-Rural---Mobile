@@ -19,7 +19,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".Menu"
+            android:name=".MenuFragment"
             android:exported="false" />
         <activity
             android:name=".MeusPedidosFragment"
