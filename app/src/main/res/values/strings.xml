@@ -34,5 +34,19 @@
     <string name="recuperacao">Recuperação\n da senha</string>
     <string name="informar">Informe o email cadastrado</string>
     <string name="enviar">Enviar</string>
+    <string name="atendimento">Atendimento ao Cliente (SAC)</string>
+    <string name="atendimento_texto">
+        \nSe preferir falar com a nossa equipe por telefone, você pode ligar para:\n
+        \n(XX) XXXX-XXXX\n
+        (XX) XXXXX-XXXX\n
+        \nHorário de atendimento:\n
+        Segunda a sexta-feira, das 8h às 18h\n
+        Sábados, das 8h às 12h\n
+        \nCaso você esteja entrando em contato fora do horário de atendimento, pode nos enviar um e-mail para:\n
+        contato@agregarural.com\n\n
+        Retornaremos assim que possível.\n
+        Estamos à disposição! 🌱
+    </string>
+    <string name="atendimento1">📞 Atendimento AgregaRural\n</string>
 
 </resources>
