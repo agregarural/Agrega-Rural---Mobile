@@ -41,5 +41,6 @@
     <string name="promo_o">Promoção</string>
     <string name="bovinos">Bovinos</string>
     <string name="categoria">CATEGORIA</string>
+    <string name="editar_cart_o">Editar cartão</string>
 
 </resources>

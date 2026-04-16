@@ -126,12 +126,11 @@
         android:name="com.mobile.agregarural.TelaProduto"
         android:label="Produto">
         <action
-            android:id="@+id/action_telaproduto_to_telahome"
-            app:destination="@id/homeFragment" />
-
-        <action
             android:id="@+id/action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment"
             app:destination="@id/telaFinalizacaoPedidoFragment" />
+        <action
+            android:id="@+id/action_telaProdutoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -159,9 +158,5 @@
     <fragment
         android:id="@+id/telaPagamentoFragment"
         android:name="com.mobile.agregarural.TelaPagamento"
-        android:label="Pagamento">
-        <action
-            android:id="@+id/action_telaPagamentoFragment_to_telaFinalizacaoPedidoFragment"
-            app:destination="@id/telaFinalizacaoPedidoFragment" />
-    </fragment>
+        android:label="Pagamento" />
 </navigation>
