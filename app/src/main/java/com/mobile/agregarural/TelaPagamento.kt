@@ -5,34 +5,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
 
+class TelaPagamento : Fragment() {
 
-class TelaPagamento: Fragment() {
-
-    private  var _binding: FragmentTelaPagamentoBinding?= null
+    private var _binding: FragmentTelaPagamentoBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTelaPagamentoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentTelaPagamentoBinding.inflate(layoutInflater)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btnFinalizar.setOnClickListener {
+            // Verifique se este ID existe no seu nav_graph.xml
+            findNavController().navigate(
+                R.id.action_telaPagamentoFragment_to_telaFinalizacaoPedidoFragment
+            )
+        }
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
 
-            parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
 
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
         }
 
 
-        return binding.root
     }
 
     override fun onDestroyView() {

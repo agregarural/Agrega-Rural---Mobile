@@ -63,20 +63,16 @@ class MenuFragment : Fragment() {
     }
 
     private fun setupBottomNavigation() {
-        binding.navInicio.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
-        binding.navCarrinho.setOnClickListener {
-            Toast.makeText(requireContext(), "Funcionalidade Carrinho em breve", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.navEntrega.setOnClickListener {
+        binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
 
-        binding.navMenu.setOnClickListener {
-            // Já está no Menu
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
         }
     }
 

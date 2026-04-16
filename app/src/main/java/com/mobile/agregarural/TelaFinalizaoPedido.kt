@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
+
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mobile.agregarural.R
 import com.mobile.agregarural.databinding.FragmentTelaFinalizacaoPedidoBinding
-import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
+
 
 
 data class ProdutoPedido(
@@ -24,9 +25,6 @@ class TelaFinalizaoPedido: Fragment() {
     private  var _binding: FragmentTelaFinalizacaoPedidoBinding?= null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +69,18 @@ class TelaFinalizaoPedido: Fragment() {
             findNavController().navigate(
                 R.id.action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment
             )
+        }
+
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
         }
 
         return binding.root

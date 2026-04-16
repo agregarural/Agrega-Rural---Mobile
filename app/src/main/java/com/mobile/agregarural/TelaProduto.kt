@@ -37,10 +37,27 @@ class TelaProduto : Fragment() {
             }
         }
 
+        binding.bvoltar.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_telaproduto_to_telahome
+            )
+        }
+
         binding.btnComprar.setOnClickListener {
             findNavController().navigate(
                 R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
             )
+        }
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
         }
 
         return binding.root
