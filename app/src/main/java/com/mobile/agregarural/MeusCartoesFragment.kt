@@ -64,19 +64,15 @@ class MeusCartoesFragment : Fragment() {
             showToast("Adicionar cartão")
         }
 
-        binding.navInicio.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
-        binding.navCarrinho.setOnClickListener {
-            showToast("Funcionalidade Carrinho em breve")
-        }
-
-        binding.navEntrega.setOnClickListener {
+        binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
 
-        binding.navMenu.setOnClickListener {
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
     }

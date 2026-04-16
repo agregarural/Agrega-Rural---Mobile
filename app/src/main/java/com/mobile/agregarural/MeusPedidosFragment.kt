@@ -33,7 +33,7 @@ class MeusPedidosFragment : Fragment() {
 
     private fun setupNavigation() {
         binding.btnEntrega.setOnClickListener {
-            // Já está em Meus Pedidos
+            findNavController().navigate(R.id.meusPedidosFragment)
         }
 
         binding.btnHome.setOnClickListener {

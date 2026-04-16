@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -549,111 +549,80 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/bottomNavBar"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:background="#1B5E20"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/navigatebar_shape"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/navInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="4"
+            android:rowCount="1">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Início"
-                android:src="@drawable/nvbar_home"
-                app:tint="#FFFFFF" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHome"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:contentDescription="Home"
+                app:icon="@drawable/nvbar_home"
+                app:iconSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Início"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navCarrinho"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Carrinho"
-                android:src="@drawable/nvbar_carrinho"
-                app:tint="#FFFFFF" />
+                app:icon="@drawable/nvbar_carrinho"
+                app:iconSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Carrinho"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navEntrega"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEntrega"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Entrega"
-                android:src="@drawable/nvbar_truck"
-                app:tint="#FFFFFF" />
+                app:icon="@drawable/nvbar_truck"
+                app:iconSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Entrega"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnmenu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
                 android:contentDescription="Menu"
-                android:src="@drawable/nvbar_menu"
-                app:tint="#FFFFFF" />
+                app:icon="@drawable/nvbar_menu"
+                app:iconSize="20dp" />
+        </GridLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Menu"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp" />
-        </LinearLayout>
 
-    </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
