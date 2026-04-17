@@ -169,6 +169,7 @@
                 android:background="@color/transparent"
                 android:contentDescription="Home"
                 app:icon="@drawable/nvbar_home"
+                android:id="@+id/btnHome"
                 app:iconSize="20dp" />
 
 
@@ -192,6 +193,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
                 android:contentDescription="Entrega"
+                android:id="@+id/btnEntrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
 
@@ -200,6 +202,7 @@
                 android:layout_height="50dp"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
+                android:id="@+id/btnmenu"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
                 android:contentDescription="Menu"

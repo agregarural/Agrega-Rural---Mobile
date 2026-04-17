@@ -5,33 +5,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mobile.agregarural.databinding.FragmentTelaCadastro2Binding
 import androidx.navigation.fragment.findNavController
+import com.mobile.agregarural.databinding.FragmentInicialBinding
 
-class TelaCadastro2Fragment : Fragment() {
+class TelaInicial : Fragment() {
 
-    private var _binding: FragmentTelaCadastro2Binding? = null
+    private var _binding: FragmentInicialBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTelaCadastro2Binding.inflate(inflater, container, false)
+        _binding = FragmentInicialBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-
-        binding.btVoltar.setOnClickListener {
-            findNavController().navigateUp()
+        binding.btEntrar.setOnClickListener {
+            findNavController().navigate(R.id.action_inicio_to_login)
         }
 
-
-        binding.btContinuar2.setOnClickListener {
-            findNavController().navigate(R.id.action_telaCadastro2_to_telaCadastro3)
+        binding.btCadastro.setOnClickListener {
+            findNavController().navigate(R.id.action_inicio_to_cadastro)
         }
     }
 

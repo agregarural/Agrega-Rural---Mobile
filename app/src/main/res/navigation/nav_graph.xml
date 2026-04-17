@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/telaInicialFragment">
+
+    <fragment
+        android:id="@+id/telaInicialFragment"
+        android:name="com.mobile.agregarural.TelaInicial"
+        tools:layout="@layout/fragment_inicial">
+        <action
+            android:id="@+id/action_inicio_to_login"
+            app:destination="@id/telaLoginFragment" />
+        <action
+            android:id="@+id/action_inicio_to_cadastro"
+            app:destination="@id/telaCadastro1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mobile.agregarural.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_telaProdutoFragment"
+            app:destination="@id/telaProdutoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_meusPedidosFragment"
+            app:destination="@id/meusPedidosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.mobile.agregarural.PerfilFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_perfil">
+        <action
+            android:id="@+id/action_perfil_to_meusCartoes"
+            app:destination="@id/meusCartoesFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_meusEnderecosFragment"
+            app:destination="@id/meusEnderecosFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_dadosPessoaisFragment"
+            app:destination="@id/dadosPessoaisFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_meusPedidosFragment"
+            app:destination="@id/meusPedidosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/meusPedidosFragment"
+        android:name="com.mobile.agregarural.MeusPedidosFragment"
+        android:label="Meus Pedidos"
+        tools:layout="@layout/fragment_meus_pedidos" />
+
+    <fragment
+        android:id="@+id/dadosPessoaisFragment"
+        android:name="com.mobile.agregarural.DadosPessoaisFragment"
+        android:label="Dados pessoais"
+        tools:layout="@layout/fragment_dados_pessoais" />
+
+    <fragment
+        android:id="@+id/meusCartoesFragment"
+        android:name="com.mobile.agregarural.MeusCartoesFragment"
+        android:label="Meus cartões"
+        tools:layout="@layout/fragment_meus_cartoes" />
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.mobile.agregarural.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" />
+
+    <fragment
+        android:id="@+id/meusEnderecosFragment"
+        android:name="com.mobile.agregarural.MeusEnderecosFragment"
+        android:label="Meus endereços"
+        tools:layout="@layout/fragment_meus_enderecos" />
+
+    <fragment
+        android:id="@+id/telaLoginFragment"
+        android:name="com.mobile.agregarural.TelaLoginFragment">
+        <action
+            android:id="@+id/action_telaLoginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recuperarSenhaFragment"
+        android:name="com.mobile.agregarural.RecuperarSenhaFragment" />
+
+    <fragment
+        android:id="@+id/telaCadastro1Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro1Fragment">
+        <action
+            android:id="@+id/action_telaCadastro1_to_telaCadastro2"
+            app:destination="@id/telaCadastro2Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/telaCadastro2Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro2Fragment">
+        <action
+            android:id="@+id/action_telaCadastro2_to_telaCadastro3"
+            app:destination="@id/telaCadastro3Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/telaCadastro3Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro3Fragment">
+        <action
+            android:id="@+id/action_telaCadastro3_to_telaCadastro4"
+            app:destination="@id/telaCadastro4Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/telaProdutoFragment"
+        android:name="com.mobile.agregarural.TelaProduto"
+        android:label="Produto">
+        <action
+            android:id="@+id/action_telaproduto_to_telahome"
+            app:destination="@id/homeFragment" />
+
+        <action
+            android:id="@+id/action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment"
+            app:destination="@id/telaFinalizacaoPedidoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/telaCadastro4Fragment"
+        android:name="com.mobile.agregarural.TelaCadastro4Fragment" />
+
+    <fragment
+        android:id="@+id/telaFinalizacaoPedidoFragment"
+        android:name="com.mobile.agregarural.TelaFinalizaoPedido"
+        android:label="Finalização do Pedido">
+        <action
+            android:id="@+id/action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment"
+            app:destination="@id/telaPagamentoEnderecoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/telaPagamentoEnderecoFragment"
+        android:name="com.mobile.agregarural.TelaPagamentoEndereco"
+        android:label="Pagamento e Endereço">
+        <action
+            android:id="@+id/action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment"
+            app:destination="@id/telaPagamentoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/telaPagamentoFragment"
+        android:name="com.mobile.agregarural.TelaPagamento"
+        android:label="Pagamento">
+        <action
+            android:id="@+id/action_telaPagamentoFragment_to_telaFinalizacaoPedidoFragment"
+            app:destination="@id/telaFinalizacaoPedidoFragment" />
+    </fragment>
+</navigation>
