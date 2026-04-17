@@ -1,12 +1,9 @@
 package com.mobile.agregarural
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.mobile.agregarural.databinding.ActivityMainBinding
-import android.content.Intent
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,17 +15,5 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.btEntrar.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, TelaLogin::class.java)
-            startActivity(intent)
-            finish()
-        })
-        binding.btCadastro.setOnClickListener {
-            val intent = Intent(this, TelaCadastro1::class.java)
-            startActivity(intent)
-            finish()
-        }
-
     }
 }

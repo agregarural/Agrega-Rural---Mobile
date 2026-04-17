@@ -1,71 +1,56 @@
 package com.mobile.agregarural
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import com.mobile.agregarural.databinding.ActivityMenuBinding
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.mobile.agregarural.databinding.FragmentMenuBinding
 
-class Menu : AppCompatActivity() {
+class MenuFragment : Fragment() {
 
-    private lateinit var binding: ActivityMenuBinding
+    private var _binding: FragmentMenuBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMenuBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding = ActivityMenuBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupCategoryClickListeners()
         setupMenuClickListeners()
         setupBottomNavigation()
     }
 
-
     private fun setupCategoryClickListeners() {
-        binding.cardPromocao.setOnClickListener {
-            navigateToCategory("Promoção")
-        }
-        binding.cardMaisVendidos.setOnClickListener {
-            navigateToCategory("Mais Vendidos")
-        }
-        binding.cardBovinos.setOnClickListener {
-            navigateToCategory("Bovinos")
-        }
-        binding.cardSuinos.setOnClickListener {
-            navigateToCategory("Suínos")
-        }
-        binding.cardAves.setOnClickListener {
-            navigateToCategory("Aves")
-        }
-        binding.cardEquinos.setOnClickListener {
-            navigateToCategory("Equinos")
-        }
-        binding.cardCaprinos.setOnClickListener {
-            navigateToCategory("Caprinos")
-        }
-        binding.cardSementes.setOnClickListener {
-            navigateToCategory("Sementes")
-        }
-        binding.cardDefensivos.setOnClickListener {
-            navigateToCategory("Defensivos")
-        }
-        binding.cardFertilizantes.setOnClickListener {
-            navigateToCategory("Fertilizantes")
-        }
-        binding.cardSacarias.setOnClickListener {
-            navigateToCategory("Sacarias")
-        }
-        binding.cardCafeicultura.setOnClickListener {
-            navigateToCategory("Cafeicultura")
-        }
+        binding.cardPromocao.setOnClickListener { navigateToCategory("Promoção") }
+        binding.cardMaisVendidos.setOnClickListener { navigateToCategory("Mais Vendidos") }
+        binding.cardBovinos.setOnClickListener { navigateToCategory("Bovinos") }
+        binding.cardSuinos.setOnClickListener { navigateToCategory("Suínos") }
+        binding.cardAves.setOnClickListener { navigateToCategory("Aves") }
+        binding.cardEquinos.setOnClickListener { navigateToCategory("Equinos") }
+        binding.cardCaprinos.setOnClickListener { navigateToCategory("Caprinos") }
+        binding.cardSementes.setOnClickListener { navigateToCategory("Sementes") }
+        binding.cardDefensivos.setOnClickListener { navigateToCategory("Defensivos") }
+        binding.cardFertilizantes.setOnClickListener { navigateToCategory("Fertilizantes") }
+        binding.cardSacarias.setOnClickListener { navigateToCategory("Sacarias") }
+        binding.cardCafeicultura.setOnClickListener { navigateToCategory("Cafeicultura") }
     }
 
     private fun setupMenuClickListeners() {
         binding.cardTrocarConta.setOnClickListener {
-            Toast.makeText(this, "Trocar de conta", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Trocar de conta", Toast.LENGTH_SHORT).show()
         }
 
         binding.cardDesconectar.setOnClickListener {
@@ -73,44 +58,43 @@ class Menu : AppCompatActivity() {
         }
 
         binding.cardSAC.setOnClickListener {
-            Toast.makeText(this, "Atendimento ao cliente (SAC)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Atendimento ao cliente (SAC)", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setupBottomNavigation() {
-        binding.navInicio.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
         }
 
-        binding.navCarrinho.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
         }
 
-        binding.navEntrega.setOnClickListener {
-            startActivity(Intent(this, MeusPedidosActivity::class.java))
-        }
-
-        binding.navMenu.setOnClickListener {
-            startActivity(Intent(this, Menu::class.java))
-
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
         }
     }
 
     private fun navigateToCategory(categoria: String) {
-        val intent = Intent(this, TelaProduto::class.java)
-        intent.putExtra("CATEGORIA", categoria)
-        startActivity(intent)
-        finish()
+        val bundle = Bundle()
+        bundle.putString("CATEGORIA", categoria)
+        findNavController().navigate(R.id.telaProdutoFragment, bundle)
     }
 
     private fun showDesconectarDialog() {
-        androidx.appcompat.app.AlertDialog.Builder(this)
+        AlertDialog.Builder(requireContext())
             .setTitle("Desconectar")
             .setMessage("Deseja realmente sair da sua conta?")
             .setPositiveButton("Sim") { _, _ ->
-                Toast.makeText(this, "Desconectado!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Desconectado!", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Cancelar", null)
             .show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

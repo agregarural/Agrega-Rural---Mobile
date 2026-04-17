@@ -59,5 +59,7 @@
     <string name="enderecos">Endereços</string>
     <string name="endereco1">Rua das Acácias, 847 – Jardim Primavera Betim – MG, 32689-000</string>
     <string name="endereco2">Rua Monte Azul, 312 – Jucutuquara Vitória – ES, 29045-900</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

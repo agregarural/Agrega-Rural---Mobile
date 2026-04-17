@@ -11,45 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
-        <activity
-            android:name=".DadosPessoais"
-            android:exported="false" />
-        <activity
-            android:name=".MeusEnderecos"
-            android:exported="false" />
-        <activity
-            android:name=".MeusCartoes"
-            android:exported="false" />
-        <activity
-            android:name=".Perfil"
-            android:exported="false" />
-        <activity
-            android:name=".RecuperarSenha"
-            android:exported="false" />
-        <activity
-            android:name=".Menu"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro4"
-            android:exported="false" />
-        <activity
-            android:name=".MeusPedidosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro3"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro2"
-            android:exported="false" />
-        <activity
-            android:name=".TelaCadastro1"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
-            android:exported="false" />
-        <activity
-            android:name=".TelaLogin"
-            android:exported="false" />
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
