@@ -16,6 +16,11 @@
             android:id="@+id/action_inicio_to_cadastro"
             app:destination="@id/telaCadastro1Fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/TelaContatosCoopFragment"
+        android:name="com.mobile.agregarural.ContatosCoop" />
+
     <fragment
         android:id="@+id/TelaSacFragment"
         android:name="com.mobile.agregarural.ChatFragment" />

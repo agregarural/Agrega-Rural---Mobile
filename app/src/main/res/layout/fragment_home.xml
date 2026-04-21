@@ -45,7 +45,8 @@
                     android:layout_marginStart="20dp"
                     android:text="OLÁ Murilo"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="wrap_content"

@@ -33,6 +33,9 @@ class MinhaCooperativa : Fragment() {
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
+        binding.cardcontato.setOnClickListener {
+            findNavController().navigate(R.id.TelaContatosCoopFragment)
+        }
 
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)

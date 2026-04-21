@@ -29,7 +29,7 @@ class TelaFinalizaoPedido: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentTelaFinalizacaoPedidoBinding.inflate(layoutInflater)
 
@@ -64,6 +64,10 @@ class TelaFinalizaoPedido: Fragment() {
         binding.totalPedidos.text = ("TOTAL R$${precoFinal}")
 
         //Mudando de pagina
+
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         binding.btnConfirmar.setOnClickListener {
             findNavController().navigate(
