@@ -64,15 +64,15 @@ class MeusCartoesFragment : Fragment() {
             showToast("Adicionar cartão")
         }
 
-        binding.navEntrega.setOnClickListener {
+        binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
 
-        binding.navInicio.setOnClickListener {
+        binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
 
-        binding.navMenu.setOnClickListener {
+        binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
     }

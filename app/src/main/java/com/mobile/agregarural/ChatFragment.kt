@@ -64,9 +64,16 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         lifecycleScope.launch {
             delay(1000) // Simula o bot "digitando"
             val response = when {
+                userMessage.contains("telefone", true) -> "Se preferir falar com a nossa equipe por telefone, você pode ligar para:\n" +
+                        "(xx) xxxx-xxxx\n" +
+                        "(xx) xxxx-xxxx\n" +
+                        "\n" +
+                        "Horário de atendimento: Segunda a sexta-feira, das 8h às 18h Sábados, das 8h às 12h"
                 userMessage.contains("olá", true) -> "Olá! Digite sua dúvida sobre pedidos ou perfil."
                 userMessage.contains("pedido", true) -> "Você pode rastrear seu pedido na tela 'Entrega'."
-                else -> "Entendi. Vou encaminhar sua dúvida para um especialista."
+                else -> "Entendi. Vou encaminhar sua dúvida para um especialista.\n" +
+                        "\n" +
+                        "Ao ser analisado. Enviaremos uma mensagem para o email informado."
             }
             addMessage(response, isBot = true)
         }
