@@ -1,51 +1,57 @@
 package com.mobile.agregarural
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.mobile.agregarural.databinding.ActivityRecuperarsenhaBinding
-import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.mobile.agregarural.databinding.FragmentRecuperarsenhaBinding
 
-class RecuperarSenha : AppCompatActivity() {
-    private lateinit var binding: ActivityRecuperarsenhaBinding
+class RecuperarSenhaFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+    private var _binding: FragmentRecuperarsenhaBinding? = null
+    private val binding get() = _binding!!
 
-        binding = ActivityRecuperarsenhaBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentRecuperarsenhaBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btVoltar.setOnClickListener {
-            val intent = Intent(this, TelaLogin::class.java)
-            startActivity(intent)
-            finish()
+            findNavController().navigateUp()
         }
 
         binding.btEnviar.setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.popup_recuperar_senha, null)
+            val popupView = layoutInflater.inflate(R.layout.popup_recuperar_senha, null)
 
-            val popup = AlertDialog.Builder(this)
-                .setView(view)
+            val popup = AlertDialog.Builder(requireContext())
+                .setView(popupView)
                 .create()
-
 
             popup.show()
             popup.window?.setDimAmount(0.7f)
 
-            val btFechar = view.findViewById<Button>(R.id.btFechar)
+            val btFechar = popupView.findViewById<Button>(R.id.btFechar)
 
             btFechar.setOnClickListener {
                 popup.dismiss()
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                findNavController().navigate(R.id.telaLoginFragment)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

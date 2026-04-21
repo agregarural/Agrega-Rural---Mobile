@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
+import com.mobile.agregarural.databinding.FragmentMinhaCooperativaBinding
 
-class TelaPagamento : Fragment() {
 
-    private var _binding: FragmentTelaPagamentoBinding? = null
+
+class MinhaCooperativa : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var _binding: FragmentMinhaCooperativaBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,21 +20,21 @@ class TelaPagamento : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTelaPagamentoBinding.inflate(inflater, container, false)
+        _binding = FragmentMinhaCooperativaBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnVoltar.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        binding.btnFinalizar.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
+        }
+        binding.cardcontato.setOnClickListener {
+            findNavController().navigate(R.id.TelaContatosCoopFragment)
         }
 
         binding.btnHome.setOnClickListener {
@@ -43,11 +45,10 @@ class TelaPagamento : Fragment() {
             findNavController().navigate(R.id.menuFragment)
         }
 
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        }
 
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

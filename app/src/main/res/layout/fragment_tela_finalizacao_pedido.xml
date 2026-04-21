@@ -38,17 +38,19 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-80dp"
+                android:layout_marginTop="-60dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="10dp"
                 app:layout_constraintTop_toBottomOf="@id/view_desing1">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/back_button"
-                    android:contentDescription="Voltar" />
+                <ImageView
+                    android:id="@+id/btnVoltar"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_arrow_back"
+                    android:contentDescription="Voltar"
+                    app:tint="#FFFFFF" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -60,23 +62,26 @@
 
             <!-- Corpo das paginas -->
 
-            <TextView
-                android:id="@+id/formasDePagamento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="CONFIRMAÇÃO DE COMPRA"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/formasDePagamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="25dp"
+                    android:text="CONFIRMAÇÃO DE COMPRA"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -169,6 +174,7 @@
                 android:background="@color/transparent"
                 android:contentDescription="Home"
                 app:icon="@drawable/nvbar_home"
+                android:id="@+id/btnHome"
                 app:iconSize="20dp" />
 
 
@@ -192,6 +198,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
                 android:contentDescription="Entrega"
+                android:id="@+id/btnEntrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
 
@@ -200,6 +207,7 @@
                 android:layout_height="50dp"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="10dp"
+                android:id="@+id/btnmenu"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
                 android:contentDescription="Menu"
