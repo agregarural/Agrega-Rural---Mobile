@@ -39,7 +39,7 @@ class TelaProduto : Fragment() {
 
         binding.bvoltar.setOnClickListener {
             findNavController().navigate(
-                R.id.action_telaproduto_to_telahome
+                R.id.action_telaProdutoFragment_to_homeFragment
             )
         }
 

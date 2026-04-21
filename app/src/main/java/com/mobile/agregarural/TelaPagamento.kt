@@ -27,9 +27,7 @@ class TelaPagamento : Fragment() {
 
         binding.btnFinalizar.setOnClickListener {
             // Verifique se este ID existe no seu nav_graph.xml
-            findNavController().navigate(
-                R.id.action_telaPagamentoFragment_to_telaFinalizacaoPedidoFragment
-            )
+            findNavController()
         }
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
