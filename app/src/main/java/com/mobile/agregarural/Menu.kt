@@ -28,25 +28,12 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupCategoryClickListeners()
+
         setupMenuClickListeners()
         setupBottomNavigation()
     }
 
-    private fun setupCategoryClickListeners() {
-        binding.cardPromocao.setOnClickListener { navigateToCategory("Promoção") }
-        binding.cardMaisVendidos.setOnClickListener { navigateToCategory("Mais Vendidos") }
-        binding.cardBovinos.setOnClickListener { navigateToCategory("Bovinos") }
-        binding.cardSuinos.setOnClickListener { navigateToCategory("Suínos") }
-        binding.cardAves.setOnClickListener { navigateToCategory("Aves") }
-        binding.cardEquinos.setOnClickListener { navigateToCategory("Equinos") }
-        binding.cardCaprinos.setOnClickListener { navigateToCategory("Caprinos") }
-        binding.cardSementes.setOnClickListener { navigateToCategory("Sementes") }
-        binding.cardDefensivos.setOnClickListener { navigateToCategory("Defensivos") }
-        binding.cardFertilizantes.setOnClickListener { navigateToCategory("Fertilizantes") }
-        binding.cardSacarias.setOnClickListener { navigateToCategory("Sacarias") }
-        binding.cardCafeicultura.setOnClickListener { navigateToCategory("Cafeicultura") }
-    }
+
 
     private fun setupMenuClickListeners() {
         binding.cardTrocarConta.setOnClickListener {
@@ -69,6 +56,9 @@ class MenuFragment : Fragment() {
 
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
+        }
+        binding.cardatendimento.setOnClickListener {
+            findNavController().navigate(R.id.TelaSacFragment)
         }
 
         binding.btnmenu.setOnClickListener {

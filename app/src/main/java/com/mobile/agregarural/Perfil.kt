@@ -51,6 +51,9 @@ class PerfilFragment : Fragment() {
         binding.cardEnderecos.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_meusEnderecosFragment)
         }
+        binding.cardSAC.setOnClickListener {
+            findNavController().navigate(R.id.TelaSacFragment)
+        }
 
         binding.cardCartoes.setOnClickListener {
             findNavController().navigate(R.id.action_perfil_to_meusCartoes)

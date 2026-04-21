@@ -25,11 +25,11 @@ class TelaPagamento : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
         binding.btnFinalizar.setOnClickListener {
-            // Verifique se este ID existe no seu nav_graph.xml
-            findNavController().navigate(
-                R.id.action_telaPagamentoFragment_to_telaFinalizacaoPedidoFragment
-            )
+            findNavController().navigate(R.id.meusPedidosFragment)
         }
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)

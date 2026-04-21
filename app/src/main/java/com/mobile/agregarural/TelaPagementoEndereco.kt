@@ -21,10 +21,12 @@ class TelaPagamentoEndereco: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTelaPagamentoEnderecoBinding.inflate(layoutInflater)
 
-
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
         binding.btnConfirmar.setOnClickListener {
             findNavController().navigate(
                 R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
