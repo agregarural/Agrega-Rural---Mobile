@@ -59,6 +59,9 @@ class PerfilFragment : Fragment() {
         binding.cardMeusPedidos.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_meusPedidosFragment)
         }
+        binding.cardMinhaCooperativa.setOnClickListener {
+            findNavController().navigate(R.id.MinhaCooperativaFragment)
+        }
     }
 
     override fun onDestroyView() {

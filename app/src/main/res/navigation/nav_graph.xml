@@ -94,6 +94,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/MinhaCooperativaFragment"
+        android:name="com.mobile.agregarural.MinhaCooperativa"
+        />
+
+
+    <fragment
         android:id="@+id/recuperarSenhaFragment"
         android:name="com.mobile.agregarural.RecuperarSenhaFragment" />
 

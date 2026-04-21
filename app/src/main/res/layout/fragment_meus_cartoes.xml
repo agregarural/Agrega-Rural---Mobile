@@ -8,9 +8,12 @@
     android:background="#FFFFFF"
     tools:context=".MeusCartoesFragment">
 
+    <!-- Header verde -->
     <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/header"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_header_gradient"
         android:orientation="horizontal"
@@ -18,10 +21,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingTop="40dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:paddingBottom="16dp">
 
         <ImageView
             android:id="@+id/btnVoltar"
@@ -29,7 +29,7 @@
             android:layout_height="28dp"
             android:src="@drawable/ic_arrow_back"
             android:contentDescription="Voltar"
-            app:tint="#FFFFFF"/>
+            app:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,16 +38,15 @@
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
+    <!-- Conteúdo -->
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="88dp"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,6 +54,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Título -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,8 +62,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#111111"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp" />
 
+            <!-- Cartão 1 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardCartao1"
                 android:layout_width="match_parent"
@@ -94,7 +95,7 @@
                             android:text="Cartão 1"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="#111111"/>
+                            android:textColor="#111111" />
 
                         <TextView
                             android:id="@+id/tvCartao1Info"
@@ -103,7 +104,7 @@
                             android:text="Número: **** 4012, Nome:\nEDUARDO SOARES, Validade: 01/2,\nCVV: ***"
                             android:textSize="13sp"
                             android:textColor="#555555"
-                            android:layout_marginTop="4dp"/>
+                            android:layout_marginTop="4dp" />
                     </LinearLayout>
 
                     <ImageView
@@ -114,10 +115,11 @@
                         android:padding="6dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Editar cartão"/>
+                        android:contentDescription="Editar cartão" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Cartão 2 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardCartao2"
                 android:layout_width="match_parent"
@@ -148,7 +150,7 @@
                             android:text="Cartão 2"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="#111111"/>
+                            android:textColor="#111111" />
 
                         <TextView
                             android:id="@+id/tvCartao2Info"
@@ -157,7 +159,7 @@
                             android:text="Número: **** 8907, Nome:\nEDUARDO Z S, Validade: 10/12,\nCVV: ***"
                             android:textSize="13sp"
                             android:textColor="#555555"
-                            android:layout_marginTop="4dp"/>
+                            android:layout_marginTop="4dp" />
                     </LinearLayout>
 
                     <ImageView
@@ -168,8 +170,7 @@
                         android:padding="6dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="@string/editar_cart_o"/>
-
+                        android:contentDescription="Editar cartão" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -177,71 +178,91 @@
                 android:id="@+id/adicionar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
                 android:src="@drawable/ic_add"
                 app:shapeAppearanceOverlay="@style/CircleImageStyle"
+                app:strokeWidth="3dp"
                 app:strokeColor="#E0E0E0"
-                app:strokeWidth="3dp" />
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/bottomNavBar"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#1B5E20"
-        android:orientation="horizontal"
-        android:weightSum="4"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/navigatebar_shape"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/navInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/nvbar_home" app:tint="#FFFFFF" android:contentDescription="Início"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textColor="#FFFFFF" android:textSize="11sp" android:layout_marginTop="2dp"/>
-        </LinearLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="4"
+            android:rowCount="1">
 
-        <LinearLayout
-            android:id="@+id/navCarrinho"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/nvbar_carrinho" app:tint="#FFFFFF" android:contentDescription="Carrinho"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Carrinho" android:textColor="#FFFFFF" android:textSize="11sp" android:layout_marginTop="2dp"/>
-        </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHome"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:contentDescription="Home"
+                app:icon="@drawable/nvbar_home"
+                app:iconSize="20dp" />
 
-        <LinearLayout
-            android:id="@+id/navEntrega"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/nvbar_truck" app:tint="#FFFFFF" android:contentDescription="Entrega"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Entrega" android:textColor="#FFFFFF" android:textSize="11sp" android:layout_marginTop="2dp"/>
-        </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:contentDescription="Carrinho"
+                app:icon="@drawable/nvbar_carrinho"
+                app:iconSize="20dp" />
 
-        <LinearLayout
-            android:id="@+id/navMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/nvbar_menu" app:tint="#FFFFFF" android:contentDescription="Menu"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu" android:textColor="#FFFFFF" android:textSize="11sp" android:layout_marginTop="2dp"/>
-        </LinearLayout>
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEntrega"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:contentDescription="Entrega"
+                app:icon="@drawable/nvbar_truck"
+                app:iconSize="20dp" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnmenu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:contentDescription="Menu"
+                app:icon="@drawable/nvbar_menu"
+                app:iconSize="20dp" />
+
+        </GridLayout>
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
