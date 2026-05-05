@@ -69,13 +69,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="RAÇÃO EQUINA - Rações Zardo"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="30sp"
                 android:padding="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_desing1" />
+                app:layout_constraintTop_toBottomOf="@id/fotoProduto" />
 
             <!-- Grid com Imagem + Compra do produto -->
 
@@ -88,11 +88,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:src="@drawable/prod_racoeszardo"
-                    app:layout_constraintTop_toBottomOf="@id/txtNameProduto"
+                    app:layout_constraintTop_toBottomOf="@id/view_desing1"
                     android:orientation="horizontal"
                     android:padding="20dp">
 
                     <ImageView
+                        android:id="@+id/imgProduto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/prod_racoeszardo"
@@ -109,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/fotoProduto">
+                app:layout_constraintTop_toBottomOf="@id/txtNameProduto">
 
                 <LinearLayout
                     android:id="@+id/orgCompra"
@@ -137,6 +138,7 @@
                         app:layout_constraintTop_toTopOf="@id/orgCompra" />
 
                         <TextView
+                            android:id="@+id/categoriaProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Saco 25KG"
@@ -168,7 +170,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="30dp"
+                        app:cardCornerRadius="12dp"
                         android:elevation="4dp">
 
                     <LinearLayout
