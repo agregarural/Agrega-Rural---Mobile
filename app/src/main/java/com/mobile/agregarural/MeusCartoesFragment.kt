@@ -71,6 +71,9 @@ class MeusCartoesFragment : Fragment() {
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)

@@ -44,6 +44,9 @@ class MinhaCooperativa : Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()

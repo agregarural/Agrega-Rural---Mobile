@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.agregarural.databinding.FragmentCarrinhoBinding
 
@@ -34,9 +35,12 @@ class CarrinhoFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter
         }
+        binding.btnVoltar.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         binding.btnFinalizarPedido.setOnClickListener {
-            // lógica de finalização aqui
+            findNavController().navigate(R.id.telaFinalizacaoPedidoFragment)
         }
     }
 }

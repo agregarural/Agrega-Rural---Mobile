@@ -74,6 +74,9 @@ class TelaFinalizaoPedido: Fragment() {
                 R.id.action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment
             )
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)

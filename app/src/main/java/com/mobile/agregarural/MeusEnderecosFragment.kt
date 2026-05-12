@@ -76,6 +76,9 @@ class MeusEnderecosFragment : Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
     }
 
     override fun onDestroyView() {

@@ -266,6 +266,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:id="@+id/btnCarrinho"
                 android:layout_columnWeight="1"
                 android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"

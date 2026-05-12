@@ -43,6 +43,9 @@ class MeusPedidosFragment : Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
         binding.btnperfil.setOnClickListener {
             findNavController().navigate(R.id.perfilFragment)

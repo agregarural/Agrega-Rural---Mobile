@@ -30,9 +30,7 @@ class TelaCadastro4Fragment : Fragment() {
         }
 
         binding.btCadastrar.setOnClickListener {
-            val intent = Intent(requireContext(), HomeFragment::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+           findNavController().navigate(R.id.telaLoginFragment)
         }
     }
 

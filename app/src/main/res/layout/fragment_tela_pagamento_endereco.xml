@@ -292,6 +292,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
+                android:id="@+id/btnCarrinho"
                 android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp" />

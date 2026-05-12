@@ -38,9 +38,7 @@ class TelaProduto : Fragment() {
         }
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_telaProdutoFragment_to_homeFragment
-            )
+            findNavController().navigateUp()
         }
 
         binding.btnComprar.setOnClickListener {
@@ -50,6 +48,9 @@ class TelaProduto : Fragment() {
         }
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
+        }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
         }
 
         binding.btnHome.setOnClickListener {

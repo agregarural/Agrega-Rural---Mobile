@@ -32,6 +32,9 @@ class ContatosCoop : Fragment() {
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
