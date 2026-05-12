@@ -50,9 +50,7 @@
         android:name="com.mobile.agregarural.PerfilFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_perfil">
-        <action
-            android:id="@+id/action_perfil_to_meusCartoes"
-            app:destination="@id/meusCartoesFragment" />
+
         <action
             android:id="@+id/action_perfilFragment_to_meusEnderecosFragment"
             app:destination="@id/meusEnderecosFragment" />
@@ -76,11 +74,6 @@
         android:label="Dados pessoais"
         tools:layout="@layout/fragment_dados_pessoais" />
 
-    <fragment
-        android:id="@+id/meusCartoesFragment"
-        android:name="com.mobile.agregarural.MeusCartoesFragment"
-        android:label="Meus cartões"
-        tools:layout="@layout/fragment_meus_cartoes" />
 
     <fragment
         android:id="@+id/menuFragment"
@@ -169,6 +162,10 @@
             android:id="@+id/action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment"
             app:destination="@id/telaPagamentoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/carrinhoFragment"
+        android:name="com.mobile.agregarural.CarrinhoFragment"
+        android:label="Carrinho" />
 
     <fragment
         android:id="@+id/telaPagamentoFragment"
