@@ -453,30 +453,7 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="1dp"
                 app:strokeColor="#E0E0E0"
-                app:strokeWidth="1dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Trocar de conta"
-                        android:textColor="#333333"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Navegar"
-                        android:src="@drawable/ic_chevron_right" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                app:strokeWidth="1dp"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardDesconectar"
@@ -492,7 +469,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:id="@+id/btnSair">
 
                     <TextView
                         android:layout_width="wrap_content"

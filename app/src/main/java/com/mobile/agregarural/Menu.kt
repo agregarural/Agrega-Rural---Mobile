@@ -63,6 +63,9 @@ class MenuFragment : Fragment() {
         binding.cardatendimento.setOnClickListener {
             findNavController().navigate(R.id.TelaSacFragment)
         }
+        binding.btnSair.setOnClickListener {
+            findNavController().navigate(R.id.telaLoginFragment)
+        }
 
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
