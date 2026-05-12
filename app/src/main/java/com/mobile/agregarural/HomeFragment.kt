@@ -11,11 +11,22 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.agregarural.databinding.FragmentHomeBinding
 
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
+
+
 /**
  * Fragment principal da Home.
  * Responsável por exibir a lista de categorias e a vitrine de produtos,
  * além de gerenciar a navegação básica através da barra inferior.
  */
+
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -40,6 +51,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val database = Firebase.database
+        val myRef = database.getReference("message")
+        myRef.setValue("Hello, World!")
+
+
+
+
+
+
+
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
@@ -59,6 +81,9 @@ class HomeFragment : Fragment() {
         }
 
 
+        val listaProdutos = mutableListOf<Produto>()
+
+
         // Configurando categorias usando MockDatabase
         val rvCategorias = binding.rvCategorias
         adapterCategoria = CategoriaAdapter(MockDatabase.categorias)
@@ -68,12 +93,44 @@ class HomeFragment : Fragment() {
 
         // Configurando vitrine de produtos usando MockDatabase
         val rvProdutos = binding.rvProdutos
-        adapterProdutos = ProdutoItemAdapter(MockDatabase.produtos) { produtoClicado ->
-            findNavController().navigate(R.id.action_homeFragment_to_telaProdutoFragment)
+
+        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
+            val bundle = Bundle().apply {
+                putParcelable("produto", produtoClicado)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_telaProdutoFragment, bundle)
         }
 
         rvProdutos.layoutManager = GridLayoutManager(requireContext(), 2)
         rvProdutos.adapter = adapterProdutos
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Cooperativas")
+            .child("01")
+            .child("Produtos")
+
+
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                listaProdutos.clear()
+
+                for (produtoSnapshot in snapshot.children) {
+                    val produto = produtoSnapshot.getValue(Produto::class.java)
+
+                    if (produto != null) {
+                        listaProdutos.add(produto)
+                    }
+                }
+
+                adapterProdutos.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Erro Firebase: ${error.message}")
+            }
+        })
     }
 
     override fun onDestroyView() {

@@ -1,4 +1,11 @@
+
+
+
 package com.mobile.agregarural
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 
 // Modelos
 data class Categoria(
@@ -6,14 +13,17 @@ data class Categoria(
     val imagemResId: Int
 )
 
+@Parcelize
 data class Produto(
-    val id: Int,
-    val nome: String,
-    val preco: Double,
-    val imagemResId: Int = 0,
-    val imagemUrl: String = "",
-    val especificacao: String = ""
-)
+    val nome: String = "",
+    val preco: Double = 0.0,
+    val descricao: String = "",
+    val categoria: String = "",
+    val estoque: Int = 0,
+    val imagem: String = ""
+): Parcelable {
+
+}
 
 data class ItemCarrinho(
     val nome: String,
@@ -44,11 +54,14 @@ object MockDatabase {
     )
 
     val produtos = listOf(
-        Produto(1, "Semente de Milho", 150.0, R.drawable.prod_racoeszardo, "", "Saco 25KG"),
-        Produto(2, "Fertilizante NPK", 89.90, R.drawable.prod_racoeszardo, "", "Saco 50KG"),
-        Produto(3, "Rações Zardo", 500.0, R.drawable.prod_racoeszardo, "", "Saco 25KG"),
-        Produto(4, "Ração Aves", 45.0, R.drawable.prod_racoeszardo, "", "Saco 10KG")
-
+        Produto(
+            nome = "Semente de Milho",
+            preco = 150.0,
+            descricao = "Saco 25KG",
+            categoria = "sementes",
+            estoque = 10,
+            imagem = ""
+        )
     )
 
     val pedidos = listOf(
