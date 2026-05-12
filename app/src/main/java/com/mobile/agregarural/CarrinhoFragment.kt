@@ -25,7 +25,7 @@ class CarrinhoFragment : Fragment() {
 
         val itens = listOf(
             ItemCarrinho("Ração Zardo", 49.90, 1),
-            ItemCarrinho("Ração Premium", 89.90, 2)
+            ItemCarrinho("Ração Premium2", 89.90, 2)
         )
 
         val adapter = CarrinhoAdapter(itens)
