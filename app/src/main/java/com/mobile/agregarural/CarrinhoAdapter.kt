@@ -1,3 +1,10 @@
+package com.mobile.agregarural
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.mobile.agregarural.databinding.ItemCarrinhoBinding
+
 class CarrinhoAdapter(
     private val itens: List<ItemCarrinho>
 ) : RecyclerView.Adapter<CarrinhoAdapter.CarrinhoViewHolder>() {
@@ -15,10 +22,9 @@ class CarrinhoAdapter(
     override fun onBindViewHolder(holder: CarrinhoViewHolder, position: Int) {
         val item = itens[position]
         with(holder.binding) {
-            // Substitua pelos IDs reais do seu item_carrinho.xml
-            // nomeProduto.text = item.nome
-            // precoProduto.text = "R$ %.2f".format(item.preco)
-            // quantidadeProduto.text = item.quantidade.toString()
+            txtNomeProduto.text = item.nome
+            txtPrecoProduto.text = "R$ %.2f".format(item.preco)
+            quantidadeProduto.text = item.quantidade.toString()
         }
     }
 

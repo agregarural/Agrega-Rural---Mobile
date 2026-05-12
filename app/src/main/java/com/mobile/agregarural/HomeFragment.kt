@@ -47,6 +47,9 @@ class HomeFragment : Fragment() {
         binding.btnHome.setOnClickListener {
             // Já está na Home
         }
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)

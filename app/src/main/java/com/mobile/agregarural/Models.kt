@@ -15,6 +15,12 @@ data class Produto(
     val especificacao: String = ""
 )
 
+data class ItemCarrinho(
+    val nome: String,
+    val preco: Double,
+    var quantidade: Int
+)
+
 data class Pedido(
     val id: String,
     val status: PedidoStatus,

@@ -38,9 +38,8 @@ class PerfilFragment : Fragment() {
             findNavController().navigate(R.id.action_perfilFragment_to_meusEnderecosFragment)
         }
 
-        binding.cardCartoes.setOnClickListener {
-            findNavController().navigate(R.id.action_perfil_to_meusCartoes)
-        }
+
+
 
         binding.cardMeusPedidos.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_meusPedidosFragment)
