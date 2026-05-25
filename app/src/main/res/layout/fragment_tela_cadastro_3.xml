@@ -110,7 +110,7 @@
                 android:background="@drawable/bg_caixastxt"/>
 
             <CheckBox
-                android:id="@+id/termos"
+                android:id="@+id/checkAssociado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/associado"
