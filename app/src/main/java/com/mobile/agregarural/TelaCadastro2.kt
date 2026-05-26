@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.mobile.agregarural.databinding.FragmentTelaCadastro2Binding
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
+import kotlin.getValue
 
 class TelaCadastro2Fragment : Fragment() {
 
     private var _binding: FragmentTelaCadastro2Binding? = null
     private val binding get() = _binding!!
 
-    private lateinit var auth: FirebaseAuth
+    private val cadastroViewModel: CadastroViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +43,10 @@ class TelaCadastro2Fragment : Fragment() {
         val cep = binding.cxCEP.text.toString().trim()
         if (cpf.isNotBlank()){
             if(cep.isNotBlank()){
-                //Comentário temporário somente para testar a validação dos dados
+
+                cadastroViewModel.cpf = cpf
+                cadastroViewModel.cep = cep
+
                 findNavController().navigate(R.id.action_telaCadastro2_to_telaCadastro3)
 
             }else{
