@@ -1,6 +1,5 @@
 package com.mobile.agregarural
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.mobile.agregarural.databinding.FragmentMenuBinding
 
 class MenuFragment : Fragment() {
@@ -28,18 +28,11 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setupMenuClickListeners()
         setupBottomNavigation()
     }
 
-
-
     private fun setupMenuClickListeners() {
-        binding.cardTrocarConta.setOnClickListener {
-            Toast.makeText(requireContext(), "Trocar de conta", Toast.LENGTH_SHORT).show()
-        }
-
         binding.cardDesconectar.setOnClickListener {
             showDesconectarDialog()
         }
@@ -63,8 +56,9 @@ class MenuFragment : Fragment() {
         binding.cardatendimento.setOnClickListener {
             findNavController().navigate(R.id.TelaSacFragment)
         }
+
         binding.btnSair.setOnClickListener {
-            findNavController().navigate(R.id.telaLoginFragment)
+            showDesconectarDialog()
         }
 
         binding.btnmenu.setOnClickListener {
@@ -83,10 +77,17 @@ class MenuFragment : Fragment() {
             .setTitle("Desconectar")
             .setMessage("Deseja realmente sair da sua conta?")
             .setPositiveButton("Sim") { _, _ ->
-                Toast.makeText(requireContext(), "Desconectado!", Toast.LENGTH_SHORT).show()
+                efetuarLogout()
             }
             .setNegativeButton("Cancelar", null)
             .show()
+    }
+
+    private fun efetuarLogout() {
+        FirebaseAuth.getInstance().signOut()
+
+        Toast.makeText(requireContext(), "Desconectado com sucesso!", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.action_homeFragment_to_telaInicialFragment)
     }
 
     override fun onDestroyView() {

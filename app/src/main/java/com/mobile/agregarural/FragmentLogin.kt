@@ -51,7 +51,6 @@ class FragmentLoginFragment : Fragment() {
         val email = binding.cxEmail.text.toString().trim()
         val senha = binding.cxSenha.text.toString().trim()
 
-        // Validações básicas de campos vazios
         if (email.isEmpty()) {
             Toast.makeText(requireContext(), "Insira o seu e-mail!", Toast.LENGTH_SHORT).show()
             return
@@ -86,8 +85,7 @@ class FragmentLoginFragment : Fragment() {
 
                 // 3. Condicional para direcionar o fluxo conforme o privilégio
                 if (tipoUsuario == "adm") {
-                    // Navega para o fragment ou painel exclusivo do Administrador
-                    // Lembre-se de criar essa ação (seta) no seu nav_graph.xml
+
                     findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)
                 } else {
                     // Navega para a Home padrão do Usuário Comum

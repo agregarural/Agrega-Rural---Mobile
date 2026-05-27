@@ -67,5 +67,6 @@
     <string name="bovinos">Bovinos</string>
     <string name="categoria">CATEGORIA</string>
     <string name="editar_cart_o">Editar cartão</string>
+    <string name="desconectar">Desconectar</string>
 
 </resources>
