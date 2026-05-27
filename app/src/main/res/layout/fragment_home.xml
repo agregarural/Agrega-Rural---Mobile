@@ -40,10 +40,11 @@
                 app:layout_constraintTop_toBottomOf="@id/view_desing1">
 
                 <TextView
+                    android:id="@+id/txtSaudacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="OLÁ Murilo"
+                    android:text="Olá"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
