@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.agregarural.databinding.FragmentHomeBinding
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 import com.google.firebase.database.DataSnapshot
@@ -57,7 +58,7 @@ class HomeFragment : Fragment() {
         myRef.setValue("Hello, World!")
 
 
-
+        carregarNomeUsuario()
 
 
 
@@ -131,6 +132,28 @@ class HomeFragment : Fragment() {
                 println("Erro Firebase: ${error.message}")
             }
         })
+    }
+
+    private fun carregarNomeUsuario() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+
+        ref.child("nome").get()
+            .addOnSuccessListener { snapshot ->
+                val nome = snapshot.getValue(String::class.java)
+
+                if (!nome.isNullOrEmpty()) {
+                    binding.txtSaudacao.text = "Olá, $nome"
+                } else {
+                    binding.txtSaudacao.text = "Olá"
+                }
+            }
+            .addOnFailureListener {
+                binding.txtSaudacao.text = "OLÁ"
+            }
     }
 
     override fun onDestroyView() {

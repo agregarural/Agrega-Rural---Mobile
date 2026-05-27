@@ -95,7 +95,7 @@
 
     <fragment
         android:id="@+id/telaLoginFragment"
-        android:name="com.mobile.agregarural.TelaLoginFragment">
+        android:name="com.mobile.agregarural.FragmentLoginFragment">
         <action
             android:id="@+id/action_telaLoginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
