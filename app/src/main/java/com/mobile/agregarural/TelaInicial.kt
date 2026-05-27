@@ -25,7 +25,7 @@ class TelaInicial : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btEntrar.setOnClickListener {
-            findNavController().navigate(R.id.action_inicio_to_login)
+            findNavController().navigate(R.id.telaLoginFragment)
         }
 
         binding.btCadastro.setOnClickListener {
