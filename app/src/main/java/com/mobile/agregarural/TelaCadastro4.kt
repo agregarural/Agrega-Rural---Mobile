@@ -49,7 +49,7 @@ class TelaCadastro4Fragment : Fragment() {
     private fun CadastrarUsuario() {
         val senha = binding.cxNovasenha.text.toString().trim()
         val repitaSenha = binding.cxRepetir.text.toString().trim()
-        val aceitouTermos = binding.termos.isChecked // Supondo um CheckBox para os termos
+        val aceitouTermos = binding.termos.isChecked
 
         if (senha.isEmpty() || repitaSenha.isEmpty()) {
             Toast.makeText(requireContext(), "Preencha os campos de senha!", Toast.LENGTH_SHORT).show()
