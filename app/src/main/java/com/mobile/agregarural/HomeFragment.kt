@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.mobile.agregarural.databinding.FragmentHomeBinding
 
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,9 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val usuarioId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
 
     private lateinit var adapterCategoria: CategoriaAdapter
     private lateinit var adapterProdutos: ProdutoItemAdapter
@@ -59,6 +63,7 @@ class HomeFragment : Fragment() {
 
 
         carregarNomeUsuario()
+        carregarFotoPerfil()
 
 
 
@@ -77,7 +82,7 @@ class HomeFragment : Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
-        binding.btnperfil.setOnClickListener {
+        binding.imgPerfil.setOnClickListener {
             findNavController().navigate(R.id.perfilFragment)
         }
 
@@ -132,6 +137,29 @@ class HomeFragment : Fragment() {
                 println("Erro Firebase: ${error.message}")
             }
         })
+    }
+
+    private fun carregarFotoPerfil() {
+        val uid = usuarioId
+
+        if (uid == null) return
+
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("fotoPerfil")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val urlImagem = snapshot.getValue(String::class.java)
+
+                if (!urlImagem.isNullOrEmpty()) {
+                    Glide.with(this)
+                        .load(urlImagem)
+                        .placeholder(R.drawable.perfil)
+                        .circleCrop()
+                        .into(binding.imgPerfil)
+                }
+            }
     }
 
     private fun carregarNomeUsuario() {
