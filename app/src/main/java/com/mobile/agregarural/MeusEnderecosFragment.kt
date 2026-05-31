@@ -1,6 +1,5 @@
 package com.mobile.agregarural
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +7,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.mobile.agregarural.databinding.FragmentMeusEnderecosBinding
 
 class MeusEnderecosFragment : Fragment() {
 
     private var _binding: FragmentMeusEnderecosBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var enderecoAdapter: EnderecoAdapter
+
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseDatabase.getInstance().reference
+
+    private var listenerEnderecos: ValueEventListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,13 +39,79 @@ class MeusEnderecosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupEnderecos()
+        setupRecyclerView()
+        carregarEnderecosDoUsuario()
         setupClickListeners()
     }
 
-    private fun setupEnderecos() {
-        binding.tvEndereco1.text = "Rua das Hortências, 228 – Centro\nMuniz Freire – ES, 29380-000"
-        binding.tvEndereco2.text = "Avenida Rio Verde, 951 – Nova\nBrasilia Xique-Xique – BA,\n47400-000"
+    private fun setupRecyclerView() {
+        enderecoAdapter = EnderecoAdapter(
+            listaEnderecos = mutableListOf(),
+            onEnderecoClick = { endereco ->
+                Toast.makeText(
+                    requireContext(),
+                    "Endereço selecionado:\n${endereco.logradouro}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            onEditarClick = { endereco ->
+                Toast.makeText(
+                    requireContext(),
+                    "Editar endereço: ${endereco.id}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        )
+
+        binding.recyclerEnderecos.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = enderecoAdapter
+        }
+    }
+
+    private fun carregarEnderecosDoUsuario() {
+        val usuarioAtual = auth.currentUser
+
+        if (usuarioAtual == null) {
+            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val uid = usuarioAtual.uid
+
+        val referenciaEnderecos = database
+            .child("Usuarios")
+            .child(uid)
+            .child("enderecos")
+
+        listenerEnderecos = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lista = mutableListOf<Endereco>()
+
+                for (enderecoSnapshot in snapshot.children) {
+                    val endereco = enderecoSnapshot.getValue(Endereco::class.java)
+
+                    if (endereco != null) {
+                        endereco.id = enderecoSnapshot.key ?: ""
+                        lista.add(endereco)
+                    }
+                }
+
+                lista.sortBy { it.criadoEm }
+
+                enderecoAdapter.atualizarLista(lista)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao carregar endereços: ${error.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        referenciaEnderecos.addValueEventListener(listenerEnderecos!!)
     }
 
     private fun setupClickListeners() {
@@ -41,30 +119,10 @@ class MeusEnderecosFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        binding.btnEditarEndereco1.setOnClickListener {
-            Toast.makeText(requireContext(), "Editar endereço 1", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.btnEditarEndereco2.setOnClickListener {
-            Toast.makeText(requireContext(), "Editar endereço 2", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.cardEndereco1.setOnClickListener {
-            Toast.makeText(requireContext(), "Endereço 1 selecionado", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.cardEndereco2.setOnClickListener {
-            Toast.makeText(requireContext(), "Endereço 2 selecionado", Toast.LENGTH_SHORT).show()
-        }
-
         binding.adicionar.setOnClickListener {
-            Toast.makeText(requireContext(), "Adicionar endereço", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.telaPagamentoEnderecoFragment)
         }
 
-        setupBottomNavigation()
-    }
-
-    private fun setupBottomNavigation() {
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
@@ -76,6 +134,7 @@ class MeusEnderecosFragment : Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }
@@ -83,6 +142,17 @@ class MeusEnderecosFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        val usuarioAtual = auth.currentUser
+
+        if (usuarioAtual != null && listenerEnderecos != null) {
+            database
+                .child("Usuarios")
+                .child(usuarioAtual.uid)
+                .child("enderecos")
+                .removeEventListener(listenerEnderecos!!)
+        }
+
         _binding = null
     }
 }

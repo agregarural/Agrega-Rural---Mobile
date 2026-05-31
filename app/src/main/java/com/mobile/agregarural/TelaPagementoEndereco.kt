@@ -1,37 +1,54 @@
 package com.mobile.agregarural
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
 
+class TelaPagamentoEndereco : Fragment() {
 
-class TelaPagamentoEndereco: Fragment() {
-
-    private  var _binding: FragmentTelaPagamentoEnderecoBinding?= null
+    private var _binding: FragmentTelaPagamentoEnderecoBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseDatabase.getInstance().reference
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTelaPagamentoEnderecoBinding.inflate(layoutInflater)
+        _binding = FragmentTelaPagamentoEnderecoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        binding.btnConfirmarNewAdress.setOnClickListener {
+            salvarEnderecoNoRealtimeDatabase()
+        }
+
         binding.btnConfirmar.setOnClickListener {
             findNavController().navigate(
                 R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
             )
         }
+
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
@@ -43,15 +60,91 @@ class TelaPagamentoEndereco: Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }
+    }
 
+    private fun salvarEnderecoNoRealtimeDatabase() {
+        val usuarioAtual = auth.currentUser
 
+        if (usuarioAtual == null) {
+            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        val cep = binding.edtCep.text.toString().trim()
+        val numero = binding.edtNumero.text.toString().trim()
+        val logradouro = binding.edtLogradouro.text.toString().trim()
+        val complemento = binding.edtComplemento.text.toString().trim()
+        val referencia = binding.edtReferencia.text.toString().trim()
 
+        if (cep.isBlank() || numero.isBlank() || logradouro.isBlank()) {
+            Toast.makeText(
+                requireContext(),
+                "Preencha CEP, número e logradouro",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
 
-        return binding.root
+        val uid = usuarioAtual.uid
+
+        val enderecoId = database
+            .child("Usuarios")
+            .child(uid)
+            .child("enderecos")
+            .push()
+            .key
+
+        if (enderecoId == null) {
+            Toast.makeText(requireContext(), "Erro ao gerar ID do endereço", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val endereco = Endereco(
+            id = enderecoId,
+            cep = cep,
+            numero = numero,
+            logradouro = logradouro,
+            complemento = complemento,
+            referencia = referencia,
+            criadoEm = System.currentTimeMillis()
+        )
+
+        database
+            .child("Usuarios")
+            .child(uid)
+            .child("enderecos")
+            .child(enderecoId)
+            .setValue(endereco)
+            .addOnSuccessListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Endereço cadastrado com sucesso",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                limparCampos()
+
+                findNavController().navigate(R.id.meusEnderecosFragment)
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao cadastrar endereço",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun limparCampos() {
+        binding.edtCep.text?.clear()
+        binding.edtNumero.text?.clear()
+        binding.edtLogradouro.text?.clear()
+        binding.edtComplemento.text?.clear()
+        binding.edtReferencia.text?.clear()
     }
 
     override fun onDestroyView() {
