@@ -155,7 +155,7 @@ class HomeFragment : Fragment() {
                 if (!urlImagem.isNullOrEmpty()) {
                     Glide.with(this)
                         .load(urlImagem)
-                        .placeholder(R.drawable.perfil)
+                        .placeholder(R.drawable.ic_avatar_placeholder)
                         .circleCrop()
                         .into(binding.imgPerfil)
                 }
