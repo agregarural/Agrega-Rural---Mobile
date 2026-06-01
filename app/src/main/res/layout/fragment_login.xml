@@ -120,15 +120,30 @@
                 android:layout_marginLeft="20dp"
                 />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="380dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="18dp"
-                android:hint="@string/ins_senha"
-                android:background="@drawable/bg_caixastxt"
-                android:id="@+id/cx_senha"
-                />
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/botoes"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cx_senha"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:hint="@string/ins_senha"
+                    android:background="@drawable/bg_caixastxt"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:gravity="center_vertical" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/bt_entrar"
