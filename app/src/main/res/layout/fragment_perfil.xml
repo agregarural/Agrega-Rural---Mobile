@@ -264,40 +264,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <!-- Cartões -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardCartoes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardElevation="0dp"
-                    app:strokeColor="#DDDDDD"
-                    app:strokeWidth="1dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:text="Cartões"
-                            android:textSize="15sp"
-                            android:textColor="#222222"
-                            android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            app:tint="#888888"
-                            android:contentDescription="Navegar" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
 
                 <!-- Atendimento ao Cliente(SAC) -->
                 <androidx.cardview.widget.CardView

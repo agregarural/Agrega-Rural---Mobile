@@ -16,6 +16,7 @@ class EnderecoAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(endereco: Endereco) {
+            binding.tvNomeEndereco.text = endereco.nome
             binding.tvEndereco.text = endereco.formatado()
 
             binding.cardEndereco.setOnClickListener {

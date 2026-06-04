@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
@@ -18,6 +19,9 @@ class TelaPagamentoEndereco : Fragment() {
 
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
+
+    private lateinit var adapter: EnderecoPagamentoAdapter
+    private val enderecos = mutableListOf<Endereco>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +35,45 @@ class TelaPagamentoEndereco : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        configurarRecyclerView()
+        carregarEnderecosDoFirebase()
         setupClickListeners()
+    }
+
+    private fun configurarRecyclerView() {
+        adapter = EnderecoPagamentoAdapter(enderecos)
+
+        binding.rvEnderecosSalvos.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvEnderecosSalvos.adapter = adapter
+    }
+
+    private fun carregarEnderecosDoFirebase() {
+        val usuarioAtual = auth.currentUser ?: return
+
+        database.child("Usuarios")
+            .child(usuarioAtual.uid)
+            .child("enderecos")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                enderecos.clear()
+
+                for (enderecoSnapshot in snapshot.children) {
+                    val endereco = enderecoSnapshot.getValue(Endereco::class.java)
+
+                    if (endereco != null) {
+                        enderecos.add(endereco)
+                    }
+                }
+
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao carregar endereços",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 
     private fun setupClickListeners() {
@@ -44,6 +86,17 @@ class TelaPagamentoEndereco : Fragment() {
         }
 
         binding.btnConfirmar.setOnClickListener {
+            val enderecoSelecionado = adapter.enderecoSelecionado
+
+            if (enderecoSelecionado == null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Selecione um endereço",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
             findNavController().navigate(
                 R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
             )
@@ -74,16 +127,17 @@ class TelaPagamentoEndereco : Fragment() {
             return
         }
 
+        val nome = binding.edtNomeEndereco.text.toString().trim()
         val cep = binding.edtCep.text.toString().trim()
         val numero = binding.edtNumero.text.toString().trim()
         val logradouro = binding.edtLogradouro.text.toString().trim()
         val complemento = binding.edtComplemento.text.toString().trim()
         val referencia = binding.edtReferencia.text.toString().trim()
 
-        if (cep.isBlank() || numero.isBlank() || logradouro.isBlank()) {
+        if (nome.isBlank() || cep.isBlank() || numero.isBlank() || logradouro.isBlank()) {
             Toast.makeText(
                 requireContext(),
-                "Preencha CEP, número e logradouro",
+                "Preencha nome, CEP, número e logradouro",
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -99,12 +153,17 @@ class TelaPagamentoEndereco : Fragment() {
             .key
 
         if (enderecoId == null) {
-            Toast.makeText(requireContext(), "Erro ao gerar ID do endereço", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Erro ao gerar ID do endereço",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
         val endereco = Endereco(
             id = enderecoId,
+            nome = nome,
             cep = cep,
             numero = numero,
             logradouro = logradouro,
@@ -113,8 +172,7 @@ class TelaPagamentoEndereco : Fragment() {
             criadoEm = System.currentTimeMillis()
         )
 
-        database
-            .child("Usuarios")
+        database.child("Usuarios")
             .child(uid)
             .child("enderecos")
             .child(enderecoId)
@@ -127,8 +185,7 @@ class TelaPagamentoEndereco : Fragment() {
                 ).show()
 
                 limparCampos()
-
-                findNavController().navigate(R.id.meusEnderecosFragment)
+                carregarEnderecosDoFirebase()
             }
             .addOnFailureListener {
                 Toast.makeText(
@@ -140,6 +197,7 @@ class TelaPagamentoEndereco : Fragment() {
     }
 
     private fun limparCampos() {
+        binding.edtNomeEndereco.text?.clear()
         binding.edtCep.text?.clear()
         binding.edtNumero.text?.clear()
         binding.edtLogradouro.text?.clear()

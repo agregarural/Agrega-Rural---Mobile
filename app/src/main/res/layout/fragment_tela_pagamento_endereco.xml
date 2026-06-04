@@ -109,6 +109,8 @@
                     android:columnCount="2"
                     android:padding="10dp">
 
+
+
                     <TextView
                         android:layout_columnWeight="1"
                         android:text="CEP" />
@@ -194,6 +196,26 @@
                     android:textSize="20sp"
                     android:paddingStart="10dp"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="NOME" />
+
+                <EditText
+                    android:id="@+id/edtNomeEndereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Nome do endereço. Ex: Casa"
+                    android:background="@drawable/shape_edit_text"
+                    android:textSize="20sp"
+                    android:paddingStart="10dp"/>
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnConfirmarNewAdress"
@@ -220,21 +242,15 @@
                 android:textSize="16sp" />
 
 
-            <RadioButton
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEnderecosSalvos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Endereço 1" />
+                android:layout_marginTop="10dp" />
 
-            <RadioButton
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Endereço 2" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnConfirmar"

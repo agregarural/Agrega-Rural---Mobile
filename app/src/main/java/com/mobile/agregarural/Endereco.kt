@@ -2,6 +2,7 @@ package com.mobile.agregarural
 
 data class Endereco(
     var id: String = "",
+    var nome: String = "",
     var cep: String = "",
     var numero: String = "",
     var logradouro: String = "",
