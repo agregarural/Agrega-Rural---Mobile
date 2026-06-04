@@ -23,11 +23,7 @@ class DadosPessoaisFragment : Fragment() {
     private val usuarioId: String?
         get() = FirebaseAuth.getInstance().currentUser?.uid
 
-    // Dados do usuário (futuramente virão do banco/API)
-    private var nome = "Murilo Gomes Carvalho Góes"
-    private var cpf = "000.000.000-00"
-    private var cooperativa = "PEDROCOOP"
-    private var codigo = "00.000-0"
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -138,12 +134,7 @@ class DadosPessoaisFragment : Fragment() {
             }
     }
 
-    private fun atualizarTextos() {
-        binding.tvNome.text = "Nome: $nome"
-        binding.tvCpf.text = "CPF: $cpf"
-        binding.tvCooperativa.text = "Cooperativa: $cooperativa"
-        binding.tvCodigoMembro.text = "Código de Membro: $codigo"
-    }
+
 
     private fun setupClickListeners() {
         binding.btnVoltar.setOnClickListener {
@@ -154,33 +145,7 @@ class DadosPessoaisFragment : Fragment() {
             abrirSeletorDeFoto()
         }
 
-        binding.cardNome.setOnClickListener {
-            mostrarDialogEdicao("Nome", nome) { novoValor ->
-                nome = novoValor
-                atualizarTextos()
-            }
-        }
 
-        binding.cardCpf.setOnClickListener {
-            mostrarDialogEdicao("CPF", cpf) { novoValor ->
-                cpf = novoValor
-                atualizarTextos()
-            }
-        }
-
-        binding.cardCooperativa.setOnClickListener {
-            mostrarDialogEdicao("Cooperativa", cooperativa) { novoValor ->
-                cooperativa = novoValor
-                atualizarTextos()
-            }
-        }
-
-        binding.cardCodigoMembro.setOnClickListener {
-            mostrarDialogEdicao("Código de Membro", codigo) { novoValor ->
-                codigo = novoValor
-                atualizarTextos()
-            }
-        }
 
         setupBottomNavigation()
     }
@@ -209,26 +174,7 @@ class DadosPessoaisFragment : Fragment() {
 
     }
 
-    private fun mostrarDialogEdicao(
-        campo: String,
-        valorAtual: String,
-        onSalvar: (String) -> Unit
-    ) {
-        val input = EditText(requireContext())
-        input.setText(valorAtual)
 
-        AlertDialog.Builder(requireContext())
-            .setTitle("Editar $campo")
-            .setView(input)
-            .setPositiveButton("Salvar") { _, _ ->
-                val novoValor = input.text.toString().trim()
-                if (novoValor.isNotEmpty()) {
-                    onSalvar(novoValor)
-                }
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

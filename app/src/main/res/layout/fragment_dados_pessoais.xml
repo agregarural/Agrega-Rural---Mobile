@@ -144,13 +144,7 @@
                         android:textSize="14sp"
                         android:textColor="#333333" />
 
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -189,13 +183,7 @@
                         android:textSize="14sp"
                         android:textColor="#333333" />
 
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -235,13 +223,7 @@
 
 
 
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -279,13 +261,7 @@
                         android:textSize="14sp"
                         android:textColor="#333333" />
 
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
