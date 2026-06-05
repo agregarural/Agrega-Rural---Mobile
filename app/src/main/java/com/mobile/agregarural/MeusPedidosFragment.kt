@@ -75,6 +75,7 @@ class MeusPedidosFragment : Fragment() {
                     Glide.with(this)
                         .load(urlImagem)
                         .placeholder(R.drawable.ic_avatar_placeholder)
+                        .circleCrop()
                         .into(binding.imgPerfil)
                 }
             }

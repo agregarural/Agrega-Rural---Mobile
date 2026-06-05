@@ -35,13 +35,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imgPerfil"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/perfil"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPerfil"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    app:cardCornerRadius="26dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@android:color/white"
+                    app:cardPreventCornerOverlap="true"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/perfil"
+                        android:scaleType="centerCrop" />
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <EditText
                     android:id="@+id/searchBar"
