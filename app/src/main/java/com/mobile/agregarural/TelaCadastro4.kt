@@ -78,7 +78,7 @@ class TelaCadastro4Fragment : Fragment() {
                         "email" to cadastroViewModel.email,
                         "cpf" to cadastroViewModel.cpf,
                         "cep" to cadastroViewModel.cep,
-                        "cooperativa" to cadastroViewModel.cooperativa,
+                        "coopUid" to cadastroViewModel.coopUid,
                         "matricula" to cadastroViewModel.matricula,
                         "tipoUsuario" to cadastroViewModel.tipoUsuario
                     )

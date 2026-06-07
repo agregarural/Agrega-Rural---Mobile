@@ -11,4 +11,5 @@ class CadastroViewModel : ViewModel() {
     var ehAssociado: Boolean = false
     var matricula: String = ""
     var tipoUsuario: String = "cliente"
+    var coopUid: String = ""
 }
