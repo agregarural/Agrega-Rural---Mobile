@@ -110,33 +110,52 @@ class HomeFragment : Fragment() {
         rvProdutos.layoutManager = GridLayoutManager(requireContext(), 2)
         rvProdutos.adapter = adapterProdutos
 
-        val ref = FirebaseDatabase.getInstance()
-            .getReference("Cooperativas")
-            .child("01")
-            .child("Produtos")
+        carregarProdutosDaCooperativa(listaProdutos)
+    }
 
 
+    private fun carregarProdutosDaCooperativa(listaProdutos: MutableList<Produto>) {
+        val uid = usuarioId ?: return
 
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                listaProdutos.clear()
-
-                for (produtoSnapshot in snapshot.children) {
-                    val produto = produtoSnapshot.getValue(Produto::class.java)
-
-                    if (produto != null) {
-                        listaProdutos.add(produto)
-                    }
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("coopUid")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val coopUid = snapshot.getValue(String::class.java)
+                if (coopUid.isNullOrEmpty()) {
+                    // Usuário não está associado a uma cooperativa
+                    listaProdutos.clear()
+                    adapterProdutos.notifyDataSetChanged()
+                    return@addOnSuccessListener
                 }
 
-                adapterProdutos.notifyDataSetChanged()
-            }
+                val produtosRef = FirebaseDatabase.getInstance()
+                    .getReference("Cooperativas")
+                    .child(coopUid)
+                    .child("Produtos")
 
-            override fun onCancelled(error: DatabaseError) {
-                println("Erro Firebase: ${error.message}")
+                produtosRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        listaProdutos.clear()
+                        for (produtoSnapshot in snapshot.children) {
+                            val produto = produtoSnapshot.getValue(Produto::class.java)
+                            if (produto != null) {
+                                listaProdutos.add(produto)
+                            }
+                        }
+                        adapterProdutos.notifyDataSetChanged()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // tratar erro
+                    }
+                })
             }
-        })
+            .addOnFailureListener {
+                // tratar falha ao obter coopUid
+            }
     }
 
     private fun carregarFotoPerfil() {
