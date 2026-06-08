@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
 
-
 class TelaPagamentoEndereco: Fragment() {
 
     private  var _binding: FragmentTelaPagamentoEnderecoBinding?= null
@@ -27,11 +26,13 @@ class TelaPagamentoEndereco: Fragment() {
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
+
         binding.btnConfirmar.setOnClickListener {
             findNavController().navigate(
                 R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
             )
         }
+
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
@@ -43,13 +44,10 @@ class TelaPagamentoEndereco: Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }
-
-
-
-
 
         return binding.root
     }

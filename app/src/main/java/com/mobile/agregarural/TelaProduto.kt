@@ -9,11 +9,9 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
-
 import android.os.Parcelable
 import com.bumptech.glide.Glide
 import kotlinx.parcelize.Parcelize
-
 
 class TelaProduto : Fragment() {
 
@@ -28,10 +26,6 @@ class TelaProduto : Fragment() {
     ): View {
         _binding = FragmentTelaProdutoBinding.inflate(inflater, container, false)
 
-
-
-        // Configurando funcionamento da tela //
-
         val produto = arguments?.getParcelable("produto", Produto::class.java)
 
         if (produto != null) {
@@ -44,11 +38,6 @@ class TelaProduto : Fragment() {
                 .load(produto.imagem)
                 .into(binding.imgProduto)
         }
-
-
-
-
-        // Configuração dos botões
 
         var qntProduto = 1
         binding.quantidadeProduto.text = qntProduto.toString()
@@ -74,9 +63,11 @@ class TelaProduto : Fragment() {
                 R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
             )
         }
+
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }

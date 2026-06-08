@@ -45,8 +45,6 @@ class PerfilFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-
-
         binding.cardDadosPessoais.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_dadosPessoaisFragment)
         }
@@ -54,12 +52,10 @@ class PerfilFragment : Fragment() {
         binding.cardEnderecos.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_meusEnderecosFragment)
         }
+
         binding.cardSAC.setOnClickListener {
             findNavController().navigate(R.id.TelaSacFragment)
         }
-
-
-
 
         binding.cardMeusPedidos.setOnClickListener {
             findNavController().navigate(R.id.action_perfilFragment_to_meusPedidosFragment)

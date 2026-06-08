@@ -28,9 +28,11 @@ class TelaPagamento : Fragment() {
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
+
         binding.btnFinalizar.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
+
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }

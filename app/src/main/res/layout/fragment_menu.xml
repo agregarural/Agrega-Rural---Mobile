@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="CATEGORIAS"
+                android:text="@string/categorias"
                 android:textColor="#000000"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -59,7 +59,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="PROMOÇÃO"
+                            android:text="@string/promo_o"
                             android:textColor="#1B5E20"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -94,7 +94,7 @@
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:layout_marginTop="5dp"
-                            android:contentDescription="Mais Vendidos"
+                            android:contentDescription="@string/mais_vendidos"
                             android:src="@drawable/ic_mais_vendidos" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -163,7 +163,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Suínos" />
+                            android:contentDescription="@string/suinos" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -197,7 +197,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Aves" />
+                            android:contentDescription="@string/aves" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -222,7 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -231,7 +231,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Equinos" />
+                            android:contentDescription="@string/equinos" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -256,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -265,7 +265,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Caprinos" />
+                            android:contentDescription="@string/caprinos" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -290,7 +290,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -299,7 +299,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Sementes" />
+                            android:contentDescription="@string/sementes" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -324,7 +324,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -333,7 +333,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Defensivos" />
+                            android:contentDescription="@string/defensivos" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -358,7 +358,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -367,7 +367,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Fertilizantes" />
+                            android:contentDescription="@string/fertilizantes" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -392,7 +392,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -401,7 +401,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Sacarias" />
+                            android:contentDescription="@string/sacarias" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -426,7 +426,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="CATEGORIA"
+                            android:text="@string/categoria"
                             android:textColor="#1B5E20"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -435,7 +435,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="8dp"
-                            android:contentDescription="Cafeicultura" />
+                            android:contentDescription="@string/cafeicultura" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </GridLayout>
@@ -476,7 +476,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Desconectar"
+                        android:text="@string/desconectar"
                         android:textColor="#333333"
                         android:textSize="15sp" />
 
@@ -485,7 +485,7 @@
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Navegar"
+                        android:contentDescription="@string/navegar"
                         android:src="@drawable/ic_chevron_right" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -511,7 +511,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Atendimento ao cliente (SAC)"
+                        android:text="@string/sac"
                         android:textColor="#333333"
                         android:textSize="15sp" />
 
@@ -520,7 +520,7 @@
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Navegar"
+                        android:contentDescription="@string/navegar"
                         android:src="@drawable/ic_chevron_right" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -557,7 +557,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Home"
+                android:contentDescription="@string/home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp" />
 
@@ -569,7 +569,7 @@
                 android:layout_marginEnd="10dp"
                 android:id="@+id/btnCarrinho"
                 android:background="@color/transparent"
-                android:contentDescription="Carrinho"
+                android:contentDescription="@string/carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp" />
 
@@ -581,7 +581,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Entrega"
+                android:contentDescription="@string/entrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
 
@@ -595,14 +595,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Menu"
+                android:contentDescription="@string/menu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp" />
         </GridLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

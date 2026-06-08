@@ -24,11 +24,9 @@ class TelaCadastro3Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         binding.btVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
-
 
         binding.btContinuar.setOnClickListener {
             findNavController().navigate(R.id.action_telaCadastro3_to_telaCadastro4)

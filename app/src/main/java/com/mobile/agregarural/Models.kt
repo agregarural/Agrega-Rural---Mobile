@@ -1,13 +1,8 @@
-
-
-
 package com.mobile.agregarural
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
-// Modelos
 data class Categoria(
     val nome: String,
     val imagemResId: Int
@@ -21,9 +16,7 @@ data class Produto(
     val categoria: String = "",
     val estoque: Int = 0,
     val imagem: String = ""
-): Parcelable {
-
-}
+): Parcelable {}
 
 data class ItemCarrinho(
     val nome: String,
@@ -43,7 +36,6 @@ enum class PedidoStatus {
     ENTREGUE, EM_ANDAMENTO, CANCELADO
 }
 
-// Simulação de Banco de Dados Única
 object MockDatabase {
     val categorias = listOf(
         Categoria("Sementes", R.drawable.ic_sementes),

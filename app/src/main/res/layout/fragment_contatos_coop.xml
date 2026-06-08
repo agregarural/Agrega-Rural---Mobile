@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ContatosCoop">
 
-    <!-- TOPO -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -42,7 +41,6 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <!-- CONTEÚDO (SCROLL) -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -58,7 +56,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- CONTATOS -->
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -68,7 +65,6 @@
                 android:textColor="#000"
                 android:layout_marginBottom="12dp"/>
 
-            <!-- TELEFONES -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +88,6 @@
                     android:layout_marginTop="6dp"/>
             </LinearLayout>
 
-            <!-- EMAIL -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,7 +111,6 @@
                     android:layout_marginTop="6dp"/>
             </LinearLayout>
 
-            <!-- ENDEREÇOS -->
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -126,7 +120,6 @@
                 android:textColor="#000"
                 android:layout_marginBottom="12dp"/>
 
-            <!-- ENDEREÇO 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,7 +135,6 @@
                     android:textColor="@color/black"/>
             </LinearLayout>
 
-            <!-- ENDEREÇO 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -236,6 +228,4 @@
                 android:background="@color/transparent"/>
         </GridLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.mobile.agregarural.databinding.FragmentMinhaCooperativaBinding
 
-
-
 class MinhaCooperativa : Fragment() {
-    // TODO: Rename and change types of parameters
     private var _binding: FragmentMinhaCooperativaBinding? = null
     private val binding get() = _binding!!
 
@@ -23,9 +20,6 @@ class MinhaCooperativa : Fragment() {
         _binding = FragmentMinhaCooperativaBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,6 +46,4 @@ class MinhaCooperativa : Fragment() {
             findNavController().navigateUp()
         }
         }
-
-
 }

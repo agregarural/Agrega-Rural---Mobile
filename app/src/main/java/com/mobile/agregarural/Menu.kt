@@ -28,12 +28,9 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setupMenuClickListeners()
         setupBottomNavigation()
     }
-
-
 
     private fun setupMenuClickListeners() {
         binding.cardTrocarConta.setOnClickListener {

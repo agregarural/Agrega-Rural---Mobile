@@ -17,7 +17,6 @@ class DadosPessoaisFragment : Fragment() {
     private var _binding: FragmentDadosPessoaisBinding? = null
     private val binding get() = _binding!!
 
-    // Dados do usuário (futuramente virão do banco/API)
     private var nome = "Murilo Gomes Carvalho Góes"
     private var cpf = "000.000.000-00"
     private var cooperativa = "PEDROCOOP"
@@ -101,7 +100,6 @@ class DadosPessoaisFragment : Fragment() {
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }
-
 
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)

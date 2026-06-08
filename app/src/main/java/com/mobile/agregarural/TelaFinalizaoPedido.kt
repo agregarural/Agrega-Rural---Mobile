@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mobile.agregarural.R
 import com.mobile.agregarural.databinding.FragmentTelaFinalizacaoPedidoBinding
-
-
 
 data class ProdutoPedido(
     val nome: String,
@@ -25,16 +22,12 @@ class TelaFinalizaoPedido: Fragment() {
     private  var _binding: FragmentTelaFinalizacaoPedidoBinding?= null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentTelaFinalizacaoPedidoBinding.inflate(layoutInflater)
-
-
-        // Simulando JSON para exibir carrinho
 
         val jsonCarrinho =  """
             [
@@ -45,7 +38,6 @@ class TelaFinalizaoPedido: Fragment() {
         val gson = Gson()
         val tipoItem = object: TypeToken<List<ProdutoPedido>>() {}.type
         val listaItens: List<ProdutoPedido> = gson.fromJson(jsonCarrinho, tipoItem)
-
         val resumo = StringBuilder()
         var precoFinal = 0.0
 
@@ -63,7 +55,6 @@ class TelaFinalizaoPedido: Fragment() {
         binding.pedidos.text = resumo.toString()
         binding.totalPedidos.text = ("TOTAL R$${precoFinal}")
 
-        //Mudando de pagina
 
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
@@ -74,6 +65,7 @@ class TelaFinalizaoPedido: Fragment() {
                 R.id.action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment
             )
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }

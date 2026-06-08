@@ -30,7 +30,7 @@ class TelaLoginFragment : Fragment() {
         }
 
         binding.btEntrar.setOnClickListener {
-            findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)    // "action_..." é o ID da seta que liga os dois fragments no seu nav_graph.xml
+            findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)
         }
 
         binding.recuperarTxt.setOnClickListener {

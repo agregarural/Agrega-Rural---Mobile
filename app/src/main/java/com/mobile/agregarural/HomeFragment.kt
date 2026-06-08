@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.agregarural.databinding.FragmentHomeBinding
-
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 import com.google.firebase.database.DataSnapshot
@@ -19,12 +18,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-
-/**
- * Fragment principal da Home.
- * Responsável por exibir a lista de categorias e a vitrine de produtos,
- * além de gerenciar a navegação básica através da barra inferior.
- */
 
 
 class HomeFragment : Fragment() {
@@ -44,23 +37,13 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    /**
-     * Inicializa o Fragment, configura os listeners dos botões de navegação
-     * e os RecyclerViews de categorias e produtos utilizando dados do [MockDatabase].
-     */
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         val database = Firebase.database
         val myRef = database.getReference("message")
         myRef.setValue("Hello, World!")
-
-
-
-
-
-
 
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
@@ -80,18 +63,14 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.perfilFragment)
         }
 
-
         val listaProdutos = mutableListOf<Produto>()
 
-
-        // Configurando categorias usando MockDatabase
         val rvCategorias = binding.rvCategorias
         adapterCategoria = CategoriaAdapter(MockDatabase.categorias)
         rvCategorias.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvCategorias.adapter = adapterCategoria
 
-        // Configurando vitrine de produtos usando MockDatabase
         val rvProdutos = binding.rvProdutos
 
         adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
@@ -108,8 +87,6 @@ class HomeFragment : Fragment() {
             .getReference("Cooperativas")
             .child("01")
             .child("Produtos")
-
-
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -59,7 +59,7 @@
                     android:layout_height="50dp"
                     android:layout_marginEnd="20dp"
                     android:backgroundTint="@color/transparent"
-                    android:contentDescription="perfil"
+                    android:contentDescription="@string/perfil"
                     android:text="@null"
                     app:icon="@drawable/perfil"
                     app:iconGravity="textStart"
@@ -136,7 +136,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Home"
+                android:contentDescription="@string/home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp" />
 
@@ -148,7 +148,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Carrinho"
+                android:contentDescription="@string/carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp" />
 
@@ -160,7 +160,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Entrega"
+                android:contentDescription="@string/entrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
 
@@ -172,7 +172,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Menu"
+                android:contentDescription="@string/menu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp" />
         </GridLayout>

@@ -28,13 +28,13 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             app:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carrinho"
+            android:text="@string/carrinho"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:paddingHorizontal="24dp"
-        android:text="Finalizar Pedido"
+        android:text="@string/finalizar_pedido"
         android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

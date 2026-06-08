@@ -28,13 +28,13 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             app:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meu perfil"
+            android:text="@string/meu_perfil"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -56,7 +56,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dados pessoais"
+                android:text="@string/dados_pessoais"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#111111"
@@ -92,7 +92,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alterar foto de perfil"
+                        android:text="@string/alterar_foto"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true"
@@ -106,7 +106,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         app:tint="#888888"
-                        android:contentDescription="Navegar" />
+                        android:contentDescription="@string/navegar" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -141,7 +141,7 @@
                         android:src="@drawable/ic_editar_foto"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+                        android:contentDescription="@string/editar" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -176,7 +176,7 @@
                         android:src="@drawable/ic_editar_foto"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+                        android:contentDescription="@string/editar" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -211,7 +211,7 @@
                         android:src="@drawable/ic_editar_foto"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+                        android:contentDescription="@string/editar" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -246,7 +246,7 @@
                         android:src="@drawable/ic_editar_foto"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Editar" />
+                        android:contentDescription="@string/editar" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -281,7 +281,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Home"
+                android:contentDescription="@string/home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp" />
 
@@ -293,7 +293,7 @@
                 android:layout_marginEnd="10dp"
                 android:id="@+id/btnCarrinho"
                 android:background="@color/transparent"
-                android:contentDescription="Carrinho"
+                android:contentDescription="@string/carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp" />
 
@@ -305,7 +305,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Entrega"
+                android:contentDescription="@string/entrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
 
@@ -319,14 +319,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Menu"
+                android:contentDescription="@string/menu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp" />
         </GridLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

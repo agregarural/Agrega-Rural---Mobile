@@ -25,7 +25,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         setupRecyclerView()
         setupListeners()
 
-        // Mensagem de boas-vindas do Bot
+
         if (messageList.isEmpty()) {
             addMessage("Olá! Bem-vindo ao suporte. Como posso ajudar?", isBot = true)
         }
@@ -61,9 +61,9 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
     }
 
     private fun triggerBotResponse(userMessage: String) {
-        // Simulação simples de lógica de bot
+
         lifecycleScope.launch {
-            delay(1000) // Simula o bot "digitando"
+            delay(1000)
             val response = when {
                 userMessage.contains("telefone", true) -> "Se preferir falar com a nossa equipe por telefone, você pode ligar para:\n" +
                         "(xx) xxxx-xxxx\n" +
