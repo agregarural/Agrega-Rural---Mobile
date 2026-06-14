@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mobile.agregarural.databinding.FragmentTelaCadastro3Binding
@@ -30,6 +33,12 @@ class TelaCadastro3Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInserts ->
+            val imeInserts = windowInserts.getInsets(WindowInsetsCompat.Type.ime())
+            v.updatePadding(bottom = imeInserts.bottom)
+
+            windowInserts
+        }
 
         binding.btVoltar.setOnClickListener {
             findNavController().navigateUp()
