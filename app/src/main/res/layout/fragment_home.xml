@@ -100,6 +100,8 @@
                 app:tabBackground="@drawable/ic_pontos_carrossel_anuncio"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"
+                app:tabMinWidth="16dp"
+                app:tabMaxWidth="16dp"
                 app:layout_constraintEnd_toEndOf="@id/constraint_interno"
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
                 app:layout_constraintTop_toBottomOf="@id/viewPagerBanners" />

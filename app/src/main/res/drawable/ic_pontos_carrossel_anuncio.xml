@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <layer-list>
-            <item>
+            <item android:gravity="center">
                 <shape android:shape="oval">
                     <size android:width="8dp" android:height="8dp"/>
                     <solid android:color="@android:color/white"/> </shape>
@@ -11,7 +11,7 @@
     </item>
     <item android:state_selected="false">
         <layer-list>
-            <item>
+            <item android:gravity="center">
                 <shape android:shape="oval">
                     <size android:width="8dp" android:height="8dp"/>
                     <solid android:color="#80FFFFFF"/> </shape>
