@@ -82,24 +82,35 @@
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
                 app:layout_constraintTop_toBottomOf="@id/header" />
 
-            <ImageView
-                android:id="@+id/anuncio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/anuncio1"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerBanners"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="25dp"
                 app:layout_constraintEnd_toEndOf="@id/constraint_interno"
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
-                app:layout_constraintTop_toBottomOf="@id/searchBar"
-                tools:layout_editor_absoluteX="41dp"
-                tools:layout_editor_absoluteY="153dp" />
+                app:layout_constraintTop_toBottomOf="@id/searchBar" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                app:tabBackground="@drawable/ic_pontos_carrossel_anuncio"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:layout_constraintEnd_toEndOf="@id/constraint_interno"
+                app:layout_constraintStart_toStartOf="@id/constraint_interno"
+                app:layout_constraintTop_toBottomOf="@id/viewPagerBanners" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_categorias"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/anuncio1" />
+                app:layout_constraintTop_toBottomOf="@id/tabLayoutIndicator"
+                tools:layout_editor_absoluteX="0dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_produtos"

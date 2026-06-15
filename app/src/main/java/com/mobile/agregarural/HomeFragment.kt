@@ -34,6 +34,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private val sliderHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private lateinit var sliderRunnable: Runnable
+
     private val usuarioId: String?
         get() = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -64,6 +67,40 @@ class HomeFragment : Fragment() {
 
         carregarNomeUsuario()
         carregarFotoPerfil()
+
+
+
+
+        //lista de Imagens do Carrosel
+        val listaBanners = listOf(
+            R.drawable.anuncio1,
+            R.drawable.anuncio1,
+            R.drawable.anuncio1
+        )
+
+        val viewPager = binding.viewPagerBanners
+        viewPager.adapter = BannerAdapter(listaBanners)
+
+        com.google.android.material.tabs.TabLayoutMediator(binding.tabLayoutIndicator, viewPager) { _, _ ->
+        }.attach()
+
+        sliderRunnable = Runnable {
+            val totalItems = viewPager.adapter?.itemCount ?: 0
+            if (totalItems > 0) {
+                val nextItem = (viewPager.currentItem + 1) % totalItems
+                viewPager.currentItem = nextItem
+            }
+        }
+
+        //reinicia o temporizador toda vez que o usuário arrastar com o dedo
+        viewPager.registerOnPageChangeCallback(object : androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                sliderHandler.removeCallbacks(sliderRunnable)
+                sliderHandler.postDelayed(sliderRunnable, 4000)
+            }
+        })
+
 
 
 
@@ -186,6 +223,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        sliderHandler.removeCallbacks(sliderRunnable)
         _binding = null
     }
 }
