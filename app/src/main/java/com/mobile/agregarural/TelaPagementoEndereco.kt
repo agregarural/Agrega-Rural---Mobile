@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoEnderecoBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class TelaPagamentoEndereco : Fragment() {
 
@@ -97,9 +100,7 @@ class TelaPagamentoEndereco : Fragment() {
                 return@setOnClickListener
             }
 
-            findNavController().navigate(
-                R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
-            )
+            criarPedidoPendente(enderecoSelecionado)
         }
 
         binding.btnEntrega.setOnClickListener {
@@ -117,6 +118,117 @@ class TelaPagamentoEndereco : Fragment() {
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }
+    }
+
+    private fun criarPedidoPendente(enderecoSelecionado: Endereco) {
+        val usuarioAtual = auth.currentUser
+
+        if (usuarioAtual == null) {
+            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val itensSelecionados = CarrinhoManager.itensSelecionados()
+
+        if (itensSelecionados.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                "Nenhum item selecionado para o pedido",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val uid = usuarioAtual.uid
+
+        val pedidoId = database
+            .child("Pedidos")
+            .push()
+            .key
+
+        if (pedidoId == null) {
+            Toast.makeText(
+                requireContext(),
+                "Erro ao gerar pedido",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val dataPedidoMillis = System.currentTimeMillis()
+        val doisDiasMillis = 2 * 24 * 60 * 60 * 1000L
+        val dataEntregaMillis = dataPedidoMillis + doisDiasMillis
+
+        val formatoData = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+
+        var valorTotal = 0.0
+
+        val itensPedido = itensSelecionados.map { item ->
+            val produto = item.produto
+            val subtotal = produto.preco * item.quantidade
+            valorTotal += subtotal
+
+            mapOf(
+                "nome" to produto.nome,
+                "precoUnitario" to produto.preco,
+                "quantidade" to item.quantidade,
+                "subtotal" to subtotal,
+                "imagem" to produto.imagem,
+                "categoria" to produto.categoria,
+                "descricao" to produto.descricao
+            )
+        }
+
+        val enderecoPedido = mapOf(
+            "id" to enderecoSelecionado.id,
+            "nome" to enderecoSelecionado.nome,
+            "cep" to enderecoSelecionado.cep,
+            "numero" to enderecoSelecionado.numero,
+            "logradouro" to enderecoSelecionado.logradouro,
+            "complemento" to enderecoSelecionado.complemento,
+            "referencia" to enderecoSelecionado.referencia
+        )
+
+        val pedido = hashMapOf<String, Any>(
+            "pedidoId" to pedidoId,
+            "usuarioId" to uid,
+            "status" to "pendente",
+            "pago" to false,
+            "valorTotal" to valorTotal,
+            "dataPedidoMillis" to dataPedidoMillis,
+            "dataEntregaMillis" to dataEntregaMillis,
+            "dataPedido" to formatoData.format(Date(dataPedidoMillis)),
+            "dataEntrega" to formatoData.format(Date(dataEntregaMillis)),
+            "endereco" to enderecoPedido,
+            "itens" to itensPedido
+        )
+
+        val updates = hashMapOf<String, Any>(
+            "/Pedidos/$pedidoId" to pedido,
+            "/Usuarios/$uid/Pedidos/$pedidoId" to pedido
+        )
+
+        database.updateChildren(updates)
+            .addOnSuccessListener {
+                PedidoManager.pedidoAtualId = pedidoId
+
+                Toast.makeText(
+                    requireContext(),
+                    "Pedido criado. Aguardando pagamento.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                findNavController().navigate(
+                    R.id.action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment
+                )
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao criar pedido",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 
     private fun salvarEnderecoNoRealtimeDatabase() {
