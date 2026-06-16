@@ -60,84 +60,15 @@
                 android:textStyle="bold"
                 android:textColor="#111111"
                 android:layout_marginBottom="16dp" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardEndereco1"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerEnderecos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardElevation="0dp"
-                app:strokeColor="#DDDDDD"
-                app:strokeWidth="1dp">
+                android:nestedScrollingEnabled="false" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/tvEndereco1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rua das Hortências, 228 – Centro\nMuniz Freire – ES, 29380-000"
-                        android:textSize="14sp"
-                        android:textColor="#333333"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/btnEditarEndereco1"
-                        android:layout_marginEnd="8dp" />
 
-                    <ImageView
-                        android:id="@+id/btnEditarEndereco1"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:padding="6dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar endereço" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardEndereco2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardElevation="0dp"
-                app:strokeColor="#DDDDDD"
-                app:strokeWidth="1dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/tvEndereco2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Avenida Rio Verde, 951 – Nova\nBrasilia Xique-Xique – BA,\n47400-000"
-                        android:textSize="14sp"
-                        android:textColor="#333333"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/btnEditarEndereco2"
-                        android:layout_marginEnd="8dp" />
-
-                    <ImageView
-                        android:id="@+id/btnEditarEndereco2"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_editar_foto"
-                        android:padding="6dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Editar endereço" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/adicionar"

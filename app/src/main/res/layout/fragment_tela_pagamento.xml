@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="FORMA DE PAGAMENTO"
+                android:text="PAGAMENTO"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Escolha um método de pagamento"
+                android:text="Faça o pagamento até 1 dia útil."
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -101,41 +101,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/formasDePagamento"
-                tools:layout_editor_absoluteX="10dp">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/shape_payment_button"
-                    android:text="Cartão de crédito"
-                    android:textSize="16dp"
-                    android:textStyle="normal" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/shape_payment_button"
-                    android:text="Boleto"
-                    android:textSize="16dp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/shape_payment_button"
-                    android:text="Pix"
-                    android:textSize="16dp" />
-
-
-                <!-- EFETUANDO PAGAMENTO -->
-
-
-            </LinearLayout>
+                tools:layout_editor_absoluteX="10dp"/>
 
             <LinearLayout
                 android:id="@+id/constraintLayout"

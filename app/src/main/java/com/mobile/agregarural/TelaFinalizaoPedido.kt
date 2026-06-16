@@ -5,65 +5,46 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.navigation.fragment.findNavController
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.mobile.agregarural.R
 import com.mobile.agregarural.databinding.FragmentTelaFinalizacaoPedidoBinding
 
+class TelaFinalizaoPedido : Fragment() {
 
-
-data class ProdutoPedido(
-    val nome: String,
-    val precoUnitario: Double,
-    val quantidade: Int
-)
-
-class TelaFinalizaoPedido: Fragment() {
-
-    private  var _binding: FragmentTelaFinalizacaoPedidoBinding?= null
+    private var _binding: FragmentTelaFinalizacaoPedidoBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentTelaFinalizacaoPedidoBinding.inflate(layoutInflater)
+        _binding = FragmentTelaFinalizacaoPedidoBinding.inflate(inflater, container, false)
 
-
-        // Simulando JSON para exibir carrinho
-
-        val jsonCarrinho =  """
-            [
-                {"nome": "Ração Zardo", "precoUnitario": 500.00, "quantidade": 3}
-            ]
-        """.trimIndent()
-
-        val gson = Gson()
-        val tipoItem = object: TypeToken<List<ProdutoPedido>>() {}.type
-        val listaItens: List<ProdutoPedido> = gson.fromJson(jsonCarrinho, tipoItem)
+        val listaItens = CarrinhoManager.itensSelecionados()
 
         val resumo = StringBuilder()
         var precoFinal = 0.0
 
-        listaItens.forEach { produto ->
-            val precoItemTotal = produto.precoUnitario * produto.quantidade
-            precoFinal+= precoItemTotal
+        if (listaItens.isEmpty()) {
+            resumo.append("Nenhum item selecionado.")
+        } else {
+            listaItens.forEach { item ->
 
-            resumo.append("Produto: ${produto.nome}\n")
-            resumo.append("Preço: R$${produto.precoUnitario}\n")
-            resumo.append("Quantidade: ${produto.quantidade}\n")
-            resumo.append("Subtotal: R$${precoItemTotal}\n")
-            resumo.append("______________________________________\n\n")
+                val produto = item.produto
+                val subtotal = produto.preco * item.quantidade
+                precoFinal += subtotal
+
+                resumo.append("Produto: ${produto.nome}\n")
+                resumo.append("Preço: R$ %.2f\n".format(produto.preco))
+                resumo.append("Quantidade: ${item.quantidade}\n")
+                resumo.append("Subtotal: R$ %.2f\n".format(subtotal))
+                resumo.append("______________________________________\n\n")
+            }
         }
 
         binding.pedidos.text = resumo.toString()
-        binding.totalPedidos.text = ("TOTAL R$${precoFinal}")
-
-        //Mudando de pagina
+        binding.totalPedidos.text = "TOTAL R$ %.2f".format(precoFinal)
 
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
@@ -74,6 +55,7 @@ class TelaFinalizaoPedido: Fragment() {
                 R.id.action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment
             )
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }

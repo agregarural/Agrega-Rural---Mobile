@@ -1,6 +1,5 @@
 package com.mobile.agregarural
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,23 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.mobile.agregarural.databinding.FragmentHomeBinding
-
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
-
-
-/**
- * Fragment principal da Home.
- * Responsável por exibir a lista de categorias e a vitrine de produtos,
- * além de gerenciar a navegação básica através da barra inferior.
- */
-
 
 class HomeFragment : Fragment() {
 
@@ -34,6 +20,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapterCategoria: CategoriaAdapter
     private lateinit var adapterProdutos: ProdutoItemAdapter
+
+    private val listaCategorias = mutableListOf<Categoria>()
+    private val listaProdutos = mutableListOf<Produto>()
+
+    private val usuarioId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,76 +36,102 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    /**
-     * Inicializa o Fragment, configura os listeners dos botões de navegação
-     * e os RecyclerViews de categorias e produtos utilizando dados do [MockDatabase].
-     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        carregarNomeUsuario()
+        carregarFotoPerfil()
 
-        val database = Firebase.database
-        val myRef = database.getReference("message")
-        myRef.setValue("Hello, World!")
+        configurarNavegacao()
+        configurarRecyclerCategorias()
+        configurarRecyclerProdutos()
 
+        buscarCooperativaDoUsuario()
+    }
 
+    private fun buscarCooperativaDoUsuario() {
+        val uid = usuarioId ?: return
 
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("coopUid")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val idCooperativa = snapshot.getValue(String::class.java)
 
+                if (!idCooperativa.isNullOrEmpty()) {
+                    carregarCategoriasFirebase(idCooperativa)
+                    carregarProdutosFirebase(idCooperativa)
+                } else {
+                    println("Usuário sem coopUid")
+                }
+            }
+            .addOnFailureListener {
+                println("Erro ao buscar coopUid")
+            }
+    }
 
+    private fun configurarRecyclerCategorias() {
+        adapterCategoria = CategoriaAdapter(listaCategorias)
 
-
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
-
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
-        binding.btnperfil.setOnClickListener {
-            findNavController().navigate(R.id.perfilFragment)
-        }
-
-
-        val listaProdutos = mutableListOf<Produto>()
-
-
-        // Configurando categorias usando MockDatabase
-        val rvCategorias = binding.rvCategorias
-        adapterCategoria = CategoriaAdapter(MockDatabase.categorias)
-        rvCategorias.layoutManager =
+        binding.rvCategorias.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvCategorias.adapter = adapterCategoria
 
-        // Configurando vitrine de produtos usando MockDatabase
-        val rvProdutos = binding.rvProdutos
+        binding.rvCategorias.adapter = adapterCategoria
+    }
 
+    private fun configurarRecyclerProdutos() {
         adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
             val bundle = Bundle().apply {
                 putParcelable("produto", produtoClicado)
             }
-            findNavController().navigate(R.id.action_homeFragment_to_telaProdutoFragment, bundle)
+
+            findNavController().navigate(
+                R.id.action_homeFragment_to_telaProdutoFragment,
+                bundle
+            )
         }
 
-        rvProdutos.layoutManager = GridLayoutManager(requireContext(), 2)
-        rvProdutos.adapter = adapterProdutos
+        binding.rvProdutos.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvProdutos.adapter = adapterProdutos
+    }
 
-        val ref = FirebaseDatabase.getInstance()
+    private fun carregarCategoriasFirebase(idCooperativa: String) {
+        val refCategorias = FirebaseDatabase.getInstance()
             .getReference("Cooperativas")
-            .child("01")
+            .child(idCooperativa)
+            .child("Categorias")
+
+        refCategorias.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listaCategorias.clear()
+
+                for (categoriaSnapshot in snapshot.children) {
+                    val categoria = categoriaSnapshot.getValue(Categoria::class.java)
+
+                    if (categoria != null) {
+                        listaCategorias.add(categoria)
+                    }
+                }
+
+                adapterCategoria.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Erro ao carregar categorias: ${error.message}")
+            }
+        })
+    }
+
+    private fun carregarProdutosFirebase(idCooperativa: String) {
+        val refProdutos = FirebaseDatabase.getInstance()
+            .getReference("Cooperativas")
+            .child(idCooperativa)
             .child("Produtos")
 
-
-
-        ref.addValueEventListener(object : ValueEventListener {
+        refProdutos.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 listaProdutos.clear()
 
                 for (produtoSnapshot in snapshot.children) {
@@ -128,9 +146,74 @@ class HomeFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                println("Erro Firebase: ${error.message}")
+                println("Erro ao carregar produtos: ${error.message}")
             }
         })
+    }
+
+    private fun configurarNavegacao() {
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
+        }
+
+        binding.imgPerfil.setOnClickListener {
+            findNavController().navigate(R.id.perfilFragment)
+        }
+    }
+
+    private fun carregarFotoPerfil() {
+        val uid = usuarioId ?: return
+
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("fotoPerfil")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val urlImagem = snapshot.getValue(String::class.java)
+
+                if (!urlImagem.isNullOrEmpty()) {
+                    Glide.with(this)
+                        .load(urlImagem)
+                        .placeholder(R.drawable.ic_avatar_placeholder)
+                        .circleCrop()
+                        .into(binding.imgPerfil)
+                }
+            }
+    }
+
+    private fun carregarNomeUsuario() {
+        val uid = usuarioId ?: return
+
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("nome")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val nome = snapshot.getValue(String::class.java)
+
+                binding.txtSaudacao.text = if (!nome.isNullOrEmpty()) {
+                    "Olá, $nome"
+                } else {
+                    "Olá"
+                }
+            }
+            .addOnFailureListener {
+                binding.txtSaudacao.text = "Olá"
+            }
     }
 
     override fun onDestroyView() {

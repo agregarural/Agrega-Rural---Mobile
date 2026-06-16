@@ -10,6 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.mobile.agregarural.databinding.FragmentDadosPessoaisBinding
 
 class DadosPessoaisFragment : Fragment() {
@@ -17,11 +20,10 @@ class DadosPessoaisFragment : Fragment() {
     private var _binding: FragmentDadosPessoaisBinding? = null
     private val binding get() = _binding!!
 
-    // Dados do usuário (futuramente virão do banco/API)
-    private var nome = "Murilo Gomes Carvalho Góes"
-    private var cpf = "000.000.000-00"
-    private var cooperativa = "PEDROCOOP"
-    private var codigo = "00.000-0"
+    private val usuarioId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,17 +36,105 @@ class DadosPessoaisFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        atualizarTextos()
+        carregarFotoPerfil()
+        carregarNomeUsuario()
+        carregarCPFUsuario()
+        carregarCoopUsuario()
+        carregarCodigoUsuario()
         setupClickListeners()
     }
 
-    private fun atualizarTextos() {
-        binding.tvNome.text = "Nome: $nome"
-        binding.tvCpf.text = "CPF: $cpf"
-        binding.tvCooperativa.text = "Cooperativa: $cooperativa"
-        binding.tvCodigoMembro.text = "Código de Membro: $codigo"
+    private fun carregarCPFUsuario() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+
+        ref.child("cpf").get()
+            .addOnSuccessListener { snapshot ->
+                val cpf = snapshot.getValue(String::class.java)
+                if (!cpf.isNullOrEmpty()) {
+                    binding.tvCpf.text = "$cpf"
+                }
+            }
+
     }
+
+    private fun carregarCodigoUsuario() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+
+        ref.child("matricula").get()
+            .addOnSuccessListener { snapshot ->
+                val matricula = snapshot.getValue(String::class.java)
+                if (!matricula.isNullOrEmpty()) {
+                    binding.tvCodigoMembro.text = "$matricula"
+                }
+            }
+
+    }
+
+    private fun carregarCoopUsuario() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+
+        ref.child("cooperativa").get()
+            .addOnSuccessListener { snapshot ->
+                val cooperativa = snapshot.getValue(String::class.java)
+                if (!cooperativa.isNullOrEmpty()) {
+                    binding.tvCooperativa.text = "$cooperativa"
+                }
+            }
+
+    }
+
+
+    private fun carregarNomeUsuario() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+
+        ref.child("nome").get()
+            .addOnSuccessListener { snapshot ->
+                val nome = snapshot.getValue(String::class.java)
+                if (!nome.isNullOrEmpty()) {
+                    binding.tvNome.text = "$nome"
+                }
+            }
+
+    }
+    private fun carregarFotoPerfil() {
+        val uid = usuarioId
+
+        if (uid == null) return
+
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("fotoPerfil")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val urlImagem = snapshot.getValue(String::class.java)
+
+                if (!urlImagem.isNullOrEmpty()) {
+                    Glide.with(this)
+                        .load(urlImagem)
+                        .placeholder(R.drawable.ic_avatar_placeholder)
+                        .into(binding.imgPerfil)
+                }
+            }
+    }
+
+
 
     private fun setupClickListeners() {
         binding.btnVoltar.setOnClickListener {
@@ -55,33 +145,7 @@ class DadosPessoaisFragment : Fragment() {
             abrirSeletorDeFoto()
         }
 
-        binding.cardNome.setOnClickListener {
-            mostrarDialogEdicao("Nome", nome) { novoValor ->
-                nome = novoValor
-                atualizarTextos()
-            }
-        }
 
-        binding.cardCpf.setOnClickListener {
-            mostrarDialogEdicao("CPF", cpf) { novoValor ->
-                cpf = novoValor
-                atualizarTextos()
-            }
-        }
-
-        binding.cardCooperativa.setOnClickListener {
-            mostrarDialogEdicao("Cooperativa", cooperativa) { novoValor ->
-                cooperativa = novoValor
-                atualizarTextos()
-            }
-        }
-
-        binding.cardCodigoMembro.setOnClickListener {
-            mostrarDialogEdicao("Código de Membro", codigo) { novoValor ->
-                codigo = novoValor
-                atualizarTextos()
-            }
-        }
 
         setupBottomNavigation()
     }
@@ -110,26 +174,7 @@ class DadosPessoaisFragment : Fragment() {
 
     }
 
-    private fun mostrarDialogEdicao(
-        campo: String,
-        valorAtual: String,
-        onSalvar: (String) -> Unit
-    ) {
-        val input = EditText(requireContext())
-        input.setText(valorAtual)
 
-        AlertDialog.Builder(requireContext())
-            .setTitle("Editar $campo")
-            .setView(input)
-            .setPositiveButton("Salvar") { _, _ ->
-                val novoValor = input.text.toString().trim()
-                if (novoValor.isNotEmpty()) {
-                    onSalvar(novoValor)
-                }
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

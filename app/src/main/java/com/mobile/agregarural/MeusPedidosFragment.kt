@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.mobile.agregarural.databinding.FragmentMeusPedidosBinding
 
 class MeusPedidosFragment : Fragment() {
 
     private var _binding: FragmentMeusPedidosBinding? = null
     private val binding get() = _binding!!
+
+    private val usuarioId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +32,7 @@ class MeusPedidosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        carregarFotoPerfil()
         setupNavigation()
         setupRecyclerViews()
     }
@@ -47,9 +53,32 @@ class MeusPedidosFragment : Fragment() {
             findNavController().navigate(R.id.carrinhoFragment)
         }
 
-        binding.btnperfil.setOnClickListener {
+        binding.imgPerfil.setOnClickListener {
             findNavController().navigate(R.id.perfilFragment)
         }
+    }
+
+    private fun carregarFotoPerfil() {
+        val uid = usuarioId
+
+        if (uid == null) return
+
+        FirebaseDatabase.getInstance()
+            .getReference("Usuarios")
+            .child(uid)
+            .child("fotoPerfil")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val urlImagem = snapshot.getValue(String::class.java)
+
+                if (!urlImagem.isNullOrEmpty()) {
+                    Glide.with(this)
+                        .load(urlImagem)
+                        .placeholder(R.drawable.ic_avatar_placeholder)
+                        .circleCrop()
+                        .into(binding.imgPerfil)
+                }
+            }
     }
 
     private fun setupRecyclerViews() {

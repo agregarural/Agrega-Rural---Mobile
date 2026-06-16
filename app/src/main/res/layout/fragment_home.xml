@@ -40,10 +40,11 @@
                 app:layout_constraintTop_toBottomOf="@id/view_desing1">
 
                 <TextView
+                    android:id="@+id/txtSaudacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="OLÁ Murilo"
+                    android:text="Olá"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -53,18 +54,22 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnperfil"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="20dp"
-                    android:backgroundTint="@color/transparent"
-                    android:contentDescription="perfil"
-                    android:text="@null"
-                    app:icon="@drawable/perfil"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconSize="50dp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    app:cardCornerRadius="26dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@android:color/white"
+                    app:cardPreventCornerOverlap="true">
+
+                    <ImageView
+                        android:id="@+id/imgPerfil"
+                        android:src="@drawable/perfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
@@ -92,7 +97,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_categorias"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="130dp"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/anuncio1" />
 

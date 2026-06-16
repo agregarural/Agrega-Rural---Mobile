@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,36 +12,58 @@ import com.mobile.agregarural.databinding.FragmentCarrinhoBinding
 
 class CarrinhoFragment : Fragment() {
 
-    private lateinit var binding: FragmentCarrinhoBinding
+    private var _binding: FragmentCarrinhoBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var adapter: CarrinhoAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCarrinhoBinding.inflate(inflater, container, false)
+        _binding = FragmentCarrinhoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        val itens = listOf(
-            ItemCarrinho("Ração Zardo", 49.90, 1),
-            ItemCarrinho("Ração Premium2", 89.90, 2)
+        adapter = CarrinhoAdapter(
+            itens = CarrinhoManager.itens,
+            onExcluirClick = { item ->
+                CarrinhoManager.removerProduto(item)
+                adapter.notifyDataSetChanged()
+            }
         )
 
-        val adapter = CarrinhoAdapter(itens)
+        binding.recyclerCarrinho.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerCarrinho.adapter = adapter
 
-        binding.recyclerCarrinho.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            this.adapter = adapter
+        CarrinhoManager.carregarCarrinho {
+            adapter.notifyDataSetChanged()
         }
+
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.btnFinalizarPedido.setOnClickListener {
-            findNavController().navigate(R.id.telaFinalizacaoPedidoFragment)
+            val selecionados = CarrinhoManager.itensSelecionados()
+
+            if (selecionados.isEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Selecione pelo menos um item",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                findNavController().navigate(R.id.telaFinalizacaoPedidoFragment)
+            }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

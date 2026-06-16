@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
-
-import android.os.Parcelable
 import com.bumptech.glide.Glide
-import kotlinx.parcelize.Parcelize
-
+import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
 
 class TelaProduto : Fragment() {
 
@@ -28,40 +25,65 @@ class TelaProduto : Fragment() {
     ): View {
         _binding = FragmentTelaProdutoBinding.inflate(inflater, container, false)
 
-
-
-        // Configurando funcionamento da tela //
-
         val produto = arguments?.getParcelable("produto", Produto::class.java)
+
+        var qntProduto = 1
+
+        fun atualizarTotal() {
+            val precoUnitario = produto?.preco ?: 0.0
+            val total = precoUnitario * qntProduto
+
+            binding.quantidadeProduto.text = qntProduto.toString()
+            binding.valorTotalProduto.text = "Total: R$ %.2f".format(total)
+        }
 
         if (produto != null) {
             binding.txtNameProduto.text = produto.nome
-            binding.precoProduto.text = "R$ ${produto.preco}"
+            binding.precoProduto.text = "R$ %.2f".format(produto.preco)
             binding.txtDescicao.text = produto.descricao
             binding.estoqueProduto.text = "Em estoque: ${produto.estoque}"
+            binding.categoriaProduto.text = produto.categoria
 
             Glide.with(this)
                 .load(produto.imagem)
                 .into(binding.imgProduto)
         }
 
-
-
-
-        // Configuração dos botões
-
-        var qntProduto = 1
-        binding.quantidadeProduto.text = qntProduto.toString()
+        atualizarTotal()
 
         binding.btnMais.setOnClickListener {
-            qntProduto++
-            binding.quantidadeProduto.text = qntProduto.toString()
+            if (produto != null) {
+                if (qntProduto < produto.estoque) {
+                    qntProduto++
+                    atualizarTotal()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Quantidade máxima em estoque: ${produto.estoque}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
 
         binding.btnMenos.setOnClickListener {
             if (qntProduto > 1) {
                 qntProduto--
-                binding.quantidadeProduto.text = qntProduto.toString()
+                atualizarTotal()
+            }
+        }
+
+        binding.btnAdicionarCarrinho.setOnClickListener {
+            if (produto != null) {
+                CarrinhoManager.adicionarProduto(produto, qntProduto)
+
+                Toast.makeText(
+                    requireContext(),
+                    "Produto adicionado ao carrinho",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                findNavController().navigate(R.id.carrinhoFragment)
             }
         }
 
@@ -70,13 +92,19 @@ class TelaProduto : Fragment() {
         }
 
         binding.btnComprar.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
-            )
+            if (produto != null) {
+                CarrinhoManager.comprarAgora(produto, qntProduto)
+
+                findNavController().navigate(
+                    R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
+                )
+            }
         }
+
         binding.btnEntrega.setOnClickListener {
             findNavController().navigate(R.id.meusPedidosFragment)
         }
+
         binding.btnCarrinho.setOnClickListener {
             findNavController().navigate(R.id.carrinhoFragment)
         }
@@ -87,6 +115,20 @@ class TelaProduto : Fragment() {
 
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
+        }
+
+        binding.btnAdicionarCarrinho.setOnClickListener {
+            if (produto != null) {
+                CarrinhoManager.adicionarProduto(produto, qntProduto)
+
+                Toast.makeText(
+                    requireContext(),
+                    "Produto adicionado ao carrinho",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                findNavController().navigate(R.id.carrinhoFragment)
+            }
         }
 
         return binding.root

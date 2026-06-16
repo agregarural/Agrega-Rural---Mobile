@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.mobile.agregarural.databinding.FragmentRecuperarsenhaBinding
 
 class RecuperarSenhaFragment : Fragment() {
@@ -15,12 +17,15 @@ class RecuperarSenhaFragment : Fragment() {
     private var _binding: FragmentRecuperarsenhaBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecuperarsenhaBinding.inflate(inflater, container, false)
+        auth = FirebaseAuth.getInstance()
         return binding.root
     }
 
@@ -32,21 +37,50 @@ class RecuperarSenhaFragment : Fragment() {
         }
 
         binding.btEnviar.setOnClickListener {
-            val popupView = layoutInflater.inflate(R.layout.popup_recuperar_senha, null)
+            efetuarRecuperacao()
+        }
+    }
 
-            val popup = AlertDialog.Builder(requireContext())
-                .setView(popupView)
-                .create()
+    private fun efetuarRecuperacao() {
 
-            popup.show()
-            popup.window?.setDimAmount(0.7f)
+        val email = binding.cxRecuperar.text.toString().trim()
 
-            val btFechar = popupView.findViewById<Button>(R.id.btFechar)
+        if (email.isEmpty()) {
+            Toast.makeText(requireContext(), "Por favor, insira o seu e-mail!", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            btFechar.setOnClickListener {
-                popup.dismiss()
-                findNavController().navigate(R.id.telaLoginFragment)
+        //Envia o link de redefinição para o e-mail digitado
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    mostrarPopupSucesso()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Erro ao enviar: ${task.exception?.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
+    }
+
+    private fun mostrarPopupSucesso() {
+        val popupView = layoutInflater.inflate(R.layout.popup_recuperar_senha, null)
+
+        val popup = AlertDialog.Builder(requireContext())
+            .setView(popupView)
+            .create()
+
+        popup.show()
+        popup.window?.setDimAmount(0.7f)
+
+        val btFechar = popupView.findViewById<Button>(R.id.btFechar)
+
+        btFechar.setOnClickListener {
+            popup.dismiss()
+            // Retorna direto para a tela de login
+            findNavController().navigate(R.id.telaLoginFragment)
         }
     }
 
