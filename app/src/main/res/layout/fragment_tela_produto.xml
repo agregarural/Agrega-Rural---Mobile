@@ -157,6 +157,15 @@
                         app:layout_constraintHorizontal_bias="0.33"
                         app:layout_constraintStart_toStartOf="@id/orgCompra"
                         app:layout_constraintTop_toBottomOf="@id/precoProduto" />
+                        <TextView
+                            android:id="@+id/valorTotalProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Total: R$ 500,00"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
 
 
@@ -181,16 +190,15 @@
                         android:background="@color/green">
 
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnMais"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="Botão Somar"
-                        android:background="@drawable/icon_btn_menos"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        />
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMenos"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="Botão diminuir"
+                            android:background="@drawable/icon_btn_menos"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="8dp" />
 
                         <TextView
                             android:id="@+id/quantidadeProduto"
@@ -198,23 +206,19 @@
                             android:layout_height="wrap_content"
                             android:text="1"
                             android:textColor="#1B1B1B"
-                            android:textSize="33dp"
-                            app:layout_constraintVertical_bias="0.5"
+                            android:textSize="33sp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="7dp"/>
+                            android:layout_marginTop="7dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnMenos"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/icon_btn_mais"
-                        android:contentDescription="btnMais"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="8dp" />
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMais"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/icon_btn_mais"
+                            android:contentDescription="Botão somar"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="8dp" />
 
                     </LinearLayout>
 
@@ -248,16 +252,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="40dp"
                     android:text="A Ração Equina Zardo Nutrição de Elite é a escolha ideal para maximizar o desempenho de cavalos atletas. Desenvolvida com ingredientes selecionados, esta fórmula suprema de 25kg oferece o equilíbrio perfeito de energia e nutrientes essenciais para garantir força, resistência e saúde integral, proporcionando ao seu animal uma alimentação de alta qualidade que reflete diretamente na sua vitalidade e condição física." />
 
                 <Button
+                    android:id="@+id/btnAdicionarCarrinho"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Adicionar ao carrinho"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:backgroundTint="@color/green"
-                    />
+                    android:backgroundTint="@color/green" />
 
                 <Button
                     android:id="@+id/btnComprar"
