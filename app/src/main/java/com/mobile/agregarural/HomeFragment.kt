@@ -1,6 +1,5 @@
 package com.mobile.agregarural
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,35 +9,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.mobile.agregarural.databinding.FragmentHomeBinding
-
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
-
-
-/**
- * Fragment principal da Home.
- * Responsável por exibir a lista de categorias e a vitrine de produtos,
- * além de gerenciar a navegação básica através da barra inferior.
- */
-
+import com.google.firebase.database.*
+import com.mobile.agregarural.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val usuarioId: String?
-        get() = FirebaseAuth.getInstance().currentUser?.uid
-
     private lateinit var adapterCategoria: CategoriaAdapter
     private lateinit var adapterProdutos: ProdutoItemAdapter
+
+    private val listaCategorias = mutableListOf<Categoria>()
+    private val listaProdutos = mutableListOf<Produto>()
+
+    private val usuarioId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,72 +36,20 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    /**
-     * Inicializa o Fragment, configura os listeners dos botões de navegação
-     * e os RecyclerViews de categorias e produtos utilizando dados do [MockDatabase].
-     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        val database = Firebase.database
-        val myRef = database.getReference("message")
-        myRef.setValue("Hello, World!")
-
 
         carregarNomeUsuario()
         carregarFotoPerfil()
 
+        configurarNavegacao()
+        configurarRecyclerCategorias()
+        configurarRecyclerProdutos()
 
-
-
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
-
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
-        binding.imgPerfil.setOnClickListener {
-            findNavController().navigate(R.id.perfilFragment)
-        }
-
-
-        val listaProdutos = mutableListOf<Produto>()
-
-
-        // Configurando categorias usando MockDatabase
-        val rvCategorias = binding.rvCategorias
-        adapterCategoria = CategoriaAdapter(MockDatabase.categorias)
-        rvCategorias.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvCategorias.adapter = adapterCategoria
-
-        // Configurando vitrine de produtos usando MockDatabase
-        val rvProdutos = binding.rvProdutos
-
-        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
-            val bundle = Bundle().apply {
-                putParcelable("produto", produtoClicado)
-            }
-            findNavController().navigate(R.id.action_homeFragment_to_telaProdutoFragment, bundle)
-        }
-
-        rvProdutos.layoutManager = GridLayoutManager(requireContext(), 2)
-        rvProdutos.adapter = adapterProdutos
-
-        carregarProdutosDaCooperativa(listaProdutos)
+        buscarCooperativaDoUsuario()
     }
 
-
-    private fun carregarProdutosDaCooperativa(listaProdutos: MutableList<Produto>) {
+    private fun buscarCooperativaDoUsuario() {
         val uid = usuarioId ?: return
 
         FirebaseDatabase.getInstance()
@@ -123,45 +58,123 @@ class HomeFragment : Fragment() {
             .child("coopUid")
             .get()
             .addOnSuccessListener { snapshot ->
-                val coopUid = snapshot.getValue(String::class.java)
-                if (coopUid.isNullOrEmpty()) {
-                    // Usuário não está associado a uma cooperativa
-                    listaProdutos.clear()
-                    adapterProdutos.notifyDataSetChanged()
-                    return@addOnSuccessListener
+                val idCooperativa = snapshot.getValue(String::class.java)
+
+                if (!idCooperativa.isNullOrEmpty()) {
+                    carregarCategoriasFirebase(idCooperativa)
+                    carregarProdutosFirebase(idCooperativa)
+                } else {
+                    println("Usuário sem coopUid")
                 }
-
-                val produtosRef = FirebaseDatabase.getInstance()
-                    .getReference("Cooperativas")
-                    .child(coopUid)
-                    .child("Produtos")
-
-                produtosRef.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        listaProdutos.clear()
-                        for (produtoSnapshot in snapshot.children) {
-                            val produto = produtoSnapshot.getValue(Produto::class.java)
-                            if (produto != null) {
-                                listaProdutos.add(produto)
-                            }
-                        }
-                        adapterProdutos.notifyDataSetChanged()
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        // tratar erro
-                    }
-                })
             }
             .addOnFailureListener {
-                // tratar falha ao obter coopUid
+                println("Erro ao buscar coopUid")
             }
     }
 
-    private fun carregarFotoPerfil() {
-        val uid = usuarioId
+    private fun configurarRecyclerCategorias() {
+        adapterCategoria = CategoriaAdapter(listaCategorias)
 
-        if (uid == null) return
+        binding.rvCategorias.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.rvCategorias.adapter = adapterCategoria
+    }
+
+    private fun configurarRecyclerProdutos() {
+        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
+            val bundle = Bundle().apply {
+                putParcelable("produto", produtoClicado)
+            }
+
+            findNavController().navigate(
+                R.id.action_homeFragment_to_telaProdutoFragment,
+                bundle
+            )
+        }
+
+        binding.rvProdutos.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvProdutos.adapter = adapterProdutos
+    }
+
+    private fun carregarCategoriasFirebase(idCooperativa: String) {
+        val refCategorias = FirebaseDatabase.getInstance()
+            .getReference("Cooperativas")
+            .child(idCooperativa)
+            .child("Categorias")
+
+        refCategorias.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listaCategorias.clear()
+
+                for (categoriaSnapshot in snapshot.children) {
+                    val categoria = categoriaSnapshot.getValue(Categoria::class.java)
+
+                    if (categoria != null) {
+                        listaCategorias.add(categoria)
+                    }
+                }
+
+                adapterCategoria.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Erro ao carregar categorias: ${error.message}")
+            }
+        })
+    }
+
+    private fun carregarProdutosFirebase(idCooperativa: String) {
+        val refProdutos = FirebaseDatabase.getInstance()
+            .getReference("Cooperativas")
+            .child(idCooperativa)
+            .child("Produtos")
+
+        refProdutos.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listaProdutos.clear()
+
+                for (produtoSnapshot in snapshot.children) {
+                    val produto = produtoSnapshot.getValue(Produto::class.java)
+
+                    if (produto != null) {
+                        listaProdutos.add(produto)
+                    }
+                }
+
+                adapterProdutos.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Erro ao carregar produtos: ${error.message}")
+            }
+        })
+    }
+
+    private fun configurarNavegacao() {
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
+        }
+
+        binding.imgPerfil.setOnClickListener {
+            findNavController().navigate(R.id.perfilFragment)
+        }
+    }
+
+    private fun carregarFotoPerfil() {
+        val uid = usuarioId ?: return
 
         FirebaseDatabase.getInstance()
             .getReference("Usuarios")
@@ -182,24 +195,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun carregarNomeUsuario() {
-        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val uid = usuarioId ?: return
 
-        val ref = FirebaseDatabase.getInstance()
+        FirebaseDatabase.getInstance()
             .getReference("Usuarios")
             .child(uid)
-
-        ref.child("nome").get()
+            .child("nome")
+            .get()
             .addOnSuccessListener { snapshot ->
                 val nome = snapshot.getValue(String::class.java)
 
-                if (!nome.isNullOrEmpty()) {
-                    binding.txtSaudacao.text = "Olá, $nome"
+                binding.txtSaudacao.text = if (!nome.isNullOrEmpty()) {
+                    "Olá, $nome"
                 } else {
-                    binding.txtSaudacao.text = "Olá"
+                    "Olá"
                 }
             }
             .addOnFailureListener {
-                binding.txtSaudacao.text = "OLÁ"
+                binding.txtSaudacao.text = "Olá"
             }
     }
 

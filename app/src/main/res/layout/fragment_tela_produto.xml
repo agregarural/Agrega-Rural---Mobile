@@ -250,27 +250,6 @@
                     android:layout_marginEnd="20dp"
                     android:text="A Ração Equina Zardo Nutrição de Elite é a escolha ideal para maximizar o desempenho de cavalos atletas. Desenvolvida com ingredientes selecionados, esta fórmula suprema de 25kg oferece o equilíbrio perfeito de energia e nutrientes essenciais para garantir força, resistência e saúde integral, proporcionando ao seu animal uma alimentação de alta qualidade que reflete diretamente na sua vitalidade e condição física." />
 
-                <TextView
-                    android:id="@+id/txtTituloIngredientes"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ingredientes"
-                    android:textStyle="bold"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:id="@+id/txtIngredientes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="Milho, aveia, farelo de soja, melaço de cana, óleo vegetal, cloreto de sódio (sal), e núcleo de vitaminas e minerais." />
-
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
