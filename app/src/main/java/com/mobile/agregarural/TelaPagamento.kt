@@ -27,7 +27,7 @@ class TelaPagamento : Fragment() {
     private val database = FirebaseDatabase.getInstance().reference
 
     private val chavePixRecebedor = "16088933755"
-    private val nomeRecebedor = "RESIDENCIA DAS ABELHAS"
+    private val nomeRecebedor = "AGREGA RURAL"
     private val cidadeRecebedor = "VILA VELHA"
 
     private var valorPedidoAtual: Double = 0.0
