@@ -1,6 +1,8 @@
 package com.mobile.agregarural
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.mobile.agregarural.databinding.FragmentHomeBinding
@@ -20,12 +24,29 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapterCategoria: CategoriaAdapter
     private lateinit var adapterProdutos: ProdutoItemAdapter
+    private lateinit var adapterBanner: BannerAdapter
 
     private val listaCategorias = mutableListOf<Categoria>()
     private val listaProdutos = mutableListOf<Produto>()
+    private val listaBanners = mutableListOf<Banner>()
+
+    private val handlerBanner = Handler(Looper.getMainLooper())
 
     private val usuarioId: String?
         get() = FirebaseAuth.getInstance().currentUser?.uid
+
+    private val autoSlideRunnable = object : Runnable {
+        override fun run() {
+            if (_binding != null && listaBanners.size > 1) {
+                val proximaPosicao =
+                    (binding.bannerCarousel.currentItem + 1) % listaBanners.size
+
+                binding.bannerCarousel.setCurrentItem(proximaPosicao, true)
+            }
+
+            handlerBanner.postDelayed(this, 3000)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +66,18 @@ class HomeFragment : Fragment() {
         configurarNavegacao()
         configurarRecyclerCategorias()
         configurarRecyclerProdutos()
+        configurarCarouselBanner()
 
         buscarCooperativaDoUsuario()
+    }
+
+    private fun configurarCarouselBanner() {
+        adapterBanner = BannerAdapter(listaBanners)
+
+        binding.bannerCarousel.adapter = adapterBanner
+        binding.bannerCarousel.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        TabLayoutMediator(binding.dotsBanner, binding.bannerCarousel) { _, _ -> }.attach()
     }
 
     private fun buscarCooperativaDoUsuario() {
@@ -61,6 +92,7 @@ class HomeFragment : Fragment() {
                 val idCooperativa = snapshot.getValue(String::class.java)
 
                 if (!idCooperativa.isNullOrEmpty()) {
+                    carregarBannersFirebase(idCooperativa)
                     carregarCategoriasFirebase(idCooperativa)
                     carregarProdutosFirebase(idCooperativa)
                 } else {
@@ -70,6 +102,38 @@ class HomeFragment : Fragment() {
             .addOnFailureListener {
                 println("Erro ao buscar coopUid")
             }
+    }
+
+    private fun carregarBannersFirebase(idCooperativa: String) {
+        val refBanners = FirebaseDatabase.getInstance()
+            .getReference("Cooperativas")
+            .child(idCooperativa)
+            .child("Banners")
+
+        refBanners.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listaBanners.clear()
+
+                for (bannerSnapshot in snapshot.children) {
+                    val banner = bannerSnapshot.getValue(Banner::class.java)
+
+                    if (banner != null && banner.url.isNotEmpty()) {
+                        listaBanners.add(banner)
+                    }
+                }
+
+                adapterBanner.notifyDataSetChanged()
+
+                if (listaBanners.size > 1) {
+                    handlerBanner.removeCallbacks(autoSlideRunnable)
+                    handlerBanner.postDelayed(autoSlideRunnable, 3000)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println("Erro ao carregar banners: ${error.message}")
+            }
+        })
     }
 
     private fun configurarRecyclerCategorias() {
@@ -218,6 +282,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        handlerBanner.removeCallbacks(autoSlideRunnable)
         _binding = null
     }
 }
