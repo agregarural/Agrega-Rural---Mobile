@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "990435539814",
+    "firebase_url": "https://agrega-rural-default-rtdb.firebaseio.com",
+    "project_id": "agrega-rural",
+    "storage_bucket": "agrega-rural.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990435539814:android:2a67f5f751464fcadf66a7",
+        "android_client_info": {
+          "package_name": "com.mobile.agregarural"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIuFe0Ijsa3ymXEzai98Ywm65C9OuichM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

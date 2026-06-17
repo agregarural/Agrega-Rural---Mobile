@@ -37,28 +37,25 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-80dp"
-                android:gravity="center"
+                android:background="@drawable/bg_header_gradient"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintTop_toBottomOf="@id/view_desing1">
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@color/transparent"
-                    app:icon="@drawable/back_button"
-                    app:iconSize="40dp"
-                    app:iconPadding="0dp"
-                    app:iconGravity="textEnd"
-                    android:contentDescription="Voltar"/>
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_arrow_back"
+                    android:contentDescription="@string/voltar"
+                    app:tint="#FFFFFF"/>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+
 
 
 
@@ -72,13 +69,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="RAÇÃO EQUINA - Rações Zardo"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="30sp"
                 android:padding="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_desing1" />
+                app:layout_constraintTop_toBottomOf="@id/fotoProduto" />
 
             <!-- Grid com Imagem + Compra do produto -->
 
@@ -91,11 +88,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:src="@drawable/prod_racoeszardo"
-                    app:layout_constraintTop_toBottomOf="@id/txtNameProduto"
+                    app:layout_constraintTop_toBottomOf="@id/view_desing1"
                     android:orientation="horizontal"
                     android:padding="20dp">
 
                     <ImageView
+                        android:id="@+id/imgProduto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/prod_racoeszardo"
@@ -112,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/fotoProduto">
+                app:layout_constraintTop_toBottomOf="@id/txtNameProduto">
 
                 <LinearLayout
                     android:id="@+id/orgCompra"
@@ -140,6 +138,7 @@
                         app:layout_constraintTop_toTopOf="@id/orgCompra" />
 
                         <TextView
+                            android:id="@+id/categoriaProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Saco 25KG"
@@ -158,6 +157,15 @@
                         app:layout_constraintHorizontal_bias="0.33"
                         app:layout_constraintStart_toStartOf="@id/orgCompra"
                         app:layout_constraintTop_toBottomOf="@id/precoProduto" />
+                        <TextView
+                            android:id="@+id/valorTotalProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Total: R$ 500,00"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
 
 
@@ -171,7 +179,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="30dp"
+                        app:cardCornerRadius="12dp"
                         android:elevation="4dp">
 
                     <LinearLayout
@@ -182,16 +190,15 @@
                         android:background="@color/green">
 
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnMais"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="Botão Somar"
-                        android:background="@drawable/icon_btn_menos"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        />
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMenos"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:contentDescription="Botão diminuir"
+                            android:background="@drawable/icon_btn_menos"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="8dp" />
 
                         <TextView
                             android:id="@+id/quantidadeProduto"
@@ -199,23 +206,19 @@
                             android:layout_height="wrap_content"
                             android:text="1"
                             android:textColor="#1B1B1B"
-                            android:textSize="33dp"
-                            app:layout_constraintVertical_bias="0.5"
+                            android:textSize="33sp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="7dp"/>
+                            android:layout_marginTop="7dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnMenos"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/icon_btn_mais"
-                        android:contentDescription="btnMais"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/estoqueProduto"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="8dp" />
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMais"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/icon_btn_mais"
+                            android:contentDescription="Botão somar"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="8dp" />
 
                     </LinearLayout>
 
@@ -249,43 +252,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="40dp"
                     android:text="A Ração Equina Zardo Nutrição de Elite é a escolha ideal para maximizar o desempenho de cavalos atletas. Desenvolvida com ingredientes selecionados, esta fórmula suprema de 25kg oferece o equilíbrio perfeito de energia e nutrientes essenciais para garantir força, resistência e saúde integral, proporcionando ao seu animal uma alimentação de alta qualidade que reflete diretamente na sua vitalidade e condição física." />
 
-                <TextView
-                    android:id="@+id/txtTituloIngredientes"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ingredientes"
-                    android:textStyle="bold"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:id="@+id/txtIngredientes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="Milho, aveia, farelo de soja, melaço de cana, óleo vegetal, cloreto de sódio (sal), e núcleo de vitaminas e minerais." />
-
                 <Button
+                    android:id="@+id/btnAdicionarCarrinho"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Adicionar ao carrinho"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:backgroundTint="@color/green"
-                    />
+                    android:backgroundTint="@color/green" />
 
                 <Button
                     android:id="@+id/btnComprar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="comprar"
+                    android:text="Comprar"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
@@ -556,6 +539,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Home"
+                android:id="@+id/btnHome"
                 android:background="@color/transparent"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp" />
@@ -569,6 +553,7 @@
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"
+                android:id="@+id/btnCarrinho"
                 android:background="@color/transparent"
                 app:iconSize="20dp" />
 
@@ -577,6 +562,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_columnWeight="1"
+                android:id="@+id/btnEntrega"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Entrega"
@@ -591,6 +577,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Menu"
+                android:id="@+id/btnmenu"
                 app:icon="@drawable/nvbar_menu"
                 android:background="@color/transparent"
                 app:iconSize="20dp" />

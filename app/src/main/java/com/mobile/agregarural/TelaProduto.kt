@@ -1,64 +1,135 @@
 package com.mobile.agregarural
 
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.mobile.agregarural.databinding.FragmentTelaProdutoBinding
-
 
 class TelaProduto : Fragment() {
 
-    private  var _binding: FragmentTelaProdutoBinding?= null
+    private var _binding: FragmentTelaProdutoBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentTelaProdutoBinding.inflate(layoutInflater)
+    ): View {
+        _binding = FragmentTelaProdutoBinding.inflate(inflater, container, false)
 
-
-
-        //Configuração dos botões
+        val produto = arguments?.getParcelable("produto", Produto::class.java)
 
         var qntProduto = 1
-        binding.quantidadeProduto.text = qntProduto.toString()
 
+        fun atualizarTotal() {
+            val precoUnitario = produto?.preco ?: 0.0
+            val total = precoUnitario * qntProduto
+
+            binding.quantidadeProduto.text = qntProduto.toString()
+            binding.valorTotalProduto.text = "Total: R$ %.2f".format(total)
+        }
+
+        if (produto != null) {
+            binding.txtNameProduto.text = produto.nome
+            binding.precoProduto.text = "R$ %.2f".format(produto.preco)
+            binding.txtDescicao.text = produto.descricao
+            binding.estoqueProduto.text = "Em estoque: ${produto.estoque}"
+            binding.categoriaProduto.text = produto.categoria
+
+            Glide.with(this)
+                .load(produto.imagem)
+                .into(binding.imgProduto)
+        }
+
+        atualizarTotal()
 
         binding.btnMais.setOnClickListener {
-            qntProduto--
-            binding.quantidadeProduto.text = qntProduto.toString()
+            if (produto != null) {
+                if (qntProduto < produto.estoque) {
+                    qntProduto++
+                    atualizarTotal()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Quantidade máxima em estoque: ${produto.estoque}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
 
         binding.btnMenos.setOnClickListener {
-            qntProduto++
-            binding.quantidadeProduto.text = qntProduto.toString()
+            if (qntProduto > 1) {
+                qntProduto--
+                atualizarTotal()
+            }
         }
 
+        binding.btnAdicionarCarrinho.setOnClickListener {
+            if (produto != null) {
+                CarrinhoManager.adicionarProduto(produto, qntProduto)
 
+                Toast.makeText(
+                    requireContext(),
+                    "Produto adicionado ao carrinho",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-        //
+                findNavController().navigate(R.id.carrinhoFragment)
+            }
+        }
 
-        val FragmentTelaCompra = TelaFinalizaoPedido()
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         binding.btnComprar.setOnClickListener {
+            if (produto != null) {
+                CarrinhoManager.comprarAgora(produto, qntProduto)
 
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FragmentTelaCompra)
-                .addToBackStack(null)
-                .commit()
-
-
+                findNavController().navigate(
+                    R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
+                )
+            }
         }
 
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
 
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
 
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
 
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
+        }
+
+        binding.btnAdicionarCarrinho.setOnClickListener {
+            if (produto != null) {
+                CarrinhoManager.adicionarProduto(produto, qntProduto)
+
+                Toast.makeText(
+                    requireContext(),
+                    "Produto adicionado ao carrinho",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                findNavController().navigate(R.id.carrinhoFragment)
+            }
+        }
 
         return binding.root
     }

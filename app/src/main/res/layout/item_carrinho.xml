@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="14dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <CheckBox
+            android:id="@+id/checkboxCarrinho"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:buttonTint="@color/green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgProdutoCarrinho"
+            app:layout_constraintBottom_toBottomOf="@id/imgProdutoCarrinho" />
+
+        <ImageView
+            android:id="@+id/imgProdutoCarrinho"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/prod_racoeszardo"
+            app:layout_constraintStart_toEndOf="@id/checkboxCarrinho"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/blocoInfosItemCarrinho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/imgProdutoCarrinho"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgProdutoCarrinho">
+
+            <TextView
+                android:id="@+id/txtNomeProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome Produto"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/txtPrecoProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unidade: R$ 00,00"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/txtTotalProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: R$ 00,00"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@color/green"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnMenos"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/icon_btn_menos" />
+
+                    <TextView
+                        android:id="@+id/quantidadeProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginEnd="9dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnMais"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/icon_btn_mais" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnExcluir"
+                    android:layout_width="88dp"
+                    android:layout_height="38dp"
+                    android:text="Excluir"
+                    android:textSize="12sp"
+                    android:backgroundTint="@color/green" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

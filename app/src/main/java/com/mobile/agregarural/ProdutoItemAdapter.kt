@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+
 
 class ProdutoItemAdapter(
     private val list: List<Produto>,
@@ -28,10 +30,10 @@ class ProdutoItemAdapter(
         val item = list[position]
         holder.nome.text = item.nome
         holder.preco.text = "R$ %.2f".format(item.preco)
-        holder.especificacao.text = item.especificacao
-        if (item.imagemResId != 0) {
-            holder.imagem.setImageResource(item.imagemResId)
-        }
+        holder.especificacao.text = item.categoria
+        Glide.with(holder.itemView.context)
+            .load(item.imagem)
+            .into(holder.imagem)
 
         holder.itemView.setOnClickListener {
             onItemClick(item)

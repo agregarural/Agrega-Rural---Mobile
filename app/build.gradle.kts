@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -12,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.juliana.login"
+        applicationId = "com.mobile.agregarural"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -47,10 +49,25 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.android.material:material:1.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.google.zxing:core:3.5.3")
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:34.11.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-database")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+
 }
