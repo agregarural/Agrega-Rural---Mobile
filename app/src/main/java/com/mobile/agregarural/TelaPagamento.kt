@@ -11,7 +11,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.MutableData
+import com.google.firebase.database.Transaction
 import com.mobile.agregarural.databinding.FragmentTelaPagamentoBinding
 
 class TelaPagamento : Fragment() {
@@ -23,7 +27,7 @@ class TelaPagamento : Fragment() {
     private val database = FirebaseDatabase.getInstance().reference
 
     private val chavePixRecebedor = "16088933755"
-    private val nomeRecebedor = "AGREGA RURAL"
+    private val nomeRecebedor = "RESIDENCIA DAS ABELHAS"
     private val cidadeRecebedor = "VILA VELHA"
 
     private var valorPedidoAtual: Double = 0.0
@@ -209,6 +213,161 @@ class TelaPagamento : Fragment() {
 
         val uid = usuarioAtual.uid
 
+        database.child("Usuarios")
+            .child(uid)
+            .child("Pedidos")
+            .child(pedidoId)
+            .get()
+            .addOnSuccessListener { pedidoSnapshot ->
+
+                val statusAtual = pedidoSnapshot
+                    .child("status")
+                    .getValue(String::class.java) ?: ""
+
+                if (statusAtual != "pendente") {
+                    Toast.makeText(
+                        requireContext(),
+                        "Esse pedido já foi finalizado",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@addOnSuccessListener
+                }
+
+                database.child("Usuarios")
+                    .child(uid)
+                    .child("coopUid")
+                    .get()
+                    .addOnSuccessListener { coopSnapshot ->
+
+                        val coopUid = coopSnapshot.getValue(String::class.java)
+
+                        if (coopUid.isNullOrBlank()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Cooperativa do usuário não encontrada",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return@addOnSuccessListener
+                        }
+
+                        diminuirEstoqueDosProdutos(
+                            uid = uid,
+                            pedidoId = pedidoId,
+                            coopUid = coopUid,
+                            pedidoSnapshot = pedidoSnapshot
+                        )
+                    }
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao buscar pedido",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun diminuirEstoqueDosProdutos(
+        uid: String,
+        pedidoId: String,
+        coopUid: String,
+        pedidoSnapshot: DataSnapshot
+    ) {
+        val itensSnapshot = pedidoSnapshot.child("itens")
+
+        if (!itensSnapshot.exists()) {
+            Toast.makeText(
+                requireContext(),
+                "Pedido sem itens",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        database.child("Cooperativas")
+            .child(coopUid)
+            .child("Produtos")
+            .get()
+            .addOnSuccessListener { produtosSnapshot ->
+
+                val tarefas = mutableListOf<com.google.android.gms.tasks.Task<Void>>()
+
+                for (itemSnapshot in itensSnapshot.children) {
+                    val nomeProdutoPedido = itemSnapshot
+                        .child("nome")
+                        .getValue(String::class.java) ?: ""
+
+                    val quantidadeComprada = itemSnapshot
+                        .child("quantidade")
+                        .getValue(Int::class.java) ?: 0
+
+                    if (nomeProdutoPedido.isBlank() || quantidadeComprada <= 0) {
+                        continue
+                    }
+
+                    var produtoEncontrado: DataSnapshot? = null
+
+                    for (produtoSnapshot in produtosSnapshot.children) {
+                        val nomeProdutoBanco = produtoSnapshot
+                            .child("nome")
+                            .getValue(String::class.java) ?: ""
+
+                        if (nomeProdutoBanco == nomeProdutoPedido) {
+                            produtoEncontrado = produtoSnapshot
+                            break
+                        }
+                    }
+
+                    if (produtoEncontrado != null) {
+                        val produtoId = produtoEncontrado.key ?: continue
+
+                        val estoqueRef = database
+                            .child("Cooperativas")
+                            .child(coopUid)
+                            .child("Produtos")
+                            .child(produtoId)
+                            .child("estoque")
+
+                        estoqueRef.runTransaction(object : Transaction.Handler {
+                            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                                val estoqueAtual = currentData.getValue(Int::class.java) ?: 0
+
+                                val novoEstoque = estoqueAtual - quantidadeComprada
+
+                                currentData.value = if (novoEstoque < 0) {
+                                    0
+                                } else {
+                                    novoEstoque
+                                }
+
+                                return Transaction.success(currentData)
+                            }
+
+                            override fun onComplete(
+                                error: DatabaseError?,
+                                committed: Boolean,
+                                currentData: DataSnapshot?
+                            ) {
+                            }
+                        })
+                    }
+                }
+
+                marcarPedidoComoEmAndamento(uid, pedidoId)
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao atualizar estoque",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun marcarPedidoComoEmAndamento(
+        uid: String,
+        pedidoId: String
+    ) {
         val updates = hashMapOf<String, Any>(
             "/Pedidos/$pedidoId/status" to "em andamento",
             "/Pedidos/$pedidoId/pago" to true,
