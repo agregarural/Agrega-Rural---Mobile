@@ -34,6 +34,7 @@ object CarrinhoManager {
             salvarNoFirebase(produto, quantidade)
         }
     }
+
     fun comprarAgora(produto: Produto, quantidade: Int) {
         itens.clear()
 
@@ -120,6 +121,23 @@ object CarrinhoManager {
 
     fun itensSelecionados(): List<ItemCarrinhos> {
         return itens.filter { it.selecionado }
+    }
+
+    fun removerItensSelecionadosDoCarrinhoFirebase() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val database = FirebaseDatabase.getInstance().reference
+
+        val selecionados = itensSelecionados().toList()
+
+        for (item in selecionados) {
+            database.child("Usuarios")
+                .child(uid)
+                .child("Carrinho")
+                .child(item.produto.nome)
+                .removeValue()
+
+            itens.remove(item)
+        }
     }
 
     private fun salvarNoFirebase(produto: Produto, quantidade: Int) {

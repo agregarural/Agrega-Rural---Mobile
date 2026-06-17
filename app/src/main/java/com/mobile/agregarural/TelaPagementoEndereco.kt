@@ -212,6 +212,8 @@ class TelaPagamentoEndereco : Fragment() {
             .addOnSuccessListener {
                 PedidoManager.pedidoAtualId = pedidoId
 
+                CarrinhoManager.removerItensSelecionadosDoCarrinhoFirebase()
+
                 Toast.makeText(
                     requireContext(),
                     "Pedido criado. Aguardando pagamento.",

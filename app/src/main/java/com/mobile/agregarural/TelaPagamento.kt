@@ -1,5 +1,8 @@
 package com.mobile.agregarural
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +22,13 @@ class TelaPagamento : Fragment() {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
+    private val chavePixRecebedor = "16088933755"
+    private val nomeRecebedor = "AGREGA RURAL"
+    private val cidadeRecebedor = "VILA VELHA"
+
+    private var valorPedidoAtual: Double = 0.0
+    private var codigoPixAtual: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,10 +39,18 @@ class TelaPagamento : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        carregarPedidoEGerarPix()
 
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.btnCopiarPix.setOnClickListener {
+            copiarCodigoPix()
+        }
+
+        binding.edtCodigoPix.setOnClickListener {
+            copiarCodigoPix()
         }
 
         binding.btnFinalizar.setOnClickListener {
@@ -56,11 +74,125 @@ class TelaPagamento : Fragment() {
         }
     }
 
+    private fun carregarPedidoEGerarPix() {
+        val uid = auth.currentUser?.uid
+
+        if (uid == null) {
+            Toast.makeText(
+                requireContext(),
+                "Usuário não logado",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val pedidoId = PedidoManager.pedidoAtualId
+
+        if (pedidoId == null) {
+            Toast.makeText(
+                requireContext(),
+                "Pedido não encontrado",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        database.child("Usuarios")
+            .child(uid)
+            .child("Pedidos")
+            .child(pedidoId)
+            .get()
+            .addOnSuccessListener { snapshot ->
+
+                valorPedidoAtual = snapshot
+                    .child("valorTotal")
+                    .getValue(Double::class.java) ?: 0.0
+
+                if (valorPedidoAtual <= 0.0) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Valor do pedido inválido",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@addOnSuccessListener
+                }
+
+                val txid = PixUtils.limparTxid(pedidoId)
+
+                codigoPixAtual = PixUtils.gerarPixCopiaECola(
+                    chavePix = chavePixRecebedor,
+                    nomeRecebedor = nomeRecebedor,
+                    cidadeRecebedor = cidadeRecebedor,
+                    valor = valorPedidoAtual,
+                    txid = txid
+                )
+
+                binding.edtCodigoPix.setText(codigoPixAtual)
+
+                val qrCode = PixUtils.gerarQrCode(codigoPixAtual)
+                binding.imgQrCodePix.setImageBitmap(qrCode)
+
+                salvarPixNoPedido(pedidoId, uid)
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao carregar pedido",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun salvarPixNoPedido(
+        pedidoId: String,
+        uid: String
+    ) {
+        val updates = hashMapOf<String, Any>(
+            "/Pedidos/$pedidoId/codigoPix" to codigoPixAtual,
+            "/Pedidos/$pedidoId/valorPix" to valorPedidoAtual,
+            "/Usuarios/$uid/Pedidos/$pedidoId/codigoPix" to codigoPixAtual,
+            "/Usuarios/$uid/Pedidos/$pedidoId/valorPix" to valorPedidoAtual
+        )
+
+        database.updateChildren(updates)
+    }
+
+    private fun copiarCodigoPix() {
+        if (codigoPixAtual.isBlank()) {
+            Toast.makeText(
+                requireContext(),
+                "Código Pix ainda não foi gerado",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val clipboard = requireContext()
+            .getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+        val clip = ClipData.newPlainText(
+            "Código Pix",
+            codigoPixAtual
+        )
+
+        clipboard.setPrimaryClip(clip)
+
+        Toast.makeText(
+            requireContext(),
+            "Código Pix copiado",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     private fun finalizarPedido() {
         val usuarioAtual = auth.currentUser
 
         if (usuarioAtual == null) {
-            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Usuário não logado",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -80,14 +212,17 @@ class TelaPagamento : Fragment() {
         val updates = hashMapOf<String, Any>(
             "/Pedidos/$pedidoId/status" to "em andamento",
             "/Pedidos/$pedidoId/pago" to true,
+            "/Pedidos/$pedidoId/codigoPix" to codigoPixAtual,
+            "/Pedidos/$pedidoId/valorPago" to valorPedidoAtual,
+
             "/Usuarios/$uid/Pedidos/$pedidoId/status" to "em andamento",
-            "/Usuarios/$uid/Pedidos/$pedidoId/pago" to true
+            "/Usuarios/$uid/Pedidos/$pedidoId/pago" to true,
+            "/Usuarios/$uid/Pedidos/$pedidoId/codigoPix" to codigoPixAtual,
+            "/Usuarios/$uid/Pedidos/$pedidoId/valorPago" to valorPedidoAtual
         )
 
         database.updateChildren(updates)
             .addOnSuccessListener {
-                removerItensSelecionadosDoCarrinho()
-
                 Toast.makeText(
                     requireContext(),
                     "Pedido finalizado com sucesso",
@@ -103,21 +238,6 @@ class TelaPagamento : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-    }
-
-    private fun removerItensSelecionadosDoCarrinho() {
-        val uid = auth.currentUser?.uid ?: return
-        val selecionados = CarrinhoManager.itensSelecionados().toList()
-
-        for (item in selecionados) {
-            database.child("Usuarios")
-                .child(uid)
-                .child("Carrinho")
-                .child(item.produto.nome)
-                .removeValue()
-
-            CarrinhoManager.itens.remove(item)
-        }
     }
 
     override fun onDestroyView() {
