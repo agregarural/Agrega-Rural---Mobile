@@ -25,7 +25,6 @@ class PedidoAdapter(
         val txtPedidoId: TextView = view.findViewById(R.id.txtPedidoId)
         val imgPedidoProduto: ImageView = view.findViewById(R.id.imgPedidoProduto)
         val txtPedidoDetalhes: TextView = view.findViewById(R.id.txtPedidoDetalhes)
-
         val btnAcao: Button = view.findViewById(R.id.btnAcao)
     }
 
@@ -50,8 +49,6 @@ class PedidoAdapter(
             "Detalhes do pedido\nTotal: R$ %.2f".format(pedido.valorTotal)
         }
 
-
-
         if (primeiroItem != null && primeiroItem.imagem.isNotBlank()) {
             Glide.with(holder.itemView.context)
                 .load(primeiroItem.imagem)
@@ -66,18 +63,20 @@ class PedidoAdapter(
             "concluido" -> {
                 holder.statusHeader.setBackgroundColor(Color.parseColor("#2E7D32"))
                 holder.txtStatusName.text = "Entregue"
+
                 holder.btnAcao.visibility = View.VISIBLE
                 holder.btnAcao.text = "EXCLUIR"
                 holder.btnAcao.setBackgroundColor(Color.parseColor("#2E7D32"))
 
                 holder.btnAcao.setOnClickListener {
-                    excluirPedido(pedido)
+                    excluirPedidoSomenteDaTelaDoUsuario(pedido)
                 }
             }
 
             "em andamento" -> {
                 holder.statusHeader.setBackgroundColor(Color.parseColor("#FBC02D"))
                 holder.txtStatusName.text = "Em andamento"
+
                 holder.btnAcao.visibility = View.VISIBLE
                 holder.btnAcao.text = "CONFIRMAR"
                 holder.btnAcao.setBackgroundColor(Color.parseColor("#2E7D32"))
@@ -90,6 +89,7 @@ class PedidoAdapter(
             "pendente" -> {
                 holder.statusHeader.setBackgroundColor(Color.parseColor("#D32F2F"))
                 holder.txtStatusName.text = "Pagamento pendente"
+
                 holder.btnAcao.visibility = View.VISIBLE
                 holder.btnAcao.text = "PAGAR"
                 holder.btnAcao.setBackgroundColor(Color.parseColor("#2E7D32"))
@@ -124,9 +124,19 @@ class PedidoAdapter(
             }
     }
 
-    private fun excluirPedido(pedido: PedidoUsuario) {
+    private fun excluirPedidoSomenteDaTelaDoUsuario(pedido: PedidoUsuario) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val pedidoId = pedido.pedidoId
+
+        /*
+         IMPORTANTE:
+         Aqui NÃO apagamos:
+         /Cooperativas/{coopUid}/Vendas/{pedidoId}
+         /Vendas/{pedidoId}
+
+         Assim o usuário pode apagar o pedido da tela dele,
+         mas a venda continua salva para o financeiro.
+        */
 
         val updates = hashMapOf<String, Any?>(
             "/Pedidos/$pedidoId" to null,
