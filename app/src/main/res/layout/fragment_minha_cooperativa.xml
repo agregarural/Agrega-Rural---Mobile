@@ -4,19 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#FFF7FF">
+
+    <!-- Logo da cooperativa no fundo -->
     <ImageView
         android:id="@+id/bg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/imagem_de_fundo"
+        android:layout_width="430dp"
+        android:layout_height="430dp"
+        android:alpha="0.22"
+        android:scaleType="centerCrop"
         android:src="@drawable/fundo_cooperativa"
-        android:scaleType="fitCenter"
-        android:alpha="0.7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="Logo da cooperativa"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- TOPO -->
     <LinearLayout
@@ -42,13 +44,14 @@
             app:tint="#FFFFFF" />
 
         <TextView
-            android:text="@string/cooperativa"
+            android:text="Minha Cooperativa"
             android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginStart="12dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <!-- CONTEÚDO -->
@@ -64,13 +67,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-
         <!-- CARDS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="175dp"
+            android:layout_marginTop="170dp"
             android:gravity="center">
 
             <!-- LINHA 1 -->
@@ -78,61 +80,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                >
+                android:gravity="center">
 
-                <!-- CARD 1 -->
+                <!-- CARD COOPERADOS -->
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="@drawable/card_bg"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_marginEnd="50dp"
-                    >
+                    android:layout_marginEnd="50dp">
 
                     <TextView
+                        android:id="@+id/txtCooperados"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card1"
+                        android:text="0"
                         android:textColor="@color/green"
                         android:textStyle="bold"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card1.1"
+                        android:text="Cooperados"
                         android:gravity="center"
                         android:textColor="@color/botoes"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
                 </LinearLayout>
 
-                <!-- CARD 2 -->
+                <!-- CARD ESTADOS -->
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="@drawable/card_bg"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtEstadosAtuacao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card2"
+                        android:text="0"
                         android:textColor="@color/green"
                         android:textStyle="bold"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card2.1"
+                        android:text="Estados de\natuação"
                         android:gravity="center"
                         android:textColor="@color/botoes"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <!-- LINHA 2 -->
@@ -143,34 +147,35 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp">
 
-                <!-- CARD 3 -->
+                <!-- CARD IDADE -->
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="@drawable/card_bg"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_marginEnd="50dp"
-                    >
+                    android:layout_marginEnd="50dp">
 
                     <TextView
+                        android:id="@+id/txtIdadeCooperativa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card3"
+                        android:text="0 ANOS"
                         android:textColor="@color/green"
                         android:textStyle="bold"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card3.1"
+                        android:text="De fundação"
                         android:gravity="center"
                         android:textColor="@color/botoes"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
                 </LinearLayout>
 
-                <!-- CARD 4 -->
+                <!-- CARD PRODUTOS -->
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="150dp"
@@ -179,53 +184,57 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtQuantidadeProdutos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card4"
+                        android:text="0"
                         android:textColor="@color/green"
                         android:textStyle="bold"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/card4.1"
+                        android:text="Produtos no\ncatálogo"
                         android:gravity="center"
                         android:textColor="@color/botoes"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- BOTÃO -->
+        <!-- BOTÃO CONTATO -->
         <LinearLayout
+            android:id="@+id/cardcontato"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@drawable/card_bg"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:id="@+id/cardcontato"
-            android:padding="12dp"
-            >
+            android:padding="12dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/contatos"
-                android:textSize="15sp"/>
+                android:text="Contatos da cooperativa"
+                android:textSize="15sp" />
 
             <ImageView
-                android:contentDescription="@string/avancar_seta"
+                android:contentDescription="Avançar"
                 android:src="@drawable/ic_arrow_back"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:rotation="180" />
+
         </LinearLayout>
 
     </LinearLayout>
 
+    <!-- MENU INFERIOR -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -247,60 +256,56 @@
             android:rowCount="1"
             android:layout_gravity="center">
 
-
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHome"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:id="@+id/btnHome"
-                android:contentDescription="@string/home"
+                android:contentDescription="Home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp"
-                android:background="@color/transparent"
-                />
-
+                android:background="@color/transparent" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCarrinho"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:id="@+id/btnCarrinho"
-                android:contentDescription="@string/carrinho"
+                android:contentDescription="Carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp"
-                android:background="@color/transparent"
-                />
-
+                android:background="@color/transparent" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEntrega"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:contentDescription="@string/entrega"
-                android:id="@+id/btnEntrega"
+                android:contentDescription="Entrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp"
-                android:background="@color/transparent"/>
+                android:background="@color/transparent" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnmenu"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_columnWeight="1"
-                android:contentDescription="@string/menu"
-                android:id="@+id/btnmenu"
+                android:contentDescription="Menu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp"
-                android:background="@color/transparent"/>
-        </GridLayout>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+                android:background="@color/transparent" />
 
+        </GridLayout>
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
