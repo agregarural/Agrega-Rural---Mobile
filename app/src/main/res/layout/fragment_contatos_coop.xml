@@ -23,9 +23,9 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
-            android:layout_width="28dp"
+            android:layout_width="48dp"
             android:id="@+id/btnVoltar"
-            android:layout_height="28dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/voltar_seta"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white"
@@ -85,9 +85,10 @@
                     android:textColor="@color/cinza_texto_contatos"/>
 
                 <TextView
+                    android:id="@+id/txtTelefoneCoop"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:text="@string/num_telefone"
+                    tools:text="@string/num_telefone"
                     android:textColor="@color/black"
                     android:layout_marginTop="6dp"/>
             </LinearLayout>
@@ -109,9 +110,10 @@
                     android:textColor="@color/cinza_texto_contatos"/>
 
                 <TextView
+                    android:id="@+id/txtEmailCoop"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:text="@string/gmail"
+                    tools:text="@string/gmail"
                     android:textColor="@color/black"
                     android:layout_marginTop="6dp"/>
             </LinearLayout>
@@ -128,6 +130,7 @@
 
             <!-- ENDEREÇO 1 -->
             <LinearLayout
+                android:id="@+id/cardEndereco1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_bg"
@@ -136,14 +139,16 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtEndereco1Coop"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:text="@string/endereco1"
+                    tools:text="@string/endereco1"
                     android:textColor="@color/black"/>
             </LinearLayout>
 
             <!-- ENDEREÇO 2 -->
             <LinearLayout
+                android:id="@+id/cardEndereco2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_bg"
@@ -151,7 +156,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="@string/endereco2"
+                    android:id="@+id/txtEndereco2Coop"
+                    tools:text="@string/endereco2"
                     android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"/>
