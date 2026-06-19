@@ -7,7 +7,13 @@ object CarrinhoManager {
 
     val itens = mutableListOf<ItemCarrinhos>()
 
-    fun adicionarProduto(produto: Produto, quantidade: Int) {
+    fun adicionarProduto(
+        produto: Produto,
+        quantidade: Int,
+        usuarioEhCooperado: Boolean
+    ) {
+        val precoFinal = PrecoUsuarioManager.precoFinal(produto, usuarioEhCooperado)
+
         val itemExistente = itens.find {
             it.produto.nome == produto.nome
         }
@@ -21,28 +27,41 @@ object CarrinhoManager {
                 novaQuantidade
             }
 
-            salvarNoFirebase(produto, itemExistente.quantidade)
+            itemExistente.precoUnitario = precoFinal
+            itemExistente.usuarioCooperado = usuarioEhCooperado
+
+            salvarNoFirebase(produto, itemExistente.quantidade, precoFinal, usuarioEhCooperado)
 
         } else {
-            itens.add(
-                ItemCarrinhos(
-                    produto = produto,
-                    quantidade = quantidade
-                )
+            val novoItem = ItemCarrinhos(
+                produto = produto,
+                quantidade = quantidade,
+                precoUnitario = precoFinal,
+                usuarioCooperado = usuarioEhCooperado
             )
 
-            salvarNoFirebase(produto, quantidade)
+            itens.add(novoItem)
+
+            salvarNoFirebase(produto, quantidade, precoFinal, usuarioEhCooperado)
         }
     }
 
-    fun comprarAgora(produto: Produto, quantidade: Int) {
+    fun comprarAgora(
+        produto: Produto,
+        quantidade: Int,
+        usuarioEhCooperado: Boolean
+    ) {
+        val precoFinal = PrecoUsuarioManager.precoFinal(produto, usuarioEhCooperado)
+
         itens.clear()
 
         itens.add(
             ItemCarrinhos(
                 produto = produto,
                 quantidade = quantidade,
-                selecionado = true
+                selecionado = true,
+                precoUnitario = precoFinal,
+                usuarioCooperado = usuarioEhCooperado
             )
         )
     }
@@ -61,26 +80,44 @@ object CarrinhoManager {
 
                 for (itemSnapshot in snapshot.children) {
                     val nome = itemSnapshot.child("nome").getValue(String::class.java) ?: ""
-                    val preco = itemSnapshot.child("preco").getValue(Double::class.java) ?: 0.0
-                    val imagem = itemSnapshot.child("imagem").getValue(String::class.java) ?: ""
                     val categoria = itemSnapshot.child("categoria").getValue(String::class.java) ?: ""
                     val descricao = itemSnapshot.child("descricao").getValue(String::class.java) ?: ""
-                    val estoque = itemSnapshot.child("estoque").getValue(Int::class.java) ?: 0
-                    val quantidade = itemSnapshot.child("quantidade").getValue(Int::class.java) ?: 1
+                    val imagem = itemSnapshot.child("imagem").getValue(String::class.java) ?: ""
+
+                    val precoNormal = getDouble(itemSnapshot, "precoNormal")
+                        .takeIf { it > 0.0 }
+                        ?: getDouble(itemSnapshot, "preco")
+
+                    val precoCooperado = getDouble(itemSnapshot, "precoCooperado")
+                    val descontoCooperado = getDouble(itemSnapshot, "descontoCooperado")
+                    val precoUnitario = getDouble(itemSnapshot, "precoUnitario")
+                        .takeIf { it > 0.0 }
+                        ?: precoNormal
+
+                    val custo = getDouble(itemSnapshot, "custo")
+                    val estoque = getInt(itemSnapshot, "estoque")
+                    val quantidade = getInt(itemSnapshot, "quantidade").takeIf { it > 0 } ?: 1
+                    val usuarioCooperado = itemSnapshot.child("usuarioCooperado")
+                        .getValue(Boolean::class.java) ?: false
 
                     val produto = Produto(
                         nome = nome,
-                        preco = preco,
-                        imagem = imagem,
                         categoria = categoria,
+                        preco = precoNormal,
+                        precoCooperado = precoCooperado,
+                        descontoCooperado = descontoCooperado,
+                        custo = custo,
+                        estoque = estoque,
                         descricao = descricao,
-                        estoque = estoque
+                        imagem = imagem
                     )
 
                     itens.add(
                         ItemCarrinhos(
                             produto = produto,
-                            quantidade = quantidade
+                            quantidade = quantidade,
+                            precoUnitario = precoUnitario,
+                            usuarioCooperado = usuarioCooperado
                         )
                     )
                 }
@@ -91,10 +128,11 @@ object CarrinhoManager {
 
     fun atualizarQuantidade(item: ItemCarrinhos) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val total = item.produto.preco * item.quantidade
+        val total = item.precoUnitario * item.quantidade
 
         val updates = mapOf<String, Any>(
             "quantidade" to item.quantidade,
+            "precoUnitario" to item.precoUnitario,
             "total" to total
         )
 
@@ -140,17 +178,30 @@ object CarrinhoManager {
         }
     }
 
-    private fun salvarNoFirebase(produto: Produto, quantidade: Int) {
+    private fun salvarNoFirebase(
+        produto: Produto,
+        quantidade: Int,
+        precoUnitario: Double,
+        usuarioEhCooperado: Boolean
+    ) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val total = produto.preco * quantidade
+        val total = precoUnitario * quantidade
 
         val dadosCarrinho = hashMapOf<String, Any>(
             "nome" to produto.nome,
-            "preco" to produto.preco,
-            "imagem" to produto.imagem,
             "categoria" to produto.categoria,
             "descricao" to produto.descricao,
+            "imagem" to produto.imagem,
             "estoque" to produto.estoque,
+            "custo" to produto.custo,
+
+            "preco" to precoUnitario,
+            "precoUnitario" to precoUnitario,
+            "precoNormal" to produto.preco,
+            "precoCooperado" to produto.precoCooperado,
+            "descontoCooperado" to produto.descontoCooperado,
+            "usuarioCooperado" to usuarioEhCooperado,
+
             "quantidade" to quantidade,
             "total" to total
         )
@@ -161,5 +212,31 @@ object CarrinhoManager {
             .child("Carrinho")
             .child(produto.nome)
             .setValue(dadosCarrinho)
+    }
+
+    private fun getDouble(snapshot: com.google.firebase.database.DataSnapshot, campo: String): Double {
+        val valor = snapshot.child(campo).value
+
+        return when (valor) {
+            is Double -> valor
+            is Long -> valor.toDouble()
+            is Int -> valor.toDouble()
+            is Float -> valor.toDouble()
+            is String -> valor.replace(",", ".").toDoubleOrNull() ?: 0.0
+            else -> 0.0
+        }
+    }
+
+    private fun getInt(snapshot: com.google.firebase.database.DataSnapshot, campo: String): Int {
+        val valor = snapshot.child(campo).value
+
+        return when (valor) {
+            is Int -> valor
+            is Long -> valor.toInt()
+            is Double -> valor.toInt()
+            is Float -> valor.toInt()
+            is String -> valor.toIntOrNull() ?: 0
+            else -> 0
+        }
     }
 }

@@ -6,10 +6,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Produto(
     val nome: String = "",
-    val preco: Double = 0.0,
-    val descricao: String = "",
     val categoria: String = "",
+    val preco: Double = 0.0, // preço normal
+    val precoCooperado: Double = 0.0, // preço com desconto
+    val descontoCooperado: Double = 0.0, // porcentagem
+    val custo: Double = 0.0,
     val estoque: Int = 0,
+    val descricao: String = "",
     val imagem: String = ""
 ) : Parcelable
 

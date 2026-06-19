@@ -21,6 +21,7 @@ class CarrinhoAdapter(
             parent,
             false
         )
+
         return CarrinhoViewHolder(binding)
     }
 
@@ -29,24 +30,26 @@ class CarrinhoAdapter(
         val produto = item.produto
 
         fun atualizarValores() {
-            val total = produto.preco * item.quantidade
+            val total = item.precoUnitario * item.quantidade
 
             holder.binding.quantidadeProduto.text = item.quantidade.toString()
-            holder.binding.txtPrecoProduto.text = "Unidade: R$ %.2f".format(produto.preco)
+            holder.binding.txtPrecoProduto.text = "Unidade: R$ %.2f".format(item.precoUnitario)
             holder.binding.txtTotalProduto.text = "Total: R$ %.2f".format(total)
+
+            holder.binding.checkboxCarrinho.isChecked = item.selecionado
         }
 
         with(holder.binding) {
             txtNomeProduto.text = produto.nome
-
-            checkboxCarrinho.setOnCheckedChangeListener(null)
-            checkboxCarrinho.isChecked = item.selecionado
 
             Glide.with(holder.itemView.context)
                 .load(produto.imagem)
                 .into(imgProdutoCarrinho)
 
             atualizarValores()
+
+            checkboxCarrinho.setOnCheckedChangeListener(null)
+            checkboxCarrinho.isChecked = item.selecionado
 
             checkboxCarrinho.setOnCheckedChangeListener { _, isChecked ->
                 item.selecionado = isChecked
@@ -55,8 +58,8 @@ class CarrinhoAdapter(
             btnMais.setOnClickListener {
                 if (item.quantidade < produto.estoque) {
                     item.quantidade++
-                    atualizarValores()
                     CarrinhoManager.atualizarQuantidade(item)
+                    atualizarValores()
                 } else {
                     Toast.makeText(
                         holder.itemView.context,
@@ -69,8 +72,8 @@ class CarrinhoAdapter(
             btnMenos.setOnClickListener {
                 if (item.quantidade > 1) {
                     item.quantidade--
-                    atualizarValores()
                     CarrinhoManager.atualizarQuantidade(item)
+                    atualizarValores()
                 }
             }
 
@@ -80,5 +83,5 @@ class CarrinhoAdapter(
         }
     }
 
-    override fun getItemCount(): Int = itens.size
+    override fun getItemCount() = itens.size
 }
