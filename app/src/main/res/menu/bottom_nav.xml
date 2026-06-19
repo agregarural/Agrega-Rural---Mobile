@@ -3,17 +3,17 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/nvbar_home"
-        android:title="Início" />
+        />
     <item
         android:id="@+id/carrinhoFragment"
         android:icon="@drawable/nvbar_carrinho"
-        android:title="Carrinho" />
+        />
     <item
         android:id="@+id/meusPedidosFragment"
         android:icon="@drawable/nvbar_truck"
-        android:title="Entrega" />
+        />
     <item
         android:id="@+id/menuFragment"
         android:icon="@drawable/nvbar_menu"
-        android:title="Menu" />
+        />
 </menu>
