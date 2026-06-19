@@ -35,55 +35,54 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // 1. Usar setupWithNavController para gerenciamento básico (animações, ícones)
-        bottomNav.setupWithNavController(navController)
 
-        // 2. Interceptar a seleção de abas para sempre limpar a pilha até a raiz da aba
-        bottomNav.setOnItemSelectedListener { item ->
-            // Se a aba já está selecionada, apenas limpe a pilha (mesmo efeito do reselect)
-            if (navController.currentDestination?.id == item.itemId) {
-                navController.popBackStack(item.itemId, inclusive = false)
-                return@setOnItemSelectedListener true
-            }
 
-            // Se for outra aba, navegue limpando a pilha da aba atual
-            navController.navigate(
-                item.itemId,
-                null,
-                NavOptions.Builder()
-                    .setPopUpTo(item.itemId, inclusive = false) // limpa tudo acima da aba destino
-                    .setLaunchSingleTop(true)
-                    .build()
-            )
-            true
-        }
-
-        // 3. Reselecionar a aba: volta à raiz da aba (caso o listener acima não capture)
-        bottomNav.setOnItemReselectedListener { item ->
-            navController.popBackStack(item.itemId, inclusive = false)
-        }
 
         // 4. Manter o ícone da aba pai selecionado em telas secundárias
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val abas = setOf(
-                R.id.homeFragment,
-                R.id.carrinhoFragment,
-                R.id.meusPedidosFragment,
-                R.id.menuFragment
-            )
-            if (destination.id in abas) {
-                bottomNav.selectedItemId = destination.id
-            }
-            // Em telas filhas, não altere o ícone (mantém o último)
-        }
 
-        // 5. Controle de visibilidade do menu (antes/depois do login)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destinoDeveMostrarMenu(destination.id)) {
                 bottomNav.visibility = View.VISIBLE
             } else {
                 bottomNav.visibility = View.GONE
             }
+
+            val parentTab = getParentTab(destination.id)
+
+            if (parentTab != null) {
+
+                if (bottomNav.selectedItemId != parentTab) {
+
+                    bottomNav.menu.findItem(parentTab).isChecked = true
+                }
+            }
+        }
+
+        bottomNav.setOnItemSelectedListener { item ->
+
+            val destinoAtual = navController.currentDestination?.id
+
+            if (destinoAtual == item.itemId) {
+                return@setOnItemSelectedListener true
+            }
+
+            navController.navigate(
+                item.itemId,
+                null,
+                NavOptions.Builder()
+                    .setLaunchSingleTop(true)
+                    .build()
+            )
+
+            true
+        }
+
+        bottomNav.setOnItemReselectedListener { item ->
+
+            navController.popBackStack(
+                item.itemId,
+                false
+            )
         }
     }
 
@@ -98,5 +97,44 @@ class MainActivity : AppCompatActivity() {
             R.id.telaCadastro4Fragment
         )
         return destinoId !in telasSemMenu
+    }
+
+    private fun getParentTab(destinationId: Int): Int? {
+
+        return when(destinationId) {
+
+            // HOME
+
+            R.id.homeFragment,
+            R.id.telaProdutoFragment,
+            R.id.telaFinalizacaoPedidoFragment,
+            R.id.telaPagamentoEnderecoFragment,
+            R.id.telaPagamentoFragment ->
+
+                R.id.homeFragment
+
+            // CARRINHO
+
+            R.id.carrinhoFragment ->
+
+                R.id.carrinhoFragment
+
+            // PEDIDOS
+
+            R.id.meusPedidosFragment ->
+
+                R.id.meusPedidosFragment
+
+            // MENU
+
+            R.id.menuFragment,
+            R.id.perfilFragment,
+            R.id.meusEnderecosFragment,
+            R.id.dadosPessoaisFragment ->
+
+                R.id.menuFragment
+
+            else -> null
+        }
     }
 }
