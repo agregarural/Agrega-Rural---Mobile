@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,7 +31,13 @@ class HomeFragment : Fragment() {
     private lateinit var adapterBanner: BannerAdapter
 
     private val listaCategorias = mutableListOf<Categoria>()
+
+    // Lista que aparece na tela
     private val listaProdutos = mutableListOf<Produto>()
+
+    // Lista completa, usada para fazer a busca
+    private val listaProdutosCompleta = mutableListOf<Produto>()
+
     private val listaBanners = mutableListOf<Banner>()
 
     private var usuarioEhCooperado = false
@@ -71,6 +78,7 @@ class HomeFragment : Fragment() {
         configurarNavegacao()
         configurarRecyclerCategorias()
         configurarCarouselBanner()
+        configurarBuscador()
 
         verificarPrecoDoUsuarioECarregarProdutos()
     }
@@ -83,6 +91,45 @@ class HomeFragment : Fragment() {
 
             configurarRecyclerProdutos()
             buscarCooperativaDoUsuario()
+        }
+    }
+
+    private fun configurarBuscador() {
+        binding.searchBar.queryHint = "Buscar produtos..."
+
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                filtrarProdutos(query.orEmpty())
+                binding.searchBar.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filtrarProdutos(newText.orEmpty())
+                return true
+            }
+        })
+    }
+
+    private fun filtrarProdutos(textoBusca: String) {
+        val busca = textoBusca.trim().lowercase()
+
+        listaProdutos.clear()
+
+        if (busca.isEmpty()) {
+            listaProdutos.addAll(listaProdutosCompleta)
+        } else {
+            val produtosFiltrados = listaProdutosCompleta.filter { produto ->
+                produto.nome.lowercase().contains(busca) ||
+                        produto.categoria.lowercase().contains(busca) ||
+                        produto.descricao.lowercase().contains(busca)
+            }
+
+            listaProdutos.addAll(produtosFiltrados)
+        }
+
+        if (::adapterProdutos.isInitialized) {
+            adapterProdutos.notifyDataSetChanged()
         }
     }
 
@@ -219,17 +266,25 @@ class HomeFragment : Fragment() {
 
         refProdutos.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                listaProdutosCompleta.clear()
                 listaProdutos.clear()
 
                 for (produtoSnapshot in snapshot.children) {
                     val produto = produtoSnapshot.getValue(Produto::class.java)
 
                     if (produto != null) {
-                        listaProdutos.add(produto)
+                        listaProdutosCompleta.add(produto)
                     }
                 }
 
-                adapterProdutos.notifyDataSetChanged()
+                val textoAtualBusca = binding.searchBar.query?.toString().orEmpty()
+
+                if (textoAtualBusca.isBlank()) {
+                    listaProdutos.addAll(listaProdutosCompleta)
+                    adapterProdutos.notifyDataSetChanged()
+                } else {
+                    filtrarProdutos(textoAtualBusca)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
