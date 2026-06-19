@@ -155,21 +155,7 @@ class DadosPessoaisFragment : Fragment() {
     }
 
     private fun setupBottomNavigation() {
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
 
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
-
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
 
 
     }
