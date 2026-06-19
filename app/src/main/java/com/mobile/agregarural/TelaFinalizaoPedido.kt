@@ -21,6 +21,13 @@ class TelaFinalizaoPedido : Fragment() {
 
         _binding = FragmentTelaFinalizacaoPedidoBinding.inflate(inflater, container, false)
 
+        carregarResumoPedido()
+        configurarBotoes()
+
+        return binding.root
+    }
+
+    private fun carregarResumoPedido() {
         val listaItens = CarrinhoManager.itensSelecionados()
 
         val resumo = StringBuilder()
@@ -32,11 +39,13 @@ class TelaFinalizaoPedido : Fragment() {
             listaItens.forEach { item ->
 
                 val produto = item.produto
-                val subtotal = produto.preco * item.quantidade
+                val precoUnitarioUsado = item.precoUnitario
+                val subtotal = precoUnitarioUsado * item.quantidade
+
                 precoFinal += subtotal
 
                 resumo.append("Produto: ${produto.nome}\n")
-                resumo.append("Preço: R$ %.2f\n".format(produto.preco))
+                resumo.append("Preço: R$ %.2f\n".format(precoUnitarioUsado))
                 resumo.append("Quantidade: ${item.quantidade}\n")
                 resumo.append("Subtotal: R$ %.2f\n".format(subtotal))
                 resumo.append("______________________________________\n\n")
@@ -45,7 +54,9 @@ class TelaFinalizaoPedido : Fragment() {
 
         binding.pedidos.text = resumo.toString()
         binding.totalPedidos.text = "TOTAL R$ %.2f".format(precoFinal)
+    }
 
+    private fun configurarBotoes() {
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -71,8 +82,6 @@ class TelaFinalizaoPedido : Fragment() {
         binding.btnmenu.setOnClickListener {
             findNavController().navigate(R.id.menuFragment)
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {

@@ -14,7 +14,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.mobile.agregarural.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -29,6 +32,8 @@ class HomeFragment : Fragment() {
     private val listaCategorias = mutableListOf<Categoria>()
     private val listaProdutos = mutableListOf<Produto>()
     private val listaBanners = mutableListOf<Banner>()
+
+    private var usuarioEhCooperado = false
 
     private val handlerBanner = Handler(Looper.getMainLooper())
 
@@ -65,10 +70,20 @@ class HomeFragment : Fragment() {
 
         configurarNavegacao()
         configurarRecyclerCategorias()
-        configurarRecyclerProdutos()
         configurarCarouselBanner()
 
-        buscarCooperativaDoUsuario()
+        verificarPrecoDoUsuarioECarregarProdutos()
+    }
+
+    private fun verificarPrecoDoUsuarioECarregarProdutos() {
+        PrecoUsuarioManager.verificarUsuarioEhCooperado { ehCooperado ->
+            if (_binding == null) return@verificarUsuarioEhCooperado
+
+            usuarioEhCooperado = ehCooperado
+
+            configurarRecyclerProdutos()
+            buscarCooperativaDoUsuario()
+        }
     }
 
     private fun configurarCarouselBanner() {
@@ -140,13 +155,21 @@ class HomeFragment : Fragment() {
         adapterCategoria = CategoriaAdapter(listaCategorias)
 
         binding.rvCategorias.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
 
         binding.rvCategorias.adapter = adapterCategoria
     }
 
     private fun configurarRecyclerProdutos() {
-        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
+        adapterProdutos = ProdutoItemAdapter(
+            list = listaProdutos,
+            usuarioEhCooperado = usuarioEhCooperado
+        ) { produtoClicado ->
+
             val bundle = Bundle().apply {
                 putParcelable("produto", produtoClicado)
             }
