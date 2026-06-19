@@ -67,7 +67,7 @@ class MenuFragment : Fragment() {
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Erro ao buscar cooperativa.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.erro_ao_buscar_cooperativa), Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -91,7 +91,7 @@ class MenuFragment : Fragment() {
                 categoriaMenuAdapter.notifyDataSetChanged()
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Erro ao carregar categorias.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.erro_ao_carregar_categorias), Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -101,15 +101,16 @@ class MenuFragment : Fragment() {
         }
 
         binding.cardSAC.setOnClickListener {
-            Toast.makeText(requireContext(), "Atendimento ao cliente (SAC)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.atendimento_ao_cliente_sac_menu), Toast.LENGTH_SHORT).show()
         }
 
         binding.cardPromocao.setOnClickListener {
-            Toast.makeText(requireContext(), "Promoções", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.promocoes), Toast.LENGTH_SHORT).show()
         }
 
         binding.cardMaisVendidos.setOnClickListener {
-            Toast.makeText(requireContext(), "Mais vendidos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.mais_vendidos), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -137,19 +138,20 @@ class MenuFragment : Fragment() {
 
     private fun showDesconectarDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle("Desconectar")
-            .setMessage("Deseja realmente sair da sua conta?")
-            .setPositiveButton("Sim") { _, _ ->
+            .setTitle(getString(R.string.desconectar_menu))
+            .setMessage(getString(R.string.deseja_realmente_sair_da_sua_conta))
+            .setPositiveButton(getString(R.string.sim)) { _, _ ->
                 efetuarLogout()
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(getString(R.string.cancelar), null)
             .show()
     }
 
     private fun efetuarLogout() {
         FirebaseAuth.getInstance().signOut()
 
-        Toast.makeText(requireContext(), "Desconectado com sucesso!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(),
+            getString(R.string.desconectado_com_sucesso), Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_homeFragment_to_telaInicialFragment)
     }
 

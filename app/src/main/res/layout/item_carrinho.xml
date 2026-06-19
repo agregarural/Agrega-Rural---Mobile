@@ -48,7 +48,7 @@
                 android:id="@+id/txtNomeProduto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome Produto"
+                android:text="@string/nome_produto"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -59,7 +59,7 @@
                 android:id="@+id/txtPrecoProduto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unidade: R$ 00,00"
+                android:text="@string/unidade_valor"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -67,7 +67,7 @@
                 android:id="@+id/txtTotalProduto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total: R$ 00,00"
+                android:text="@string/total_valor"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -98,7 +98,7 @@
                         android:id="@+id/quantidadeProduto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:text="@string/um"
                         android:textColor="@color/black"
                         android:textSize="17sp"
                         android:textStyle="bold"
@@ -121,7 +121,7 @@
                     android:id="@+id/btnExcluir"
                     android:layout_width="88dp"
                     android:layout_height="38dp"
-                    android:text="Excluir"
+                    android:text="@string/excluir"
                     android:textSize="12sp"
                     android:backgroundTint="@color/green" />
             </LinearLayout>

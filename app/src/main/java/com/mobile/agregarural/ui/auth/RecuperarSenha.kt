@@ -47,11 +47,11 @@ class RecuperarSenhaFragment : Fragment() {
         val email = binding.cxRecuperar.text.toString().trim()
 
         if (email.isEmpty()) {
-            Toast.makeText(requireContext(), "Por favor, insira o seu e-mail!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.insira_o_seu_email2), Toast.LENGTH_SHORT).show()
             return
         }
 
-        //Envia o link de redefinição para o e-mail digitado
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -59,7 +59,7 @@ class RecuperarSenhaFragment : Fragment() {
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        "Erro ao enviar: ${task.exception?.message}",
+                        getString(R.string.erro_ao_enviar, task.exception?.message),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -80,7 +80,6 @@ class RecuperarSenhaFragment : Fragment() {
 
         btFechar.setOnClickListener {
             popup.dismiss()
-            // Retorna direto para a tela de login
             findNavController().navigate(R.id.telaLoginFragment)
         }
     }

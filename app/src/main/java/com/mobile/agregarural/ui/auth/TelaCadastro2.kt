@@ -51,10 +51,12 @@ class TelaCadastro2Fragment : Fragment() {
                 findNavController().navigate(R.id.action_telaCadastro2_to_telaCadastro3)
 
             }else{
-                Toast.makeText(requireContext(), "Preencha seu CEP!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.preencha_seu_cep), Toast.LENGTH_SHORT).show()
             }
         }else{
-            Toast.makeText(requireContext(), "Preencha seu CPF!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.preencha_seu_cpf), Toast.LENGTH_SHORT).show()
         }
     }
 

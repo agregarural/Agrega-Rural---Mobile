@@ -83,7 +83,7 @@ class CategoriaProdutosFragment : Fragment() {
         val uid = usuarioId
 
         if (uid == null) {
-            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.usuario_nao_logado), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -96,14 +96,16 @@ class CategoriaProdutosFragment : Fragment() {
                 val coopUid = snapshot.getValue(String::class.java)
 
                 if (coopUid.isNullOrBlank()) {
-                    Toast.makeText(requireContext(), "Cooperativa não encontrada", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        getString(R.string.cooperativa_nao_encontrada), Toast.LENGTH_SHORT).show()
                     return@addOnSuccessListener
                 }
 
                 carregarProdutosDaCategoria(coopUid)
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Erro ao buscar cooperativa", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.erro_ao_buscar_cooperativa), Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -136,7 +138,8 @@ class CategoriaProdutosFragment : Fragment() {
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Erro ao carregar produtos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.erro_ao_carregar_produtos), Toast.LENGTH_SHORT).show()
             }
     }
 

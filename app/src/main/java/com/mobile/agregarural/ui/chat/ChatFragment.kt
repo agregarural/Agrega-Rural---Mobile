@@ -28,9 +28,8 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         setupRecyclerView()
         setupListeners()
 
-        // Mensagem de boas-vindas do Bot
         if (messageList.isEmpty()) {
-            addMessage("Olá! Bem-vindo ao suporte. Como posso ajudar?", isBot = true)
+            addMessage(getString(R.string.mensagem_boasvindas), isBot = true)
         }
     }
 
@@ -64,20 +63,19 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
     }
 
     private fun triggerBotResponse(userMessage: String) {
-        // Simulação simples de lógica de bot
         lifecycleScope.launch {
-            delay(1000) // Simula o bot "digitando"
+            delay(1000)
             val response = when {
-                userMessage.contains("telefone", true) -> "Se preferir falar com a nossa equipe por telefone, você pode ligar para:\n" +
-                        "(xx) xxxx-xxxx\n" +
-                        "(xx) xxxx-xxxx\n" +
+                userMessage.contains("telefone", true) -> getString(R.string.mensagem1) +
+                        getString(R.string.mensagem2) +
+                        getString(R.string.mensagem2) +
                         "\n" +
-                        "Horário de atendimento: Segunda a sexta-feira, das 8h às 18h Sábados, das 8h às 12h"
-                userMessage.contains("olá", true) -> "Olá! Digite sua dúvida sobre pedidos ou perfil."
-                userMessage.contains("pedido", true) -> "Você pode rastrear seu pedido na tela 'Entrega'."
-                else -> "Entendi. Vou encaminhar sua dúvida para um especialista.\n" +
+                        getString(R.string.mensagem3)
+                userMessage.contains("olá", true) -> getString(R.string.mensagem4)
+                userMessage.contains("pedido", true) -> getString(R.string.mensagem5)
+                else -> getString(R.string.mensagem6) +
                         "\n" +
-                        "Ao ser analisado. Enviaremos uma mensagem para o email informado."
+                        getString(R.string.mensagem7)
             }
             addMessage(response, isBot = true)
         }

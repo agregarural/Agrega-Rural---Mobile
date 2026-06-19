@@ -48,7 +48,7 @@ class MinhaCooperativa : Fragment() {
         if (uid == null) {
             Toast.makeText(
                 requireContext(),
-                "Usuário não logado",
+                getString(R.string.usuario_nao_logado),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -65,7 +65,7 @@ class MinhaCooperativa : Fragment() {
                 if (coopUid.isNullOrBlank()) {
                     Toast.makeText(
                         requireContext(),
-                        "Cooperativa não encontrada para este usuário",
+                        getString(R.string.cooperativa_nao_encontrada_para_este_usuario),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@addOnSuccessListener
@@ -79,7 +79,7 @@ class MinhaCooperativa : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao buscar cooperativa do usuário",
+                    getString(R.string.erro_ao_buscar_cooperativa_do_usuario),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -127,7 +127,7 @@ class MinhaCooperativa : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao carregar dados da cooperativa",
+                    getString(R.string.erro_ao_carregar_dados_da_cooperativa),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -164,7 +164,7 @@ class MinhaCooperativa : Fragment() {
 
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao contar cooperados",
+                    getString(R.string.erro_ao_contar_cooperados),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -183,8 +183,8 @@ class MinhaCooperativa : Fragment() {
 
         return try {
             val formatos = listOf(
-                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()),
-                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                SimpleDateFormat(getString(R.string.yyyy_mm_dd), Locale.getDefault()),
+                SimpleDateFormat(getString(R.string.dd_mm_yyyy), Locale.getDefault())
             )
 
             var calendarioFundacao: Calendar? = null

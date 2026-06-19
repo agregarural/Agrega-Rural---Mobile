@@ -12,6 +12,7 @@ import com.mobile.agregarural.databinding.FragmentTelaCadastro4Binding
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.mobile.agregarural.R
 import com.mobile.agregarural.ui.common.MainActivity
 
 class TelaCadastro4Fragment : Fragment() {
@@ -53,17 +54,20 @@ class TelaCadastro4Fragment : Fragment() {
         val aceitouTermos = binding.termos.isChecked
 
         if (senha.isEmpty() || repitaSenha.isEmpty()) {
-            Toast.makeText(requireContext(), "Preencha os campos de senha!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.preencha_os_campos_de_senha), Toast.LENGTH_SHORT).show()
             return
         }
 
         if (senha != repitaSenha) {
-            Toast.makeText(requireContext(), "As senhas não coincidem!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.as_senhas_nao_coincidem), Toast.LENGTH_SHORT).show()
             return
         }
 
         if (!aceitouTermos) {
-            Toast.makeText(requireContext(), "Você precisa aceitar os termos!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.voce_precisa_aceitar_os_termos), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -84,23 +88,24 @@ class TelaCadastro4Fragment : Fragment() {
                         "tipoUsuario" to cadastroViewModel.tipoUsuario
                     )
 
-                    //Salvao no Realtime Database sob o nó "Usuarios"(processo de diferenciação do Usuário comum com o ADM
                     if (userId != null) {
                         database.reference.child("Usuarios").child(userId).setValue(userMap)
                             .addOnSuccessListener {
-                                Toast.makeText(requireContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(),
+                                    getString(R.string.cadastro_realizado_com_sucesso), Toast.LENGTH_SHORT).show()
 
-                                // Direciona para a tela principal (exemplo)
                                 val intent = Intent(requireContext(), MainActivity::class.java)
                                 startActivity(intent)
                                 requireActivity().finish()
                             }
                             .addOnFailureListener {
-                                Toast.makeText(requireContext(), "Erro ao salvar dados adicionais.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(),
+                                    getString(R.string.erro_ao_salvar_dados_adicionais), Toast.LENGTH_SHORT).show()
                             }
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Erro ao cadastrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        getString(R.string.erro_ao_cadastrar, task.exception?.message), Toast.LENGTH_SHORT).show()
                 }
             }
     }

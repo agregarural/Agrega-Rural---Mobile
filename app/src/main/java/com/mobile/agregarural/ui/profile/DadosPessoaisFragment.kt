@@ -143,22 +143,17 @@ class DadosPessoaisFragment : Fragment() {
             abrirSeletorDeFoto()
         }
 
-
-
         setupBottomNavigation()
     }
 
     private fun abrirSeletorDeFoto() {
-        Toast.makeText(requireContext(), "Alterar foto de perfil", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(),
+            getString(R.string.alterar_foto_de_perfil), Toast.LENGTH_SHORT).show()
     }
 
     private fun setupBottomNavigation() {
 
-
-
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

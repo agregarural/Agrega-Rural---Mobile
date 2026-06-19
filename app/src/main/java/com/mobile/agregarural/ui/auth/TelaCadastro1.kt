@@ -47,14 +47,15 @@ class TelaCadastro1Fragment : Fragment() {
                 cadastroViewModel.nome = nome
                 cadastroViewModel.email = email
 
-                //Comentário temporário somente para testar a validação dos dados
                 findNavController().navigate(R.id.action_telaCadastro1_to_telaCadastro2)
 
             }else{
-                Toast.makeText(requireContext(), "Preencha seu email!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.preencha_seu_email), Toast.LENGTH_SHORT).show()
             }
         }else{
-            Toast.makeText(requireContext(), "Preencha seu nome!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.preencha_seu_nome), Toast.LENGTH_SHORT).show()
         }
     }
 

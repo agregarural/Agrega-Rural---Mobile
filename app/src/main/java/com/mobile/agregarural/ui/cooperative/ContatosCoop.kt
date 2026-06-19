@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
+import com.mobile.agregarural.R
 import com.mobile.agregarural.databinding.FragmentContatosCoopBinding
 
 class ContatosCoop : Fragment() {
@@ -32,10 +33,10 @@ class ContatosCoop : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.txtTelefoneCoop.text = "Carregando..."
-        binding.txtEmailCoop.text = "Carregando..."
-        binding.txtEndereco1Coop.text = "Carregando..."
-        binding.txtEndereco2Coop.text = "Carregando..."
+        binding.txtTelefoneCoop.text = getString(R.string.carregando)
+        binding.txtEmailCoop.text = getString(R.string.carregando)
+        binding.txtEndereco1Coop.text = getString(R.string.carregando)
+        binding.txtEndereco2Coop.text = getString(R.string.carregando)
 
         carregarCooperativaDoUsuario()
         setupNavegacao()
@@ -47,7 +48,7 @@ class ContatosCoop : Fragment() {
         if (uidUsuario == null) {
             Toast.makeText(
                 requireContext(),
-                "Usuário não autenticado.",
+                getString(R.string.usuario_nao_autenticado),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -64,7 +65,7 @@ class ContatosCoop : Fragment() {
                 if (coopUid.isNullOrBlank()) {
                     Toast.makeText(
                         requireContext(),
-                        "Usuário não vinculado a uma cooperativa.",
+                        getString(R.string.usuario_nao_vinculado_a_uma_cooperativa),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@addOnSuccessListener
@@ -75,7 +76,7 @@ class ContatosCoop : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao buscar coopUid do usuário.",
+                    getString(R.string.erro_ao_buscar_coopuid_do_usuario),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -90,7 +91,7 @@ class ContatosCoop : Fragment() {
                 if (!snapshot.exists()) {
                     Toast.makeText(
                         requireContext(),
-                        "Cooperativa não encontrada.",
+                        getString(R.string.cooperativa_nao_encontrada),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@addOnSuccessListener
@@ -103,7 +104,7 @@ class ContatosCoop : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao carregar dados da cooperativa.",
+                    getString(R.string.erro_ao_carregar_dados_da_cooperativa),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -111,10 +112,10 @@ class ContatosCoop : Fragment() {
 
     private fun carregarContato(contatoSnapshot: DataSnapshot) {
         val telefone = contatoSnapshot.child("telefone").getValue(String::class.java)
-            ?: "Não informado"
+            ?: getString(R.string.nao_informado)
 
         val email = contatoSnapshot.child("email").getValue(String::class.java)
-            ?: "Não informado"
+            ?: getString(R.string.nao_informado)
 
         binding.txtTelefoneCoop.text = telefone
         binding.txtEmailCoop.text = email
@@ -165,7 +166,7 @@ class ContatosCoop : Fragment() {
         }
 
         return if (partes.isEmpty()) {
-            "Endereço não informado"
+            getString(R.string.endereco_nao_informado)
         } else {
             partes.joinToString(", ")
         }

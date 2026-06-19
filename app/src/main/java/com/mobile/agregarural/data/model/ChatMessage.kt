@@ -28,7 +28,6 @@ class ChatAdapter(private val list: List<ChatMessage>) : RecyclerView.Adapter<Re
         }
     }
 
-    // ESTE MÉTODO É OBRIGATÓRIO: Conecta o dado ao layout
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = list[position]
         if (holder is BotViewHolder) {
@@ -38,10 +37,8 @@ class ChatAdapter(private val list: List<ChatMessage>) : RecyclerView.Adapter<Re
         }
     }
 
-    // ESTE MÉTODO É OBRIGATÓRIO: Diz quantos itens existem
     override fun getItemCount(): Int = list.size
 
-    // 2. Defina os ViewHolders (podem ser inner classes ou classes separadas)
     class BotViewHolder(val binding: ItemChatBotBinding) : RecyclerView.ViewHolder(binding.root)
     class UserViewHolder(val binding: ItemChatUserBinding) : RecyclerView.ViewHolder(binding.root)
 }

@@ -7,9 +7,9 @@ import kotlinx.parcelize.Parcelize
 data class Produto(
     val nome: String = "",
     val categoria: String = "",
-    val preco: Double = 0.0, // preço normal
-    val precoCooperado: Double = 0.0, // preço com desconto
-    val descontoCooperado: Double = 0.0, // porcentagem
+    val preco: Double = 0.0,
+    val precoCooperado: Double = 0.0,
+    val descontoCooperado: Double = 0.0,
     val custo: Double = 0.0,
     val estoque: Int = 0,
     val descricao: String = "",

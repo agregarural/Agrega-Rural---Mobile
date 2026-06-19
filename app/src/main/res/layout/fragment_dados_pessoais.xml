@@ -29,13 +29,13 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             app:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meus Dados"
+            android:text="@string/meus_dados"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -57,7 +57,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dados pessoais"
+                android:text="@string/dados_pessoais"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#111111"
@@ -93,7 +93,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alterar foto de perfil"
+                        android:text="@string/alterar_foto_de_perfil"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true"
@@ -107,7 +107,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         app:tint="#888888"
-                        android:contentDescription="Navegar" />
+                        android:contentDescription="@string/navegar" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -134,7 +134,7 @@
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true"
-                        android:text="Nome: " />
+                        android:text="@string/nome1" />
 
                     <TextView
                         android:id="@+id/tvNome"
@@ -170,7 +170,7 @@
                         android:id="@+id/textocpf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CPF: "
+                        android:text="@string/cpf1"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true" />
@@ -208,7 +208,7 @@
                         android:id="@+id/textocoop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cooperativa: "
+                        android:text="@string/cooperativa1"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true" />
@@ -248,7 +248,7 @@
                         android:id="@+id/textomembro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Codigo de Membro: "
+                        android:text="@string/codigo_de_membro"
                         android:textSize="14sp"
                         android:textColor="#333333"
                         android:layout_centerVertical="true" />

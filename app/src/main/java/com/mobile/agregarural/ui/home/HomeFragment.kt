@@ -39,10 +39,8 @@ class HomeFragment : Fragment() {
 
     private val listaCategorias = mutableListOf<Categoria>()
 
-    // Lista que aparece na tela
     private val listaProdutos = mutableListOf<Produto>()
 
-    // Lista completa, usada para fazer a busca
     private val listaProdutosCompleta = mutableListOf<Produto>()
 
     private val listaBanners = mutableListOf<Banner>()
@@ -102,7 +100,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun configurarBuscador() {
-        binding.searchBar.queryHint = "Buscar produtos..."
+        binding.searchBar.queryHint = getString(R.string.buscar_produtos)
 
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -165,11 +163,11 @@ class HomeFragment : Fragment() {
                     carregarCategoriasFirebase(idCooperativa)
                     carregarProdutosFirebase(idCooperativa)
                 } else {
-                    println("Usuário sem coopUid")
+                    println(getString(R.string.usuario_sem_coopuid))
                 }
             }
             .addOnFailureListener {
-                println("Erro ao buscar coopUid")
+                println(getString(R.string.erro_ao_buscar_coopuid))
             }
     }
 

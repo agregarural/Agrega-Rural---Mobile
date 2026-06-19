@@ -35,7 +35,7 @@
             android:id="@+id/textItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Categoria"
+            android:text="@string/categoria1"
             android:textAlignment="center"/>
 
     </LinearLayout>

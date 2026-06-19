@@ -78,7 +78,7 @@ class TelaPagamentoEndereco : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao carregar endereços",
+                    getString(R.string.erro_ao_carregar_enderecos),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -99,7 +99,7 @@ class TelaPagamentoEndereco : Fragment() {
             if (enderecoSelecionado == null) {
                 Toast.makeText(
                     requireContext(),
-                    "Selecione um endereço",
+                    getString(R.string.selecione_um_endereco),
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
@@ -115,7 +115,7 @@ class TelaPagamentoEndereco : Fragment() {
         if (usuarioAtual == null) {
             Toast.makeText(
                 requireContext(),
-                "Usuário não logado",
+                getString(R.string.usuario_nao_logado),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -126,7 +126,7 @@ class TelaPagamentoEndereco : Fragment() {
         if (itensSelecionados.isEmpty()) {
             Toast.makeText(
                 requireContext(),
-                "Nenhum item selecionado para o pedido",
+                getString(R.string.nenhum_item_selecionado_para_o_pedido),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -145,7 +145,7 @@ class TelaPagamentoEndereco : Fragment() {
                 if (coopUid.isBlank()) {
                     Toast.makeText(
                         requireContext(),
-                        "Cooperativa do usuário não encontrada",
+                        getString(R.string.cooperativa_do_usuario_nao_encontrada),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@addOnSuccessListener
@@ -161,7 +161,7 @@ class TelaPagamentoEndereco : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao buscar cooperativa do usuário",
+                    getString(R.string.erro_ao_buscar_cooperativa_do_usuario),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -181,7 +181,7 @@ class TelaPagamentoEndereco : Fragment() {
         if (pedidoId == null) {
             Toast.makeText(
                 requireContext(),
-                "Erro ao gerar pedido",
+                getString(R.string.erro_ao_gerar_pedido),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -268,7 +268,7 @@ class TelaPagamentoEndereco : Fragment() {
 
                 Toast.makeText(
                     requireContext(),
-                    "Pedido criado. Aguardando pagamento.",
+                    getString(R.string.pedido_criado_aguardando_pagamento),
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -279,7 +279,7 @@ class TelaPagamentoEndereco : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao criar pedido",
+                    getString(R.string.erro_ao_criar_pedido),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -291,7 +291,7 @@ class TelaPagamentoEndereco : Fragment() {
         if (usuarioAtual == null) {
             Toast.makeText(
                 requireContext(),
-                "Usuário não logado",
+                getString(R.string.usuario_nao_logado),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -307,7 +307,7 @@ class TelaPagamentoEndereco : Fragment() {
         if (nome.isBlank() || cep.isBlank() || numero.isBlank() || logradouro.isBlank()) {
             Toast.makeText(
                 requireContext(),
-                "Preencha nome, CEP, número e logradouro",
+                getString(R.string.preencha_nome_cep_numero_e_logradouro),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -325,7 +325,7 @@ class TelaPagamentoEndereco : Fragment() {
         if (enderecoId == null) {
             Toast.makeText(
                 requireContext(),
-                "Erro ao gerar ID do endereço",
+                getString(R.string.erro_ao_gerar_id_do_endereco),
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -350,7 +350,7 @@ class TelaPagamentoEndereco : Fragment() {
             .addOnSuccessListener {
                 Toast.makeText(
                     requireContext(),
-                    "Endereço cadastrado com sucesso",
+                    getString(R.string.endereco_cadastrado_com_sucesso),
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -360,7 +360,7 @@ class TelaPagamentoEndereco : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao cadastrar endereço",
+                    getString(R.string.erro_ao_cadastrar_endereco),
                     Toast.LENGTH_SHORT
                 ).show()
             }

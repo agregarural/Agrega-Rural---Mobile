@@ -128,7 +128,7 @@ class TelaProduto : Fragment() {
 
                 Toast.makeText(
                     requireContext(),
-                    "Produto adicionado ao carrinho",
+                    getString(R.string.produto_adicionado_ao_carrinho),
                     Toast.LENGTH_SHORT
                 ).show()
 

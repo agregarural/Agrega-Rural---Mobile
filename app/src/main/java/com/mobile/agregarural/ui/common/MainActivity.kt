@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
 
-
-
-        // 4. Manter o ícone da aba pai selecionado em telas secundárias
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
             if (destinoDeveMostrarMenu(destination.id)) {

@@ -23,7 +23,7 @@
             android:id="@+id/tvNomeEndereco"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Casa"
+            android:text="@string/casa"
             android:textStyle="bold"
             android:textColor="#111111"
             android:textSize="14sp" />
@@ -33,7 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Rua exemplo, 123"
+            android:text="@string/rua_exemplo"
             android:textColor="#333333"
             android:textSize="14sp" />
 
@@ -44,7 +44,7 @@
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_editar_foto"
             android:padding="6dp"
-            android:contentDescription="Editar endereço" />
+            android:contentDescription="@string/editar_endereco" />
 
     </LinearLayout>
 

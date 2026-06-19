@@ -55,7 +55,7 @@ class CarrinhoFragment : Fragment() {
             if (selecionados.isEmpty()) {
                 Toast.makeText(
                     requireContext(),
-                    "Selecione pelo menos um item",
+                    getString(R.string.selecione_pelo_menos_um_item),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {

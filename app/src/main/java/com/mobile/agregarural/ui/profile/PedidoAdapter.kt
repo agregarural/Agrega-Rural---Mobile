@@ -130,16 +130,6 @@ class PedidoAdapter(
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val pedidoId = pedido.pedidoId
 
-        /*
-         IMPORTANTE:
-         Aqui NÃO apagamos:
-         /Cooperativas/{coopUid}/Vendas/{pedidoId}
-         /Vendas/{pedidoId}
-
-         Assim o usuário pode apagar o pedido da tela dele,
-         mas a venda continua salva para o financeiro.
-        */
-
         val updates = hashMapOf<String, Any?>(
             "/Pedidos/$pedidoId" to null,
             "/Usuarios/$uid/Pedidos/$pedidoId" to null

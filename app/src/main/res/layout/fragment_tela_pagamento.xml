@@ -46,7 +46,7 @@
                     android:id="@+id/btnVoltar"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:contentDescription="Voltar"
+                    android:contentDescription="@string/voltar"
                     android:src="@drawable/ic_arrow_back"
                     app:tint="#FFFFFF" />
 
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="PAGAMENTO"
+                android:text="@string/pagamento"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Faça o pagamento até 1 dia útil."
+                android:text="@string/faca_o_pagamento_ate_1_dia_util"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Escaneie o QR Code acima"
+                    android:text="@string/escaneie_o_qr_code_acima"
                     android:textAlignment="center"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Ou copie o código pix:" />
+                    android:text="@string/ou_copie_o_codigo_pix" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/icon_copiar"
                         android:backgroundTint="@color/green"
-                        android:contentDescription="Copiar código Pix" />
+                        android:contentDescription="@string/copiar_codigo_pix" />
 
                 </LinearLayout>
 
@@ -177,7 +177,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="30dp"
                     android:backgroundTint="@color/green"
-                    android:text="Finalizar pedido" />
+                    android:text="@string/finalizar_pedido" />
 
             </LinearLayout>
 

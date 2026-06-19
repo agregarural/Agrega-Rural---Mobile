@@ -53,23 +53,23 @@ class FragmentLoginFragment : Fragment() {
         val senha = binding.cxSenha.text.toString().trim()
 
         if (email.isEmpty()) {
-            Toast.makeText(requireContext(), "Insira o seu e-mail!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.insira_o_seu_email), Toast.LENGTH_SHORT).show()
             return
         }
         if (senha.isEmpty()) {
-            Toast.makeText(requireContext(), "Insira a sua senha!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.insira_a_sua_senha), Toast.LENGTH_SHORT).show()
             return
         }
 
-        // 1. Autentica o usuário com Email e Senha no Firebase Auth
         auth.signInWithEmailAndPassword(email, senha)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    // Login bem-sucedido no Auth, agora buscamos o papel (role) no banco de dados
                     verificarTipoUsuario()
                 } else {
-                    // Trata falhas comuns (senha errada, usuário não existe, etc.)
-                    Toast.makeText(requireContext(), "Erro ao entrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        getString(R.string.erro_ao_entrar, task.exception?.message), Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -77,27 +77,24 @@ class FragmentLoginFragment : Fragment() {
     private fun verificarTipoUsuario() {
         val uid = auth.currentUser?.uid ?: return
 
-        // 2. Busca o registro do usuário dentro do nó "Usuarios" usando o UID dele
         val userRef = database.reference.child("Usuarios").child(uid)
 
         userRef.child("tipoUsuario").get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
                 val tipoUsuario = snapshot.value as? String
 
-                // 3. Condicional para direcionar o fluxo conforme o privilégio
                 if (tipoUsuario == "adm") {
 
                     findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)
                 } else {
-                    // Navega para a Home padrão do Usuário Comum
                     findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)
                 }
             } else {
-                // Caso os dados adicionais não existam no banco, assume o fluxo padrão ou alerta o erro
                 findNavController().navigate(R.id.action_telaLoginFragment_to_homeFragment)
             }
         }.addOnFailureListener {
-            Toast.makeText(requireContext(), "Erro ao carregar dados do perfil.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.erro_ao_carregar_dados_do_perfil), Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -36,7 +36,7 @@ class TelaFinalizaoPedido : Fragment() {
         var precoFinal = 0.0
 
         if (listaItens.isEmpty()) {
-            resumo.append("Nenhum item selecionado.")
+            resumo.append(getString(R.string.nenhum_item_selecionado))
         } else {
             listaItens.forEach { item ->
 

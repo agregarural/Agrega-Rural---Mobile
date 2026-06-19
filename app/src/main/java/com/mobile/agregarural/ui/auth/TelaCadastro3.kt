@@ -69,14 +69,14 @@ class TelaCadastro3Fragment : Fragment() {
     }
 
     private fun carregarCooperativas() {
-        database.child("Cooperativas")
+        database.child(getString(com.mobile.agregarural.R.string.cooperativas))
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     cooperativasList.clear()
                     cooperativasNomes.clear()
 
-                    cooperativasList.add(Cooperativa("", "Selecione uma cooperativa"))
-                    cooperativasNomes.add("Selecione uma cooperativa")
+                    cooperativasList.add(Cooperativa("", getString(com.mobile.agregarural.R.string.selecione_uma_cooperativa)))
+                    cooperativasNomes.add(getString(com.mobile.agregarural.R.string.selecione_uma_cooperativa))
 
                     for (child in snapshot.children) {
                         val uid = child.key ?: continue
@@ -124,7 +124,7 @@ class TelaCadastro3Fragment : Fragment() {
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(
                         requireContext(),
-                        "Erro ao carregar cooperativas.",
+                        getString(com.mobile.agregarural.R.string.erro_ao_carregar),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -139,7 +139,7 @@ class TelaCadastro3Fragment : Fragment() {
             cadastroViewModel.coopUid.isBlank() -> {
                 Toast.makeText(
                     requireContext(),
-                    "Selecione uma cooperativa válida.",
+                    getString(com.mobile.agregarural.R.string.selecione_uma_cooperativa_valida),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -147,7 +147,7 @@ class TelaCadastro3Fragment : Fragment() {
             isAssociado && matricula.isBlank() -> {
                 Toast.makeText(
                     requireContext(),
-                    "Informe sua matrícula.",
+                    getString(com.mobile.agregarural.R.string.informe_sua_matricula),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -192,7 +192,7 @@ class TelaCadastro3Fragment : Fragment() {
                     if (matriculaJaExiste) {
                         Toast.makeText(
                             requireContext(),
-                            "Essa matrícula já está cadastrada nessa cooperativa.",
+                            getString(com.mobile.agregarural.R.string.matricula_ja_existente),
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
@@ -208,7 +208,7 @@ class TelaCadastro3Fragment : Fragment() {
 
                     Toast.makeText(
                         requireContext(),
-                        "Erro ao verificar matrícula.",
+                        getString(com.mobile.agregarural.R.string.erro_ao_verificar_matricula),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -34,8 +34,6 @@ class PerfilFragment : Fragment() {
 
     private val database = FirebaseDatabase.getInstance()
 
-    // Por enquanto, use um ID fixo para testar.
-    // Depois o ideal é trocar pelo ID real do usuário logado.
     private val usuarioId: String?
         get() = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -108,7 +106,7 @@ class PerfilFragment : Fragment() {
     }
 
     private fun enviarFotoPerfil(uri: Uri) {
-        Toast.makeText(requireContext(), "Enviando foto...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.enviando_foto), Toast.LENGTH_SHORT).show()
 
         lifecycleScope.launch {
             try {
@@ -122,7 +120,7 @@ class PerfilFragment : Fragment() {
                 e.printStackTrace()
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao enviar foto",
+                    getString(R.string.erro_ao_enviar_foto),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -131,7 +129,7 @@ class PerfilFragment : Fragment() {
 
     private fun enviarImagemParaImgBB(uri: Uri): String {
         val inputStream = requireContext().contentResolver.openInputStream(uri)
-            ?: throw Exception("Não foi possível abrir a imagem")
+            ?: throw Exception(getString(R.string.nao_foi_possivel_abrir_a_imagem))
 
         val bytes = inputStream.readBytes()
         inputStream.close()
@@ -153,18 +151,18 @@ class PerfilFragment : Fragment() {
         val response = client.newCall(request).execute()
 
         if (!response.isSuccessful) {
-            throw Exception("Erro na resposta do ImgBB")
+            throw Exception(getString(R.string.erro_na_resposta_do_imgbb))
         }
 
         val responseBody = response.body?.string()
-            ?: throw Exception("Resposta vazia do ImgBB")
+            ?: throw Exception(getString(R.string.resposta_vazia_do_imgbb))
 
         val json = JSONObject(responseBody)
 
         val sucesso = json.getBoolean("success")
 
         if (!sucesso) {
-            throw Exception("ImgBB não aceitou a imagem")
+            throw Exception(getString(R.string.imgbb_nao_aceitou_a_imagem))
         }
 
         return json
@@ -176,7 +174,7 @@ class PerfilFragment : Fragment() {
         val uid = usuarioId
 
         if (uid == null) {
-            Toast.makeText(requireContext(), "Usuário não está logado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.usuario_nao_logado), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -191,7 +189,8 @@ class PerfilFragment : Fragment() {
                     .placeholder(R.drawable.ic_avatar_placeholder)
                     .into(binding.imgPerfil)
 
-                Toast.makeText(requireContext(), "Foto atualizada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.foto_atualizada), Toast.LENGTH_SHORT).show()
             }
     }
 
