@@ -45,21 +45,6 @@ class MeusPedidosFragment : Fragment() {
     }
 
     private fun setupNavigation() {
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
-
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
-
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
 
         binding.imgPerfil.setOnClickListener {
             findNavController().navigate(R.id.perfilFragment)

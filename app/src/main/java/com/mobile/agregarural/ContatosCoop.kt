@@ -175,22 +175,6 @@ class ContatosCoop : Fragment() {
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
-
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
-
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
-
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
     }
 
     override fun onDestroyView() {

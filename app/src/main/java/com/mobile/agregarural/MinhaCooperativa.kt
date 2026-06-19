@@ -228,26 +228,6 @@ class MinhaCooperativa : Fragment() {
     }
 
     private fun configurarCliques() {
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
-
-        binding.cardcontato.setOnClickListener {
-            findNavController().navigate(R.id.TelaContatosCoopFragment)
-        }
-
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
-
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
-
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
