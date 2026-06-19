@@ -199,7 +199,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun configurarRecyclerCategorias() {
-        adapterCategoria = CategoriaAdapter(listaCategorias)
+        adapterCategoria = CategoriaAdapter(listaCategorias) { categoria ->
+            abrirTelaCategoria(categoria)
+        }
 
         binding.rvCategorias.layoutManager =
             LinearLayoutManager(
@@ -209,6 +211,17 @@ class HomeFragment : Fragment() {
             )
 
         binding.rvCategorias.adapter = adapterCategoria
+    }
+
+    private fun abrirTelaCategoria(categoria: Categoria) {
+        val bundle = Bundle().apply {
+            putString("CATEGORIA", categoria.categoria)
+        }
+
+        findNavController().navigate(
+            R.id.categoriaProdutosFragment,
+            bundle
+        )
     }
 
     private fun configurarRecyclerProdutos() {

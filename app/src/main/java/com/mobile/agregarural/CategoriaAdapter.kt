@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class CategoriaAdapter(
-    private val list: List<Categoria>
+    private val list: List<Categoria>,
+    private val onClick: (Categoria) -> Unit
 ) : RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,6 +35,10 @@ class CategoriaAdapter(
             .placeholder(R.drawable.perfil)
             .error(R.drawable.perfil)
             .into(holder.imagem)
+
+        holder.itemView.setOnClickListener {
+            onClick(item)
+        }
     }
 
     override fun getItemCount(): Int {
