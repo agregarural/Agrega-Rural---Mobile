@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaCadastro4Fragment">
+    tools:context=".ui.auth.TelaCadastro4Fragment">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

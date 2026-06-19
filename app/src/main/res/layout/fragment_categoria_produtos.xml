@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBF3FB"
-    tools:context=".CategoriaProdutosFragment">
+    tools:context=".ui.cooperative.CategoriaProdutosFragment">
 
     <LinearLayout
         android:id="@+id/header"
