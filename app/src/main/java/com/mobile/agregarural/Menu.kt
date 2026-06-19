@@ -122,9 +122,14 @@ class MenuFragment : Fragment() {
     }
 
     private fun navigateToCategory(categoria: String) {
-        val bundle = Bundle()
-        bundle.putString("CATEGORIA", categoria)
-        findNavController().navigate(R.id.telaProdutoFragment, bundle)
+        val bundle = Bundle().apply {
+            putString("CATEGORIA", categoria)
+        }
+
+        findNavController().navigate(
+            R.id.categoriaProdutosFragment,
+            bundle
+        )
     }
 
     private fun showDesconectarDialog() {

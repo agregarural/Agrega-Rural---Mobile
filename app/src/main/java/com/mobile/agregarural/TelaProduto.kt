@@ -17,6 +17,10 @@ class TelaProduto : Fragment() {
     private var _binding: FragmentTelaProdutoBinding? = null
     private val binding get() = _binding!!
 
+    private var usuarioEhCooperado: Boolean = false
+    private var qntProduto = 1
+    private var produtoAtual: Produto? = null
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,21 +29,29 @@ class TelaProduto : Fragment() {
     ): View {
         _binding = FragmentTelaProdutoBinding.inflate(inflater, container, false)
 
-        val produto = arguments?.getParcelable("produto", Produto::class.java)
+        produtoAtual = arguments?.getParcelable("produto", Produto::class.java)
 
-        var qntProduto = 1
+        configurarProduto()
+        configurarUsuarioPreco()
+        configurarBotoes()
 
-        fun atualizarTotal() {
-            val precoUnitario = produto?.preco ?: 0.0
-            val total = precoUnitario * qntProduto
+        return binding.root
+    }
 
-            binding.quantidadeProduto.text = qntProduto.toString()
-            binding.valorTotalProduto.text = "Total: R$ %.2f".format(total)
+    private fun configurarUsuarioPreco() {
+        PrecoUsuarioManager.verificarUsuarioEhCooperado { ehCooperado ->
+            if (_binding == null) return@verificarUsuarioEhCooperado
+
+            usuarioEhCooperado = ehCooperado
+            atualizarValores()
         }
+    }
+
+    private fun configurarProduto() {
+        val produto = produtoAtual
 
         if (produto != null) {
             binding.txtNameProduto.text = produto.nome
-            binding.precoProduto.text = "R$ %.2f".format(produto.preco)
             binding.txtDescicao.text = produto.descricao
             binding.estoqueProduto.text = "Em estoque: ${produto.estoque}"
             binding.categoriaProduto.text = produto.categoria
@@ -49,13 +61,40 @@ class TelaProduto : Fragment() {
                 .into(binding.imgProduto)
         }
 
-        atualizarTotal()
+        atualizarValores()
+    }
 
+    private fun atualizarValores() {
+        val produto = produtoAtual ?: return
+
+        val precoFinal = PrecoUsuarioManager.precoFinal(produto, usuarioEhCooperado)
+        val total = precoFinal * qntProduto
+
+        binding.quantidadeProduto.text = qntProduto.toString()
+        binding.precoProduto.text = "R$ %.2f".format(precoFinal)
+        binding.valorTotalProduto.text = "Total: R$ %.2f".format(total)
+
+        if (usuarioEhCooperado && produto.descontoCooperado > 0.0) {
+            binding.txtPrecoNormalProduto.visibility = View.VISIBLE
+            binding.txtDescontoCooperadoProduto.visibility = View.VISIBLE
+
+            binding.txtPrecoNormalProduto.text = "Cliente normal: R$ %.2f".format(produto.preco)
+            binding.txtDescontoCooperadoProduto.text =
+                "Desconto cooperado: %.0f%%".format(produto.descontoCooperado)
+        } else {
+            binding.txtPrecoNormalProduto.visibility = View.GONE
+            binding.txtDescontoCooperadoProduto.visibility = View.GONE
+        }
+    }
+
+    private fun configurarBotoes() {
         binding.btnMais.setOnClickListener {
+            val produto = produtoAtual
+
             if (produto != null) {
                 if (qntProduto < produto.estoque) {
                     qntProduto++
-                    atualizarTotal()
+                    atualizarValores()
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -69,13 +108,19 @@ class TelaProduto : Fragment() {
         binding.btnMenos.setOnClickListener {
             if (qntProduto > 1) {
                 qntProduto--
-                atualizarTotal()
+                atualizarValores()
             }
         }
 
         binding.btnAdicionarCarrinho.setOnClickListener {
+            val produto = produtoAtual
+
             if (produto != null) {
-                CarrinhoManager.adicionarProduto(produto, qntProduto)
+                CarrinhoManager.adicionarProduto(
+                    produto = produto,
+                    quantidade = qntProduto,
+                    usuarioEhCooperado = usuarioEhCooperado
+                )
 
                 Toast.makeText(
                     requireContext(),
@@ -87,13 +132,15 @@ class TelaProduto : Fragment() {
             }
         }
 
-        binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
         binding.btnComprar.setOnClickListener {
+            val produto = produtoAtual
+
             if (produto != null) {
-                CarrinhoManager.comprarAgora(produto, qntProduto)
+                CarrinhoManager.comprarAgora(
+                    produto = produto,
+                    quantidade = qntProduto,
+                    usuarioEhCooperado = usuarioEhCooperado
+                )
 
                 findNavController().navigate(
                     R.id.action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment
@@ -101,21 +148,25 @@ class TelaProduto : Fragment() {
             }
         }
 
-        binding.btnAdicionarCarrinho.setOnClickListener {
-            if (produto != null) {
-                CarrinhoManager.adicionarProduto(produto, qntProduto)
-
-                Toast.makeText(
-                    requireContext(),
-                    "Produto adicionado ao carrinho",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                findNavController().navigate(R.id.carrinhoFragment)
-            }
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
         }
 
-        return binding.root
+        binding.btnEntrega.setOnClickListener {
+            findNavController().navigate(R.id.meusPedidosFragment)
+        }
+
+        binding.btnCarrinho.setOnClickListener {
+            findNavController().navigate(R.id.carrinhoFragment)
+        }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.btnmenu.setOnClickListener {
+            findNavController().navigate(R.id.menuFragment)
+        }
     }
 
     override fun onDestroyView() {

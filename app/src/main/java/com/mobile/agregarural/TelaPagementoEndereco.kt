@@ -108,7 +108,11 @@ class TelaPagamentoEndereco : Fragment() {
         val usuarioAtual = auth.currentUser
 
         if (usuarioAtual == null) {
-            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Usuário não logado",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -125,6 +129,45 @@ class TelaPagamentoEndereco : Fragment() {
 
         val uid = usuarioAtual.uid
 
+        database.child("Usuarios")
+            .child(uid)
+            .child("coopUid")
+            .get()
+            .addOnSuccessListener { coopSnapshot ->
+
+                val coopUid = coopSnapshot.getValue(String::class.java) ?: ""
+
+                if (coopUid.isBlank()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Cooperativa do usuário não encontrada",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@addOnSuccessListener
+                }
+
+                criarPedidoNoFirebase(
+                    uid = uid,
+                    coopUid = coopUid,
+                    enderecoSelecionado = enderecoSelecionado,
+                    itensSelecionados = itensSelecionados
+                )
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao buscar cooperativa do usuário",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun criarPedidoNoFirebase(
+        uid: String,
+        coopUid: String,
+        enderecoSelecionado: Endereco,
+        itensSelecionados: List<ItemCarrinhos>
+    ) {
         val pedidoId = database
             .child("Pedidos")
             .push()
@@ -143,24 +186,38 @@ class TelaPagamentoEndereco : Fragment() {
         val doisDiasMillis = 2 * 24 * 60 * 60 * 1000L
         val dataEntregaMillis = dataPedidoMillis + doisDiasMillis
 
-        val formatoData = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-
-        var valorTotal = 0.0
+        val formatoData = SimpleDateFormat(
+            "dd/MM/yyyy HH:mm",
+            Locale.getDefault()
+        )
 
         val itensPedido = itensSelecionados.map { item ->
             val produto = item.produto
-            val subtotal = produto.preco * item.quantidade
-            valorTotal += subtotal
+            val precoUnitarioUsado = item.precoUnitario
+            val subtotal = precoUnitarioUsado * item.quantidade
 
             mapOf(
                 "nome" to produto.nome,
-                "precoUnitario" to produto.preco,
-                "quantidade" to item.quantidade,
-                "subtotal" to subtotal,
-                "imagem" to produto.imagem,
                 "categoria" to produto.categoria,
-                "descricao" to produto.descricao
+                "descricao" to produto.descricao,
+                "imagem" to produto.imagem,
+
+                "quantidade" to item.quantidade,
+                "precoUnitario" to precoUnitarioUsado,
+                "subtotal" to subtotal,
+
+                "precoNormal" to produto.preco,
+                "precoCooperado" to produto.precoCooperado,
+                "descontoCooperado" to produto.descontoCooperado,
+                "usuarioCooperado" to item.usuarioCooperado,
+
+                "custo" to produto.custo,
+                "estoqueNoMomento" to produto.estoque
             )
+        }
+
+        val valorTotal = itensSelecionados.sumOf { item ->
+            item.precoUnitario * item.quantidade
         }
 
         val enderecoPedido = mapOf(
@@ -176,13 +233,19 @@ class TelaPagamentoEndereco : Fragment() {
         val pedido = hashMapOf<String, Any>(
             "pedidoId" to pedidoId,
             "usuarioId" to uid,
+            "coopUid" to coopUid,
+
             "status" to "pendente",
             "pago" to false,
+            "vendaRegistrada" to false,
+
             "valorTotal" to valorTotal,
+
             "dataPedidoMillis" to dataPedidoMillis,
             "dataEntregaMillis" to dataEntregaMillis,
             "dataPedido" to formatoData.format(Date(dataPedidoMillis)),
             "dataEntrega" to formatoData.format(Date(dataEntregaMillis)),
+
             "endereco" to enderecoPedido,
             "itens" to itensPedido
         )
@@ -221,7 +284,11 @@ class TelaPagamentoEndereco : Fragment() {
         val usuarioAtual = auth.currentUser
 
         if (usuarioAtual == null) {
-            Toast.makeText(requireContext(), "Usuário não logado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Usuário não logado",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 

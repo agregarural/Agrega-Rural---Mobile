@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,7 +15,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.mobile.agregarural.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -27,8 +31,16 @@ class HomeFragment : Fragment() {
     private lateinit var adapterBanner: BannerAdapter
 
     private val listaCategorias = mutableListOf<Categoria>()
+
+    // Lista que aparece na tela
     private val listaProdutos = mutableListOf<Produto>()
+
+    // Lista completa, usada para fazer a busca
+    private val listaProdutosCompleta = mutableListOf<Produto>()
+
     private val listaBanners = mutableListOf<Banner>()
+
+    private var usuarioEhCooperado = false
 
     private val handlerBanner = Handler(Looper.getMainLooper())
 
@@ -65,10 +77,60 @@ class HomeFragment : Fragment() {
 
         configurarNavegacao()
         configurarRecyclerCategorias()
-        configurarRecyclerProdutos()
         configurarCarouselBanner()
+        configurarBuscador()
 
-        buscarCooperativaDoUsuario()
+        verificarPrecoDoUsuarioECarregarProdutos()
+    }
+
+    private fun verificarPrecoDoUsuarioECarregarProdutos() {
+        PrecoUsuarioManager.verificarUsuarioEhCooperado { ehCooperado ->
+            if (_binding == null) return@verificarUsuarioEhCooperado
+
+            usuarioEhCooperado = ehCooperado
+
+            configurarRecyclerProdutos()
+            buscarCooperativaDoUsuario()
+        }
+    }
+
+    private fun configurarBuscador() {
+        binding.searchBar.queryHint = "Buscar produtos..."
+
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                filtrarProdutos(query.orEmpty())
+                binding.searchBar.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filtrarProdutos(newText.orEmpty())
+                return true
+            }
+        })
+    }
+
+    private fun filtrarProdutos(textoBusca: String) {
+        val busca = textoBusca.trim().lowercase()
+
+        listaProdutos.clear()
+
+        if (busca.isEmpty()) {
+            listaProdutos.addAll(listaProdutosCompleta)
+        } else {
+            val produtosFiltrados = listaProdutosCompleta.filter { produto ->
+                produto.nome.lowercase().contains(busca) ||
+                        produto.categoria.lowercase().contains(busca) ||
+                        produto.descricao.lowercase().contains(busca)
+            }
+
+            listaProdutos.addAll(produtosFiltrados)
+        }
+
+        if (::adapterProdutos.isInitialized) {
+            adapterProdutos.notifyDataSetChanged()
+        }
     }
 
     private fun configurarCarouselBanner() {
@@ -137,16 +199,37 @@ class HomeFragment : Fragment() {
     }
 
     private fun configurarRecyclerCategorias() {
-        adapterCategoria = CategoriaAdapter(listaCategorias)
+        adapterCategoria = CategoriaAdapter(listaCategorias) { categoria ->
+            abrirTelaCategoria(categoria)
+        }
 
         binding.rvCategorias.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
 
         binding.rvCategorias.adapter = adapterCategoria
     }
 
+    private fun abrirTelaCategoria(categoria: Categoria) {
+        val bundle = Bundle().apply {
+            putString("CATEGORIA", categoria.categoria)
+        }
+
+        findNavController().navigate(
+            R.id.categoriaProdutosFragment,
+            bundle
+        )
+    }
+
     private fun configurarRecyclerProdutos() {
-        adapterProdutos = ProdutoItemAdapter(listaProdutos) { produtoClicado ->
+        adapterProdutos = ProdutoItemAdapter(
+            list = listaProdutos,
+            usuarioEhCooperado = usuarioEhCooperado
+        ) { produtoClicado ->
+
             val bundle = Bundle().apply {
                 putParcelable("produto", produtoClicado)
             }
@@ -196,17 +279,25 @@ class HomeFragment : Fragment() {
 
         refProdutos.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                listaProdutosCompleta.clear()
                 listaProdutos.clear()
 
                 for (produtoSnapshot in snapshot.children) {
                     val produto = produtoSnapshot.getValue(Produto::class.java)
 
                     if (produto != null) {
-                        listaProdutos.add(produto)
+                        listaProdutosCompleta.add(produto)
                     }
                 }
 
-                adapterProdutos.notifyDataSetChanged()
+                val textoAtualBusca = binding.searchBar.query?.toString().orEmpty()
+
+                if (textoAtualBusca.isBlank()) {
+                    listaProdutos.addAll(listaProdutosCompleta)
+                    adapterProdutos.notifyDataSetChanged()
+                } else {
+                    filtrarProdutos(textoAtualBusca)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

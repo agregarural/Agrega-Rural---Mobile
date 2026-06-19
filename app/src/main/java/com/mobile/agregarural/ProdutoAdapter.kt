@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProdutoAdapter(private val lista: List<Produto>) :
-    RecyclerView.Adapter<ProdutoAdapter.ViewHolder>() {
+class ProdutoAdapter(
+    private val lista: List<Produto>,
+    private val usuarioEhCooperado: Boolean = false
+) : RecyclerView.Adapter<ProdutoAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nome: TextView = view.findViewById(R.id.txtNomeProduto)
@@ -17,13 +19,16 @@ class ProdutoAdapter(private val lista: List<Produto>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_produto_horizontal, parent, false)
+
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val p = lista[position]
+        val precoFinal = PrecoUsuarioManager.precoFinal(p, usuarioEhCooperado)
+
         holder.nome.text = p.nome
-        holder.preco.text = "R$ %.2f".format(p.preco)
+        holder.preco.text = "R$ %.2f".format(precoFinal)
     }
 
     override fun getItemCount() = lista.size
