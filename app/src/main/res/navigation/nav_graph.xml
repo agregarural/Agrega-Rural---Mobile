@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/telaInicialFragment"
-        android:name="com.mobile.agregarural.TelaInicial"
+        android:name="com.mobile.agregarural.ui.common.TelaInicial"
         tools:layout="@layout/fragment_inicial">
         <action
             android:id="@+id/action_inicio_to_login"
@@ -19,16 +19,16 @@
 
     <fragment
         android:id="@+id/TelaContatosCoopFragment"
-        android:name="com.mobile.agregarural.ContatosCoop" />
+        android:name="com.mobile.agregarural.ui.cooperative.ContatosCoop" />
 
     <fragment
         android:id="@+id/TelaSacFragment"
-        android:name="com.mobile.agregarural.ChatFragment" />
+        android:name="com.mobile.agregarural.ui.chat.ChatFragment" />
 
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mobile.agregarural.HomeFragment"
+        android:name="com.mobile.agregarural.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/perfilFragment"
-        android:name="com.mobile.agregarural.PerfilFragment"
+        android:name="com.mobile.agregarural.ui.profile.PerfilFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_perfil">
 
@@ -70,32 +70,32 @@
 
     <fragment
         android:id="@+id/meusPedidosFragment"
-        android:name="com.mobile.agregarural.MeusPedidosFragment"
+        android:name="com.mobile.agregarural.ui.profile.MeusPedidosFragment"
         android:label="Meus Pedidos"
         tools:layout="@layout/fragment_meus_pedidos" />
 
     <fragment
         android:id="@+id/dadosPessoaisFragment"
-        android:name="com.mobile.agregarural.DadosPessoaisFragment"
+        android:name="com.mobile.agregarural.ui.profile.DadosPessoaisFragment"
         android:label="Dados pessoais"
         tools:layout="@layout/fragment_dados_pessoais" />
 
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.mobile.agregarural.MenuFragment"
+        android:name="com.mobile.agregarural.ui.home.MenuFragment"
         android:label="Menu"
         tools:layout="@layout/fragment_menu" />
 
     <fragment
         android:id="@+id/meusEnderecosFragment"
-        android:name="com.mobile.agregarural.MeusEnderecosFragment"
+        android:name="com.mobile.agregarural.ui.profile.MeusEnderecosFragment"
         android:label="Meus endereços"
         tools:layout="@layout/fragment_meus_enderecos" />
 
     <fragment
         android:id="@+id/telaLoginFragment"
-        android:name="com.mobile.agregarural.FragmentLoginFragment">
+        android:name="com.mobile.agregarural.ui.auth.FragmentLoginFragment">
         <action
             android:id="@+id/action_telaLoginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -103,17 +103,17 @@
 
     <fragment
         android:id="@+id/MinhaCooperativaFragment"
-        android:name="com.mobile.agregarural.MinhaCooperativa"
+        android:name="com.mobile.agregarural.ui.cooperative.MinhaCooperativa"
         />
 
 
     <fragment
         android:id="@+id/recuperarSenhaFragment"
-        android:name="com.mobile.agregarural.RecuperarSenhaFragment" />
+        android:name="com.mobile.agregarural.ui.auth.RecuperarSenhaFragment" />
 
     <fragment
         android:id="@+id/telaCadastro1Fragment"
-        android:name="com.mobile.agregarural.TelaCadastro1Fragment">
+        android:name="com.mobile.agregarural.ui.auth.TelaCadastro1Fragment">
         <action
             android:id="@+id/action_telaCadastro1_to_telaCadastro2"
             app:destination="@id/telaCadastro2Fragment" />
@@ -121,7 +121,7 @@
 
     <fragment
         android:id="@+id/telaCadastro2Fragment"
-        android:name="com.mobile.agregarural.TelaCadastro2Fragment">
+        android:name="com.mobile.agregarural.ui.auth.TelaCadastro2Fragment">
         <action
             android:id="@+id/action_telaCadastro2_to_telaCadastro3"
             app:destination="@id/telaCadastro3Fragment" />
@@ -129,7 +129,7 @@
 
     <fragment
         android:id="@+id/telaCadastro3Fragment"
-        android:name="com.mobile.agregarural.TelaCadastro3Fragment">
+        android:name="com.mobile.agregarural.ui.auth.TelaCadastro3Fragment">
         <action
             android:id="@+id/action_telaCadastro3_to_telaCadastro4"
             app:destination="@id/telaCadastro4Fragment" />
@@ -137,7 +137,7 @@
 
     <fragment
         android:id="@+id/telaProdutoFragment"
-        android:name="com.mobile.agregarural.TelaProduto"
+        android:name="com.mobile.agregarural.ui.product.TelaProduto"
         android:label="Produto">
         <action
             android:id="@+id/action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment"
@@ -149,11 +149,11 @@
 
     <fragment
         android:id="@+id/telaCadastro4Fragment"
-        android:name="com.mobile.agregarural.TelaCadastro4Fragment" />
+        android:name="com.mobile.agregarural.ui.auth.TelaCadastro4Fragment" />
 
     <fragment
         android:id="@+id/telaFinalizacaoPedidoFragment"
-        android:name="com.mobile.agregarural.TelaFinalizaoPedido"
+        android:name="com.mobile.agregarural.ui.cart.TelaFinalizaoPedido"
         android:label="Finalização do Pedido">
         <action
             android:id="@+id/action_telaFinalizacaoPedidoFragment_to_telaPagamentoEnderecoFragment"
@@ -162,7 +162,7 @@
 
     <fragment
         android:id="@+id/telaPagamentoEnderecoFragment"
-        android:name="com.mobile.agregarural.TelaPagamentoEndereco"
+        android:name="com.mobile.agregarural.ui.cart.TelaPagamentoEndereco"
         android:label="Pagamento e Endereço">
         <action
             android:id="@+id/action_telaPagamentoEnderecoFragment_to_telaPagamentoFragment"
@@ -170,11 +170,11 @@
     </fragment>
     <fragment
         android:id="@+id/carrinhoFragment"
-        android:name="com.mobile.agregarural.CarrinhoFragment"
+        android:name="com.mobile.agregarural.ui.cart.CarrinhoFragment"
         android:label="Carrinho" />
 
     <fragment
         android:id="@+id/telaPagamentoFragment"
-        android:name="com.mobile.agregarural.TelaPagamento"
+        android:name="com.mobile.agregarural.ui.cart.TelaPagamento"
         android:label="Pagamento" />
 </navigation>
