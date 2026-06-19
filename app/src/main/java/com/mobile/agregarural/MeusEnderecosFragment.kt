@@ -122,22 +122,6 @@ class MeusEnderecosFragment : Fragment() {
         binding.adicionar.setOnClickListener {
             findNavController().navigate(R.id.telaPagamentoEnderecoFragment)
         }
-
-        binding.btnEntrega.setOnClickListener {
-            findNavController().navigate(R.id.meusPedidosFragment)
-        }
-
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
-        binding.btnmenu.setOnClickListener {
-            findNavController().navigate(R.id.menuFragment)
-        }
-
-        binding.btnCarrinho.setOnClickListener {
-            findNavController().navigate(R.id.carrinhoFragment)
-        }
     }
 
     override fun onDestroyView() {
