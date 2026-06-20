@@ -33,6 +33,7 @@
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
                 app:layout_constraintTop_toTopOf="@id/constraint_interno" />
 
+
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"
@@ -57,7 +58,6 @@
 
 
             </LinearLayout>
-
 
             <TextView
                 android:id="@+id/txtNameProduto"
@@ -212,7 +212,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="7dp"
                                 android:text="@string/um"
-                                android:textColor="#1B1B1B"
+                                android:textColor="#FFFFFF"
                                 android:textSize="33sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
