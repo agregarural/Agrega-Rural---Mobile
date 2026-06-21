@@ -132,7 +132,9 @@ class TelaProduto : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                findNavController().navigate(R.id.carrinhoFragment)
+                findNavController().navigate(
+                    R.id.action_telaProdutoFragment_to_carrinhoFragment
+                )
             }
         }
 

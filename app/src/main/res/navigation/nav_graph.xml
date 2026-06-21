@@ -143,12 +143,19 @@
         android:id="@+id/telaProdutoFragment"
         android:name="com.mobile.agregarural.ui.product.TelaProduto"
         android:label="Produto">
+
+        <action
+            android:id="@+id/action_telaProdutoFragment_to_carrinhoFragment"
+            app:destination="@id/carrinhoFragment" />
+
         <action
             android:id="@+id/action_telaProdutoFragment_to_telaFinalizacaoPedidoFragment"
             app:destination="@id/telaFinalizacaoPedidoFragment" />
+
         <action
             android:id="@+id/action_telaProdutoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+
     </fragment>
 
     <fragment

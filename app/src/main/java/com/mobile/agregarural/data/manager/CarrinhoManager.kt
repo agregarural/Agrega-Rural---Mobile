@@ -33,7 +33,12 @@ object CarrinhoManager {
             itemExistente.precoUnitario = precoFinal
             itemExistente.usuarioCooperado = usuarioEhCooperado
 
-            salvarNoFirebase(produto, itemExistente.quantidade, precoFinal, usuarioEhCooperado)
+            salvarNoFirebase(
+                produto = produto,
+                quantidade = itemExistente.quantidade,
+                precoUnitario = precoFinal,
+                usuarioEhCooperado = usuarioEhCooperado
+            )
 
         } else {
             val novoItem = ItemCarrinhos(
@@ -45,7 +50,12 @@ object CarrinhoManager {
 
             itens.add(novoItem)
 
-            salvarNoFirebase(produto, quantidade, precoFinal, usuarioEhCooperado)
+            salvarNoFirebase(
+                produto = produto,
+                quantidade = quantidade,
+                precoUnitario = precoFinal,
+                usuarioEhCooperado = usuarioEhCooperado
+            )
         }
     }
 
@@ -70,7 +80,13 @@ object CarrinhoManager {
     }
 
     fun carregarCarrinho(onComplete: () -> Unit) {
-        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (uid == null) {
+            itens.clear()
+            onComplete()
+            return
+        }
 
         FirebaseDatabase.getInstance()
             .getReference("Usuarios")
@@ -93,13 +109,18 @@ object CarrinhoManager {
 
                     val precoCooperado = getDouble(itemSnapshot, "precoCooperado")
                     val descontoCooperado = getDouble(itemSnapshot, "descontoCooperado")
+
                     val precoUnitario = getDouble(itemSnapshot, "precoUnitario")
                         .takeIf { it > 0.0 }
                         ?: precoNormal
 
                     val custo = getDouble(itemSnapshot, "custo")
                     val estoque = getInt(itemSnapshot, "estoque")
-                    val quantidade = getInt(itemSnapshot, "quantidade").takeIf { it > 0 } ?: 1
+
+                    val quantidade = getInt(itemSnapshot, "quantidade")
+                        .takeIf { it > 0 }
+                        ?: 1
+
                     val usuarioCooperado = itemSnapshot.child("usuarioCooperado")
                         .getValue(Boolean::class.java) ?: false
 
@@ -127,6 +148,10 @@ object CarrinhoManager {
 
                 onComplete()
             }
+            .addOnFailureListener {
+                itens.clear()
+                onComplete()
+            }
     }
 
     fun atualizarQuantidade(item: ItemCarrinhos) {
@@ -143,7 +168,7 @@ object CarrinhoManager {
             .getReference("Usuarios")
             .child(uid)
             .child("Carrinho")
-            .child(item.produto.nome)
+            .child(gerarChaveProduto(item.produto.nome))
             .updateChildren(updates)
     }
 
@@ -156,7 +181,7 @@ object CarrinhoManager {
             .getReference("Usuarios")
             .child(uid)
             .child("Carrinho")
-            .child(item.produto.nome)
+            .child(gerarChaveProduto(item.produto.nome))
             .removeValue()
     }
 
@@ -174,7 +199,7 @@ object CarrinhoManager {
             database.child("Usuarios")
                 .child(uid)
                 .child("Carrinho")
-                .child(item.produto.nome)
+                .child(gerarChaveProduto(item.produto.nome))
                 .removeValue()
 
             itens.remove(item)
@@ -213,8 +238,19 @@ object CarrinhoManager {
             .getReference("Usuarios")
             .child(uid)
             .child("Carrinho")
-            .child(produto.nome)
+            .child(gerarChaveProduto(produto.nome))
             .setValue(dadosCarrinho)
+    }
+
+    private fun gerarChaveProduto(nome: String): String {
+        return nome
+            .trim()
+            .replace(".", "_")
+            .replace("#", "_")
+            .replace("$", "_")
+            .replace("[", "_")
+            .replace("]", "_")
+            .replace("/", "_")
     }
 
     private fun getDouble(snapshot: DataSnapshot, campo: String): Double {
