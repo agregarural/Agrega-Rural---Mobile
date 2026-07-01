@@ -255,6 +255,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
                 android:text="@string/confirmar1"
+                android:textColor="@color/white"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"/>
