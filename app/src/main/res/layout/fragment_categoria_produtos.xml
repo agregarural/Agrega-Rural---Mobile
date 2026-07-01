@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBF3FB"
-    tools:context=".CategoriaProdutosFragment">
+    tools:context=".ui.cooperative.CategoriaProdutosFragment">
 
     <LinearLayout
         android:id="@+id/header"
@@ -25,7 +25,7 @@
             android:id="@+id/btnVoltar"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
 
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Categoria"
+            android:text="@string/categoria"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
         android:id="@+id/txtSemProdutos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nenhum produto encontrado nessa categoria."
+        android:text="@string/nenhum_produto_encontrado_nessa_categoria"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:visibility="gone"
@@ -96,7 +96,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Home"
+                android:contentDescription="@string/home"
                 app:icon="@drawable/nvbar_home"
                 app:iconSize="20dp" />
 
@@ -108,7 +108,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Carrinho"
+                android:contentDescription="@string/carrinho"
                 app:icon="@drawable/nvbar_carrinho"
                 app:iconSize="20dp" />
 
@@ -120,7 +120,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Entrega"
+                android:contentDescription="@string/entrega"
                 app:icon="@drawable/nvbar_truck"
                 app:iconSize="20dp" />
 
@@ -132,7 +132,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/transparent"
-                android:contentDescription="Menu"
+                android:contentDescription="@string/menu"
                 app:icon="@drawable/nvbar_menu"
                 app:iconSize="20dp" />
 

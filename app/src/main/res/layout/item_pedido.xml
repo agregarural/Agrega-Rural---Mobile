@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Barra de Status Dinâmica -->
         <LinearLayout
             android:id="@+id/statusHeader"
             android:layout_width="match_parent"
@@ -31,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Entregue"
+                android:text="@string/entregue"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -46,7 +45,7 @@
                 android:id="@+id/txtPedidoId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pedido #091254"
+                android:text="@string/pedido_091254"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -65,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Detalhes do Pedido\nPendentes"
+                android:text="@string/detalhes_do_pedido_pendentes"
                 app:layout_constraintTop_toTopOf="@id/imgPedidoProduto"
                 app:layout_constraintStart_toEndOf="@id/imgPedidoProduto"
                 app:layout_constraintEnd_toStartOf="@id/btnAcao" />
@@ -78,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#2E7D32"
-                android:text="ACOMPANHAR"
+                android:text="@string/acompanhar"
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"

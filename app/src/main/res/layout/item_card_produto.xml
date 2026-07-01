@@ -25,7 +25,7 @@
             android:id="@+id/nomeItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rações Zardo"
+            android:text="@string/racoes_zardo"
             android:textStyle="bold"
             android:textSize="20sp" />
 
@@ -33,13 +33,13 @@
             android:id="@+id/especificacaoItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Saco 25KG" />
+            android:text="@string/saco25kg" />
 
         <TextView
             android:id="@+id/precoNormalItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cliente normal: R$ 500,00"
+            android:text="@string/cliente_normal_exemplo"
             android:textSize="13sp"
             android:textColor="#777777"
             android:visibility="gone" />
@@ -48,7 +48,7 @@
             android:id="@+id/txtDescontoCooperadoItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Desconto cooperado: 10%"
+            android:text="@string/desconto_cooperado_exemplo"
             android:textSize="13sp"
             android:textColor="@color/green"
             android:visibility="gone" />
@@ -60,7 +60,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="R$500,00" />
+            android:text="@string/precoexemplo2" />
 
     </LinearLayout>
 

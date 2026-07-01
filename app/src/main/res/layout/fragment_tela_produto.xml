@@ -8,25 +8,22 @@
     android:background="@color/white"
     >
 
-    <!-- Conteudo Principal -->
-
     <ScrollView
         android:id="@+id/main1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_interno"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="659dp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
 
-            <!-- Cabeçalho das paginas -->
             <View
                 android:id="@+id/view_desing1"
                 android:layout_width="match_parent"
@@ -35,6 +32,7 @@
                 app:layout_constraintEnd_toEndOf="@id/constraint_interno"
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
                 app:layout_constraintTop_toTopOf="@id/constraint_interno" />
+
 
             <LinearLayout
                 android:id="@+id/header"
@@ -61,24 +59,19 @@
 
             </LinearLayout>
 
-            <!-- Corpo das paginas -->
-
             <TextView
                 android:id="@+id/txtNameProduto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:padding="10dp"
-                android:text="RAÇÃO EQUINA - Rações Zardo"
+                android:text="@string/racao_equina_racoes_zardo"
                 android:textAlignment="textStart"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fotoProduto" />
-
-            <!-- Grid com Imagem + Compra do produto -->
-
 
             <LinearLayout
 
@@ -100,9 +93,6 @@
             </LinearLayout>
 
 
-            <!-- Compra + preço -->
-
-
             <LinearLayout
                 android:id="@+id/mainLinearLayout"
                 android:layout_width="match_parent"
@@ -117,7 +107,6 @@
                     android:orientation="horizontal"
                     android:padding="15dp">
 
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,7 +116,7 @@
                             android:id="@+id/precoProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$ 500,00"
+                            android:text="@string/preco_exemplo"
                             android:textColor="@color/black"
                             android:textSize="30dp"
                             android:textStyle="bold"
@@ -138,7 +127,7 @@
                             android:id="@+id/txtPrecoNormalProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cliente normal: R$ 500,00"
+                            android:text="@string/cliente_normal_exemplo"
                             android:textColor="#777777"
                             android:textSize="14sp"
                             android:visibility="gone" />
@@ -147,7 +136,7 @@
                             android:id="@+id/txtDescontoCooperadoProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Desconto cooperado: 10%"
+                            android:text="@string/desconto_cooperado"
                             android:textColor="@color/green"
                             android:textSize="14sp"
                             android:textStyle="bold"
@@ -157,7 +146,7 @@
                             android:id="@+id/categoriaProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG"
+                            android:text="@string/saco_25kg"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -166,7 +155,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Em estoque"
+                            android:text="@string/em_estoque"
                             android:textAlignment="center"
                             android:textColor="@color/green"
                             app:layout_constraintEnd_toEndOf="@id/orgCompra"
@@ -179,7 +168,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Total: R$ 500,00"
+                            android:text="@string/total_exemplo"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -214,7 +203,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/icon_btn_menos"
-                                android:contentDescription="Botão diminuir" />
+                                android:contentDescription="@string/botaoo_diminuir" />
 
                             <TextView
                                 android:id="@+id/quantidadeProduto"
@@ -222,8 +211,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="7dp"
-                                android:text="1"
-                                android:textColor="#1B1B1B"
+                                android:text="@string/um"
+                                android:textColor="#FFFFFF"
                                 android:textSize="33sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -234,14 +223,12 @@
                                 android:layout_marginEnd="20dp"
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/icon_btn_mais"
-                                android:contentDescription="Botão somar" />
+                                android:contentDescription="@string/botao_adicionar" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
-
-                    <!-- Descrição do produto -->
 
                 </LinearLayout>
 
@@ -253,7 +240,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Descrição"
+                    android:text="@string/descricao"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -264,7 +251,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="40dp"
-                    android:text="A Ração Equina Zardo Nutrição de Elite é a escolha ideal para maximizar o desempenho de cavalos atletas. Desenvolvida com ingredientes selecionados, esta fórmula suprema de 25kg oferece o equilíbrio perfeito de energia e nutrientes essenciais para garantir força, resistência e saúde integral, proporcionando ao seu animal uma alimentação de alta qualidade que reflete diretamente na sua vitalidade e condição física." />
+                    android:text="@string/descricao_exemplo" />
 
                 <Button
                     android:id="@+id/btnAdicionarCarrinho"
@@ -273,7 +260,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:backgroundTint="@color/green"
-                    android:text="Adicionar ao carrinho" />
+                    android:text="@string/adicionar_ao_carrinho" />
 
                 <Button
                     android:id="@+id/btnComprar"
@@ -283,7 +270,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:backgroundTint="@color/green"
-                    android:text="Comprar" />
+                    android:text="@string/comprar" />
 
 
                 <TextView
@@ -293,7 +280,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Outros produtos"
+                    android:text="@string/outros_produtos"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -381,7 +368,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rações Zardo"
+                            android:text="@string/racoes_zardo"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
@@ -389,19 +376,19 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG" />
+                            android:text="@string/saco25kg" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$500,00" />
+                            android:text="@string/precoexemplo" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_edit_text"
-                            android:text="COMPRAR" />
+                            android:text="@string/comprar2" />
 
                     </LinearLayout>
 
@@ -430,7 +417,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rações Zardo"
+                            android:text="@string/racoes_zardo1"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
@@ -438,19 +425,19 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG" />
+                            android:text="@string/saco_25kg2" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$500,00" />
+                            android:text="@string/precoexemplo2" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_edit_text"
-                            android:text="COMPRAR" />
+                            android:text="@string/comprar2" />
 
                     </LinearLayout>
 
@@ -479,7 +466,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rações Zardo"
+                            android:text="@string/racoes_zardo"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
@@ -487,19 +474,19 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG" />
+                            android:text="@string/saco25kg" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$500,00" />
+                            android:text="@string/precoexemplo2" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_edit_text"
-                            android:text="COMPRAR" />
+                            android:text="@string/comprar2" />
 
                     </LinearLayout>
 
@@ -511,86 +498,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-    <!--    Menu Inferior-->
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/navigatebar_shape"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="4"
-            android:rowCount="1">
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Home"
-                android:id="@+id/btnHome"
-                android:background="@color/transparent"
-                app:icon="@drawable/nvbar_home"
-                app:iconSize="20dp" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Carrinho"
-                app:icon="@drawable/nvbar_carrinho"
-                android:id="@+id/btnCarrinho"
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:id="@+id/btnEntrega"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Entrega"
-                app:icon="@drawable/nvbar_truck"
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Menu"
-                android:id="@+id/btnmenu"
-                app:icon="@drawable/nvbar_menu"
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
-
-
-        </GridLayout>
-
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
