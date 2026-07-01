@@ -216,6 +216,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnConfirmarNewAdress"
                     android:layout_width="match_parent"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/green"
                     android:text="@string/confirmar1"

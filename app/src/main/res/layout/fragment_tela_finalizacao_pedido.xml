@@ -119,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
+                android:textColor="@color/white"
                 android:text="@string/confirmar"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="10dp"
