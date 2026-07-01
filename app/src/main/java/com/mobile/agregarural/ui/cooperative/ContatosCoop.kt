@@ -1,11 +1,11 @@
 package com.mobile.agregarural.ui.cooperative
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -33,10 +33,10 @@ class ContatosCoop : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.txtTelefoneCoop.text = getString(R.string.carregando)
-        binding.txtEmailCoop.text = getString(R.string.carregando)
-        binding.txtEndereco1Coop.text = getString(R.string.carregando)
-        binding.txtEndereco2Coop.text = getString(R.string.carregando)
+        binding.txtTelefoneCoop.text = "Carregando..."
+        binding.txtEmailCoop.text = "Carregando..."
+        binding.txtEndereco1Coop.text = "Carregando..."
+        binding.txtEndereco2Coop.text = "Carregando..."
 
         carregarCooperativaDoUsuario()
         setupNavegacao()
@@ -48,7 +48,7 @@ class ContatosCoop : Fragment() {
         if (uidUsuario == null) {
             Toast.makeText(
                 requireContext(),
-                getString(R.string.usuario_nao_autenticado),
+                "Usuário não autenticado",
                 Toast.LENGTH_SHORT
             ).show()
             return
@@ -65,24 +65,30 @@ class ContatosCoop : Fragment() {
                 if (coopUid.isNullOrBlank()) {
                     Toast.makeText(
                         requireContext(),
-                        getString(R.string.usuario_nao_vinculado_a_uma_cooperativa),
+                        "Usuário não vinculado a uma cooperativa",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    binding.txtTelefoneCoop.text = "Não informado"
+                    binding.txtEmailCoop.text = "Não informado"
+                    binding.txtEndereco1Coop.text = "Endereço não informado"
+                    binding.cardEndereco2.visibility = View.GONE
+
                     return@addOnSuccessListener
                 }
 
-                buscarContatoEEnderecoDaCooperativa(coopUid)
+                buscarDadosDaCooperativa(coopUid)
             }
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.erro_ao_buscar_coopuid_do_usuario),
+                    "Erro ao buscar cooperativa do usuário",
                     Toast.LENGTH_SHORT
                 ).show()
             }
     }
 
-    private fun buscarContatoEEnderecoDaCooperativa(coopUid: String) {
+    private fun buscarDadosDaCooperativa(coopUid: String) {
         database.child("Cooperativas")
             .child(coopUid)
             .get()
@@ -91,7 +97,7 @@ class ContatosCoop : Fragment() {
                 if (!snapshot.exists()) {
                     Toast.makeText(
                         requireContext(),
-                        getString(R.string.cooperativa_nao_encontrada),
+                        "Cooperativa não encontrada",
                         Toast.LENGTH_SHORT
                     ).show()
                     return@addOnSuccessListener
@@ -104,21 +110,32 @@ class ContatosCoop : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.erro_ao_carregar_dados_da_cooperativa),
+                    "Erro ao carregar dados da cooperativa",
                     Toast.LENGTH_SHORT
                 ).show()
             }
     }
 
     private fun carregarContato(contatoSnapshot: DataSnapshot) {
-        val telefone = contatoSnapshot.child("telefone").getValue(String::class.java)
-            ?: getString(R.string.nao_informado)
+        val telefone = contatoSnapshot
+            .child("telefone")
+            .getValue(String::class.java)
 
-        val email = contatoSnapshot.child("email").getValue(String::class.java)
-            ?: getString(R.string.nao_informado)
+        val email = contatoSnapshot
+            .child("email")
+            .getValue(String::class.java)
 
-        binding.txtTelefoneCoop.text = telefone
-        binding.txtEmailCoop.text = email
+        binding.txtTelefoneCoop.text = if (!telefone.isNullOrBlank()) {
+            telefone
+        } else {
+            "Telefone não informado"
+        }
+
+        binding.txtEmailCoop.text = if (!email.isNullOrBlank()) {
+            email
+        } else {
+            "Email não informado"
+        }
     }
 
     private fun carregarEnderecoPrincipal(enderecoSnapshot: DataSnapshot) {
@@ -166,7 +183,7 @@ class ContatosCoop : Fragment() {
         }
 
         return if (partes.isEmpty()) {
-            getString(R.string.endereco_nao_informado)
+            "Endereço não informado"
         } else {
             partes.joinToString(", ")
         }

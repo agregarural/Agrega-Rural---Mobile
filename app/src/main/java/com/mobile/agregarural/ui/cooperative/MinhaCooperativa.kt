@@ -232,6 +232,9 @@ class MinhaCooperativa : Fragment() {
         binding.btnVoltar.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.cardcontato.setOnClickListener {
+            findNavController().navigate(R.id.TelaContatosCoopFragment)
+        }
     }
 
     override fun onDestroyView() {
