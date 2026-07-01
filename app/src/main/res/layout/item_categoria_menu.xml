@@ -24,7 +24,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="CATEGORIA"
+            android:text="@string/categoria2"
             android:textColor="#1B5E20"
             android:textSize="11sp"
             android:textStyle="bold" />

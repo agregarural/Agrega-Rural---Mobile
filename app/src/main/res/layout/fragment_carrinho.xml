@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CarrinhoFragment">
+    tools:context=".ui.cart.CarrinhoFragment"
+    android:paddingBottom="80dp">
 
     <LinearLayout
         android:id="@+id/header"
@@ -27,13 +28,13 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             app:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carrinho"
+            android:text="@string/carrinho"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -58,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Finalizar Pedido"
+        android:text="@string/finalizarpedido"
         android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

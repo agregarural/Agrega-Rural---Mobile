@@ -9,7 +9,6 @@
     android:background="#FFFFFF"
     >
 
-    <!-- Header verde -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -29,20 +28,19 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Voltar"
+            android:contentDescription="@string/voltar"
             app:tint="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meu perfil"
+            android:text="@string/meu_perfil"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
-    <!-- Conteúdo rolável -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,12 +55,10 @@
             android:paddingTop="24dp"
             android:paddingBottom="24dp">
 
-            <!-- Foto de perfil -->
             <FrameLayout
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_gravity="center_horizontal">
-
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgPerfil"
@@ -72,7 +68,6 @@
                     app:civ_border_width="3dp"
                     app:civ_border_color="#E0E0E0" />
 
-                <!-- Botão editar foto -->
                 <ImageView
                     android:id="@+id/btnEditarFoto"
                     android:layout_width="28dp"
@@ -81,12 +76,10 @@
                     android:background="@drawable/bg_circle_white"
                     android:padding="4dp"
                     android:layout_gravity="bottom|end"
-                    android:contentDescription="Editar foto" />
+                    android:contentDescription="@string/editar_foto" />
             </FrameLayout>
 
-            <!-- Nome do usuário -->
 
-            <!-- Cards -->
             <TextView
                 android:id="@+id/tvNomeUsuario"
                 android:layout_width="wrap_content"
@@ -104,7 +97,6 @@
                 android:layout_marginTop="24dp"
                 android:orientation="horizontal">
 
-                <!-- Meus Pedidos -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardMeusPedidos"
                     android:layout_width="120dp"
@@ -125,12 +117,12 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/ic_meus_pedidos"
-                            android:contentDescription="Meus Pedidos" />
+                            android:contentDescription="@string/meus_pedidos1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Meus\npedidos"
+                            android:text="@string/meus_pedidos2"
                             android:textSize="12sp"
                             android:textColor="#333333"
                             android:gravity="center"
@@ -138,7 +130,6 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Minha Cooperativa -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardMinhaCooperativa"
                     android:layout_width="120dp"
@@ -158,12 +149,12 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/ic_minha_cooperativa"
-                            android:contentDescription="Minha Cooperativa" />
+                            android:contentDescription="@string/minha_cooperativa1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Minha\nCooperativa"
+                            android:text="@string/minha_cooperativa2"
                             android:textSize="12sp"
                             android:textColor="#333333"
                             android:gravity="center"
@@ -172,7 +163,7 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <!-- Separador -->
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -181,7 +172,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp" />
 
-            <!-- Lista de opções -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,7 +181,6 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp">
 
-                <!-- Dados pessoais -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDadosPessoais"
                     android:layout_width="match_parent"
@@ -210,7 +200,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dados pessoais"
+                            android:text="@string/dados_pessoais1"
                             android:textSize="15sp"
                             android:textColor="#222222"
                             android:layout_centerVertical="true"/>
@@ -222,12 +212,11 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             app:tint="#888888"
-                            android:contentDescription="Navegar" />
+                            android:contentDescription="@string/navegar" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Endereços -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEnderecos"
                     android:layout_width="match_parent"
@@ -245,7 +234,7 @@
                         android:padding="16dp">
 
                         <TextView
-                            android:text="Endereços"
+                            android:text="@string/enderecos"
                             android:textSize="15sp"
                             android:textColor="#222222"
                             android:layout_centerVertical="true"
@@ -259,14 +248,11 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             app:tint="#888888"
-                            android:contentDescription="Navegar" />
+                            android:contentDescription="@string/navegar" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Cartões -->
 
-
-                <!-- Atendimento ao Cliente(SAC) -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardSAC"
                     android:layout_width="match_parent"
@@ -284,7 +270,7 @@
                         android:padding="16dp">
 
                         <TextView
-                            android:text="Atendimento ao Cliente(SAC)"
+                            android:text="@string/atendimento_ao_cliente_sac"
                             android:textSize="15sp"
                             android:textColor="#222222"
                             android:layout_centerVertical="true"
@@ -298,11 +284,10 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             app:tint="#888888"
-                            android:contentDescription="Navegar" />
+                            android:contentDescription="@string/navegar" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Atendimento ao Cliente(SAC) -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDesconectar"
                     android:layout_width="match_parent"
@@ -334,94 +319,14 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             app:tint="#888888"
-                            android:contentDescription="Navegar" />
+                            android:contentDescription="@string/navegar" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- (continua igual para os outros cards...) -->
             </LinearLayout>
-
-
 
         </LinearLayout>
 
-
     </androidx.core.widget.NestedScrollView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/navigatebar_shape"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="4"
-            android:rowCount="1">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnHome"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Home"
-                app:icon="@drawable/nvbar_home"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:id="@+id/btnCarrinho"
-                android:contentDescription="Carrinho"
-                app:icon="@drawable/nvbar_carrinho"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEntrega"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Entrega"
-                app:icon="@drawable/nvbar_truck"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnmenu"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_row="0"
-                android:layout_column="3"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Menu"
-                app:icon="@drawable/nvbar_menu"
-                app:iconSize="20dp" />
-        </GridLayout>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

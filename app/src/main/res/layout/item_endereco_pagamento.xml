@@ -15,7 +15,7 @@
         android:id="@+id/tvNomeEndereco"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:text="Casa"
+        android:text="@string/casa"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="14sp" />

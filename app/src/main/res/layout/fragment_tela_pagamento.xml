@@ -5,20 +5,23 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
 
     <ScrollView
         android:id="@+id/main1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_interno"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="80dp">
 
             <View
                 android:id="@+id/view_desing1"
@@ -43,7 +46,7 @@
                     android:id="@+id/btnVoltar"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:contentDescription="Voltar"
+                    android:contentDescription="@string/voltar"
                     android:src="@drawable/ic_arrow_back"
                     app:tint="#FFFFFF" />
 
@@ -59,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="PAGAMENTO"
+                android:text="@string/pagamento"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -73,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Faça o pagamento até 1 dia útil."
+                android:text="@string/faca_o_pagamento_ate_1_dia_util"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -125,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Escaneie o QR Code acima"
+                    android:text="@string/escaneie_o_qr_code_acima"
                     android:textAlignment="center"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -134,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Ou copie o código pix:" />
+                    android:text="@string/ou_copie_o_codigo_pix" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -162,7 +165,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/icon_copiar"
                         android:backgroundTint="@color/green"
-                        android:contentDescription="Copiar código Pix" />
+                        android:contentDescription="@string/copiar_codigo_pix" />
 
                 </LinearLayout>
 
@@ -174,85 +177,11 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="30dp"
                     android:backgroundTint="@color/green"
-                    android:text="Finalizar pedido" />
+                    android:text="@string/finalizar_pedido" />
 
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/navigatebar_shape"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="4"
-            android:rowCount="1">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnHome"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Home"
-                app:icon="@drawable/nvbar_home"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCarrinho"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Carrinho"
-                app:icon="@drawable/nvbar_carrinho"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEntrega"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Entrega"
-                app:icon="@drawable/nvbar_truck"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnmenu"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Menu"
-                app:icon="@drawable/nvbar_menu"
-                app:iconSize="20dp" />
-
-        </GridLayout>
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

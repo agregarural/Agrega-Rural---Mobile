@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     >
 
-    <!-- Conteudo Principal -->
-
     <ScrollView
         android:id="@+id/main1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_interno"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="659dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
 
-            <!-- Cabeçalho das paginas -->
             <View
                 android:id="@+id/view_desing1"
                 android:layout_width="match_parent"
@@ -33,76 +33,64 @@
                 app:layout_constraintStart_toStartOf="@id/constraint_interno"
                 app:layout_constraintTop_toTopOf="@id/constraint_interno" />
 
+
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_header_gradient"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:paddingTop="40dp"
+                android:paddingEnd="16dp"
                 android:paddingBottom="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/btnBack"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:src="@drawable/ic_arrow_back"
                     android:contentDescription="@string/voltar"
-                    app:tint="#FFFFFF"/>
-
-
-
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="#FFFFFF" />
 
 
             </LinearLayout>
-
-            <!-- Corpo das paginas -->
 
             <TextView
                 android:id="@+id/txtNameProduto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="RAÇÃO EQUINA - Rações Zardo"
+                android:padding="10dp"
+                android:text="@string/racao_equina_racoes_zardo"
                 android:textAlignment="textStart"
                 android:textSize="30sp"
-                android:padding="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fotoProduto" />
 
-            <!-- Grid com Imagem + Compra do produto -->
+            <LinearLayout
 
+                android:id="@+id/fotoProduto"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:src="@drawable/prod_racoeszardo"
+                app:layout_constraintTop_toBottomOf="@id/view_desing1">
 
-
-                <LinearLayout
-
-                    android:id="@+id/fotoProduto"
-                    android:layout_marginTop="20dp"
+                <ImageView
+                    android:id="@+id/imgProduto"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:src="@drawable/prod_racoeszardo"
-                    app:layout_constraintTop_toBottomOf="@id/view_desing1"
-                    android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prod_racoeszardo" />
 
-                    <ImageView
-                        android:id="@+id/imgProduto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/prod_racoeszardo"
-                        />
-
-                </LinearLayout>
-
-
-            <!-- Compra + preço -->
+            </LinearLayout>
 
 
             <LinearLayout
@@ -119,54 +107,71 @@
                     android:orientation="horizontal"
                     android:padding="15dp">
 
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/precoProduto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:text="R$ 500,00"
-                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
-                        app:layout_constraintStart_toStartOf="@id/orgCompra"
-                        app:layout_constraintTop_toTopOf="@id/orgCompra" />
+                        <TextView
+                            android:id="@+id/precoProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/preco_exemplo"
+                            android:textColor="@color/black"
+                            android:textSize="30dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@id/orgCompra"
+                            app:layout_constraintStart_toStartOf="@id/orgCompra"
+                            app:layout_constraintTop_toTopOf="@id/orgCompra" />
+                        <TextView
+                            android:id="@+id/txtPrecoNormalProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cliente_normal_exemplo"
+                            android:textColor="#777777"
+                            android:textSize="14sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/txtDescontoCooperadoProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/desconto_cooperado"
+                            android:textColor="@color/green"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/categoriaProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"/>
+                            android:text="@string/saco_25kg"
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/estoqueProduto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Em estoque"
-                        android:textColor="@color/green"
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="@id/orgCompra"
-                        app:layout_constraintHorizontal_bias="0.33"
-                        app:layout_constraintStart_toStartOf="@id/orgCompra"
-                        app:layout_constraintTop_toBottomOf="@id/precoProduto" />
+                        <TextView
+                            android:id="@+id/estoqueProduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/em_estoque"
+                            android:textAlignment="center"
+                            android:textColor="@color/green"
+                            app:layout_constraintEnd_toEndOf="@id/orgCompra"
+                            app:layout_constraintHorizontal_bias="0.33"
+                            app:layout_constraintStart_toStartOf="@id/orgCompra"
+                            app:layout_constraintTop_toBottomOf="@id/precoProduto" />
+
                         <TextView
                             android:id="@+id/valorTotalProduto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Total: R$ 500,00"
+                            android:text="@string/total_exemplo"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-
 
 
                     </LinearLayout>
@@ -174,77 +179,70 @@
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="12dp"
-                        android:elevation="4dp">
+                        android:elevation="4dp"
+                        app:cardCornerRadius="12dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="2dp"
-                        android:background="@color/green">
-
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnMenos"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:contentDescription="Botão diminuir"
-                            android:background="@drawable/icon_btn_menos"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="8dp" />
-
-                        <TextView
-                            android:id="@+id/quantidadeProduto"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textColor="#1B1B1B"
-                            android:textSize="33sp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="7dp" />
+                            android:background="@color/green"
+                            android:orientation="horizontal"
+                            android:padding="2dp">
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnMais"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/icon_btn_mais"
-                            android:contentDescription="Botão somar"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginBottom="8dp" />
 
-                    </LinearLayout>
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnMenos"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/icon_btn_menos"
+                                android:contentDescription="@string/botaoo_diminuir" />
+
+                            <TextView
+                                android:id="@+id/quantidadeProduto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="7dp"
+                                android:text="@string/um"
+                                android:textColor="#FFFFFF"
+                                android:textSize="33sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnMais"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/icon_btn_mais"
+                                android:contentDescription="@string/botao_adicionar" />
+
+                        </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
 
-
-
-
-
-
-                    <!-- Descrição do produto -->
-
                 </LinearLayout>
 
                 <TextView
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
                     android:id="@+id/txtTituloDescicao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descrição"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"/>
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@string/descricao"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtDescicao"
@@ -253,39 +251,38 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="40dp"
-                    android:text="A Ração Equina Zardo Nutrição de Elite é a escolha ideal para maximizar o desempenho de cavalos atletas. Desenvolvida com ingredientes selecionados, esta fórmula suprema de 25kg oferece o equilíbrio perfeito de energia e nutrientes essenciais para garantir força, resistência e saúde integral, proporcionando ao seu animal uma alimentação de alta qualidade que reflete diretamente na sua vitalidade e condição física." />
+                    android:text="@string/descricao_exemplo" />
 
                 <Button
                     android:id="@+id/btnAdicionarCarrinho"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Adicionar ao carrinho"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:backgroundTint="@color/green" />
+                    android:backgroundTint="@color/green"
+                    android:text="@string/adicionar_ao_carrinho" />
 
                 <Button
                     android:id="@+id/btnComprar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Comprar"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
-                    android:backgroundTint="@color/green"/>
-
+                    android:backgroundTint="@color/green"
+                    android:text="@string/comprar" />
 
 
                 <TextView
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Outros produtos"
-                    android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@string/outros_produtos"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -299,63 +296,11 @@
                 app:layout_constraintBottom_toBottomOf="@id/constraint_interno"
                 app:layout_constraintTop_toBottomOf="@id/mainLinearLayout">
 
-                <androidx.cardview.widget.CardView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="180dp"
                     android:layout_height="250dp"
-                    app:cardCornerRadius="20dp"
-                    android:layout_margin="10dp">
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <ImageView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:src="@drawable/prod_racoeszardo"/>
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rações Zardo"
-                        android:textStyle="bold"
-                        android:textSize="20dp"/>
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Saco 25KG"/>
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$500,00"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="COMPRAR"
-                        android:background="@drawable/shape_edit_text"/>
-
-                </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="180dp"
-                    android:layout_height="250dp"
-                    app:cardCornerRadius="20dp"
-                    android:layout_margin="10dp">
-
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp">
 
 
                     <LinearLayout
@@ -368,44 +313,43 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:src="@drawable/prod_racoeszardo"/>
+                            android:src="@drawable/prod_racoeszardo" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rações Zardo"
-                            android:textStyle="bold"
-                            android:textSize="20dp"/>
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG"/>
+                            android:text="Saco 25KG" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$500,00"/>
+                            android:text="R$500,00" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="COMPRAR"
-                            android:background="@drawable/shape_edit_text"/>
+                            android:background="@drawable/shape_edit_text"
+                            android:text="COMPRAR" />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="180dp"
                     android:layout_height="250dp"
-                    app:cardCornerRadius="20dp"
-                    android:layout_margin="10dp">
-
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp">
 
 
                     <LinearLayout
@@ -418,44 +362,43 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:src="@drawable/prod_racoeszardo"/>
+                            android:src="@drawable/prod_racoeszardo" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rações Zardo"
-                            android:textStyle="bold"
-                            android:textSize="20dp"/>
+                            android:text="@string/racoes_zardo"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG"/>
+                            android:text="@string/saco25kg" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$500,00"/>
+                            android:text="@string/precoexemplo" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="COMPRAR"
-                            android:background="@drawable/shape_edit_text"/>
+                            android:background="@drawable/shape_edit_text"
+                            android:text="@string/comprar2" />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="180dp"
                     android:layout_height="250dp"
-                    app:cardCornerRadius="20dp"
-                    android:layout_margin="10dp">
-
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp">
 
 
                     <LinearLayout
@@ -468,33 +411,82 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:src="@drawable/prod_racoeszardo"/>
+                            android:src="@drawable/prod_racoeszardo" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rações Zardo"
-                            android:textStyle="bold"
-                            android:textSize="20dp"/>
+                            android:text="@string/racoes_zardo1"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Saco 25KG"/>
+                            android:text="@string/saco_25kg2" />
 
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="R$500,00"/>
+                            android:text="@string/precoexemplo2" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="COMPRAR"
-                            android:background="@drawable/shape_edit_text"/>
+                            android:background="@drawable/shape_edit_text"
+                            android:text="@string/comprar2" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="180dp"
+                    android:layout_height="250dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:src="@drawable/prod_racoeszardo" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/racoes_zardo"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/saco25kg" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/precoexemplo2" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text"
+                            android:text="@string/comprar2" />
 
                     </LinearLayout>
 
@@ -506,86 +498,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-    <!--    Menu Inferior-->
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/navigatebar_shape"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="4"
-            android:rowCount="1">
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Home"
-                android:id="@+id/btnHome"
-                android:background="@color/transparent"
-                app:icon="@drawable/nvbar_home"
-                app:iconSize="20dp" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Carrinho"
-                app:icon="@drawable/nvbar_carrinho"
-                android:id="@+id/btnCarrinho"
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:id="@+id/btnEntrega"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Entrega"
-                app:icon="@drawable/nvbar_truck"
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="Menu"
-                android:id="@+id/btnmenu"
-                app:icon="@drawable/nvbar_menu"
-                android:background="@color/transparent"
-                app:iconSize="20dp" />
-
-
-        </GridLayout>
-
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

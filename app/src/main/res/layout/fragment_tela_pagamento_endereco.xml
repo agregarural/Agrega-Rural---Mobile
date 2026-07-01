@@ -7,24 +7,22 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Conteudo Principal -->
-
     <ScrollView
         android:id="@+id/main1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:id="@+id/constraint_interno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
 
 
-            <!-- Cabeçalho das paginas -->
             <View
                 android:id="@+id/view_desing1"
                 android:layout_width="match_parent"
@@ -49,7 +47,7 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/ic_arrow_back"
-                    android:contentDescription="Voltar"
+                    android:contentDescription="@string/voltar"
                     app:tint="#FFFFFF" />
                 <View
                     android:layout_width="wrap_content"
@@ -59,14 +57,13 @@
 
             </LinearLayout>
 
-            <!-- Corpo das paginas -->
 
             <TextView
                 android:id="@+id/formasDePagamento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="ENDEREÇOS DE ENTREGA"
+                android:text="@string/enderecos_de_entrega"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -77,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Defina seu endereço"
+                android:text="@string/defina_seu_endereco"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -96,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
-                    android:text="Cadastrar Novo Endereço"
+                    android:text="@string/cadastrar_novo_endereco"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -110,21 +107,20 @@
                     android:padding="10dp">
 
 
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:text="@string/cep" />
 
                     <TextView
                         android:layout_columnWeight="1"
-                        android:text="CEP" />
-
-                    <TextView
-                        android:layout_columnWeight="1"
-                        android:text="Numero" />
+                        android:text="@string/numero" />
 
                     <EditText
                         android:id="@+id/edtCep"
 
                         android:layout_columnWeight="1"
                         android:layout_height="50dp"
-                        android:hint="Apenas números"
+                        android:hint="@string/apenas_numeros"
                         android:background="@drawable/shape_edit_text"
                         android:textSize="20sp"
                         android:padding="6dp"
@@ -135,7 +131,7 @@
                         android:id="@+id/edtNumero"
                         android:layout_columnWeight="1"
                         android:layout_height="50dp"
-                        android:hint="Ex: 99"
+                        android:hint="@string/ex_99"
                         android:background="@drawable/shape_edit_text"
                         android:textSize="20sp"
                         android:padding="6dp"
@@ -146,17 +142,17 @@
                         android:layout_columnWeight="1"
 
                         android:layout_marginTop="10dp"
-                        android:text="LOGRADOURO" />
+                        android:text="@string/logradouro" />
 
                     <TextView
                         android:layout_columnWeight="1"
-                        android:text="COMPLEMENTO" />
+                        android:text="@string/complemento" />
 
                     <EditText
                         android:id="@+id/edtLogradouro"
                         android:layout_height="50dp"
                         android:layout_columnWeight="1"
-                        android:hint="Rua, Avenida"
+                        android:hint="@string/rua_avenida"
                         android:background="@drawable/shape_edit_text"
                         android:textSize="20sp"
                         android:padding="6dp"
@@ -166,7 +162,7 @@
                         android:id="@+id/edtComplemento"
                         android:layout_columnWeight="1"
                         android:layout_height="50dp"
-                        android:hint="Opicional"
+                        android:hint="@string/opcional"
                         android:background="@drawable/shape_edit_text"
                         android:textSize="20sp"
                         android:padding="6dp"
@@ -182,7 +178,7 @@
                     android:layout_columnWeight="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="20dp"
-                    android:text="REFERENCIA" />
+                    android:text="@string/referencia" />
 
                 <EditText
                     android:id="@+id/edtReferencia"
@@ -191,7 +187,7 @@
                     android:layout_columnWeight="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:hint="Opicional"
+                    android:hint="@string/opcional"
                     android:background="@drawable/shape_edit_text"
                     android:textSize="20sp"
                     android:paddingStart="10dp"/>
@@ -202,7 +198,7 @@
                     android:layout_columnWeight="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="20dp"
-                    android:text="NOME" />
+                    android:text="@string/nome2" />
 
                 <EditText
                     android:id="@+id/edtNomeEndereco"
@@ -211,7 +207,7 @@
                     android:layout_columnWeight="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:hint="Nome do endereço. Ex: Casa"
+                    android:hint="@string/nome_do_endereco"
                     android:background="@drawable/shape_edit_text"
                     android:textSize="20sp"
                     android:paddingStart="10dp"/>
@@ -222,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/green"
-                    android:text="CONFIRMAR"
+                    android:text="@string/confirmar1"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="6dp"/>
@@ -236,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Endereços salvos"
+                android:text="@string/enderecos_salvos"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -257,96 +253,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
-                android:text="CONFIRMAR"
+                android:text="@string/confirmar1"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"/>
 
 
-
-        </LinearLayout> <!-- Linear layout geral -->
+        </LinearLayout>
 
     </ScrollView>
-
-
-    <!--    Menu Inferior-->
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/navigatebar_shape"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="4"
-            android:rowCount="1">
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:id="@+id/btnHome"
-                android:contentDescription="Home"
-                app:icon="@drawable/nvbar_home"
-                app:iconSize="20dp" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:id="@+id/btnCarrinho"
-                android:contentDescription="Carrinho"
-                app:icon="@drawable/nvbar_carrinho"
-                app:iconSize="20dp" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:contentDescription="Entrega"
-                android:id="@+id/btnEntrega"
-                app:icon="@drawable/nvbar_truck"
-                app:iconSize="20dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_columnWeight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@color/transparent"
-                android:id="@+id/btnmenu"
-                android:contentDescription="Menu"
-                app:icon="@drawable/nvbar_menu"
-                app:iconSize="20dp" />
-
-
-        </GridLayout>
-
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
